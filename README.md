@@ -18,9 +18,9 @@ git push origin <branch name>
 ```
 # architecture:
 
-lib>
+lib:
   models  
-  views>
+  views:
     screens
     widgets
   services
