@@ -18,12 +18,12 @@ git push origin <branch name>
 ```
 # architecture:
 
-*lib:
-  models  
-  views:
-    screens
-    widgets
-  services
+* lib:
+  * models  
+  * views:
+    * screens
+    * widgets
+  * services
  
 
 # useful tip:
