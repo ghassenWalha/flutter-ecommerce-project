@@ -16,8 +16,17 @@ git checkout <branch name>
 git push origin <branch name>
  exp: git push origin sprint1/home
 ```
+# architecture:
 
-#useful tip:
+lib
+ >models  
+ >views
+   >screens
+   >widgets
+ >services
+ 
+
+# useful tip:
 before you start working on your branch after the first time, pull the branch you are working on.
 
 ```
