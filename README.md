@@ -1,6 +1,6 @@
 # flutter_ecommerce_project
 
-# how contribute to this project:
+# how to contribute to this project:
 1. Clown this project
 2. Check out to your branch
 
