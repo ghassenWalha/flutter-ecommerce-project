@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
+import 'package:flutter_ecommerce_project/views/widgets/Category_Items.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -11,41 +12,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int currentIndex = 0;
 
-  void _incrementCounter() {
+  void onSelect(int index) {
     setState(() {
-      
-      _counter++;
+      this.currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-     
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+        body: HomeScreen(),
+        backgroundColor: Colors.blueGrey,
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.lock), label: "admin Dashbord"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag), label: "Bag"),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+          currentIndex: currentIndex,
+          onTap: onSelect,
+        ));
   }
 }
