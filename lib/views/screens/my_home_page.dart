@@ -1,51 +1,40 @@
 import 'package:flutter/material.dart';
+import './mybag.dart';
 
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      
-      _counter++;
-    });
-  }
-
+class MyHomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-
+    // TODO: implement build
     return Scaffold(
-     
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      //appBar: AppBar(title: Text('Flutter App')),
+      body:
+      Column(
+        
+        children: [
+        Card ( 
+         
+          child :
+          Container(
+             padding: EdgeInsets.only(top:70,bottom: 2),
+          width: double.infinity,
+          child :Text('My Bag',
+          style: TextStyle(fontSize: 40)),
+          ), 
+          
+          ),
+          Container(
+             width: double.infinity,
+         height: 150,
+          padding: EdgeInsets.only(top:11,bottom: 0),
+         child : MyBag())
+          
+        ]) ,
     );
+  
   }
+ 
+   
+  
 }
+
