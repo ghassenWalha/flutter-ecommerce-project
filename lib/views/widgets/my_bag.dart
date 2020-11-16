@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
  
-class MyBag extends StatelessWidget {
-   int index=0;
+class MyBag extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyBagState();
+  }
+  
+}
+
+class MyBagState extends State<MyBag>{
+  
+  int quantity=1;
+  void addQuantity ()
+  {
+    setState(() {
+      quantity++;
+    });
+  }
+   void substractQuantity ()
+  {
+    setState(() {
+      while (quantity >= 0)
+      quantity--;
+    });
+  }
+   
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,18 +78,18 @@ class MyBag extends StatelessWidget {
                                   height: 25,
                                   child: 
                                     RaisedButton(
-                                     onPressed: (){index--;},
+                                     onPressed: substractQuantity ,
                                      child :
                                         Text('-', textAlign: TextAlign.center,),  
                                                  ),
                                 ),
-                                Text(index.toString()),
+                                Text(quantity.toString()),
                                 Container(
                                   margin:EdgeInsets.all(8),
                                   width:25,
                                   height: 25,
                                   child: 
-                                   RaisedButton(onPressed:() {index++;},
+                                   RaisedButton(onPressed:() {addQuantity();},
                                     child :
                                        Text('+',textAlign: TextAlign.center,)
                                                 ),
