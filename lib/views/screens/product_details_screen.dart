@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/custom_action_bar.dart';
 import '../widgets/image_swiper.dart';
+import '../widgets/Button.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -26,13 +27,23 @@ class _ProductPageState extends State<ProductPage> {
                   right: 24.0,
                   bottom: 4.0,
                 ),
-                child: Text(
-                  "Product Name",
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      "Product Name",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                          left:
+                              115), // the paading neeed to change because it's not always practical
+                      child: Button(),
+                    )
+                  ],
                 ),
               ),
               Padding(
@@ -76,11 +87,17 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                     ),
                     Container(
-                      alignment: Alignment.centerRight,
+                      margin: EdgeInsets.all(8),
+                      width: 30,
+                      height: 25,
+                      color: Colors.white,
+                      alignment: Alignment.center,
                       child: RaisedButton(
-                        color: Colors.white,
+                        color: Colors.grey,
                         onPressed: null,
-                        child: Text("▼"),
+                        child: Text(
+                          "▼",
+                        ),
                       ),
                     ),
                   ],
@@ -101,7 +118,7 @@ class _ProductPageState extends State<ProductPage> {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
-                          fontWeight: FontWeight.w200),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
