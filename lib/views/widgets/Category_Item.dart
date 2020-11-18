@@ -25,7 +25,6 @@ class CategoryItem extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
             ),
             Container(
-                width: 200,
                 padding: EdgeInsets.all(10),
                 child: Align(
                     alignment: Alignment.topLeft,

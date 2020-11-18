@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'Category_Item.dart';
 
-class CategoryList extends StatefulWidget {
-  final Map<String, String> items;
+/* this widget present a scrolable horizontal list of the category Items .
+   it takes a map of that contains each category title and image path . you can add a new 
+   category after instantiation with add category  _ souheil  */
 
-  CategoryList({this.items});
-  @override
-  _CategoryListState createState() => _CategoryListState(items);
-}
-
-class _CategoryListState extends State<CategoryList> {
+class CategoryList extends StatelessWidget {
   final List<Widget> widgetsList = [];
 
   // this is a constructor  that takes a map of categories and creat a list of category_item widgets
 
-  _CategoryListState(Map<String, String> m1) {
+  CategoryList(Map<String, String> m1) {
     m1.forEach((key, value) {
       widgetsList.add(CategoryItem(
         title: key,
@@ -34,7 +30,7 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child:
-            ListView(scrollDirection: Axis.horizontal, children: widgetsList));
+        child: ListView(
+            scrollDirection: Axis.horizontal, children: this.widgetsList));
   }
 }
