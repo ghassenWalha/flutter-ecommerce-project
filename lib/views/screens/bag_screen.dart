@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/my_bag.dart';
+import '../widgets/bag_list.dart';
 
 
 class MyHomePage extends StatelessWidget{
@@ -8,28 +8,35 @@ class MyHomePage extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
       //appBar: AppBar(title: Text('Flutter App')),
-      body:
-      Column(
+      body:Column(
         
         children: [
         Card ( 
          
           child :
           Container(
+            color: Colors.white,
+
              padding: EdgeInsets.only(top:70,bottom: 2),
           width: double.infinity,
+          
           child :Text('My Bag',
-          style: TextStyle(fontSize: 40)),
+          style: TextStyle(fontSize: 30)),
           ), 
           
           ),
           Container(
-             width: double.infinity,
-         height: 150,
-          padding: EdgeInsets.only(top:11,bottom: 0),
-         child : MyBag())
-          
+        color: Colors.white,
+        width: double.infinity,
+         height: 550,
+          padding: EdgeInsets.only(bottom: 0),
+         child : BagList(),
+          )
         ]) ,
+    
+         
+    
+    
     );
   
   }

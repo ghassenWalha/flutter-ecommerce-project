@@ -1,47 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/widgets/button.dart';
  
-class MyBag extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return MyBagState();
-  }
-  
-}
+// ignore: must_be_immutable
+class MyBag extends StatelessWidget {
+ 
 
-class MyBagState extends State<MyBag>{
-  
-  int quantity=1;
-  void addQuantity ()
+  String color;
+  String name;
+  double price;
+  String imageUrl;
+  MyBag(name,imageUrl,price,color)
   {
-    setState(() {
-      quantity++;
-    });
+    this.name=name;
+    this.price=price;
+    this.color=color;
+    this.imageUrl=imageUrl;
   }
-   void substractQuantity ()
-  {
-    setState(() {
-      while (quantity >= 0)
-      quantity--;
-    });
-  }
-   
+ 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:
+    return  
+      
        Container(
+         
          child: 
           Row(
            children :[
+             Expanded(child: 
             Container(
-              height:100,
-              width:100,
+              height:130,
+              width:130,
               decoration: 
               BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  image: DecorationImage(image: new AssetImage('assets/sofa.jpg'),fit: BoxFit.contain)
+                  image: DecorationImage(image: new AssetImage(imageUrl),fit: BoxFit.contain)
                   )
-                  ),
+                  ),),
             Container(
                padding: EdgeInsets.only(left:8,right: 4),
                child: 
@@ -49,65 +43,54 @@ class MyBagState extends State<MyBag>{
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children:[
                    SizedBox(height: 5),
-                   Text("Sofa Velure ", style: TextStyle(fontSize: 16)),
+                   Text(name, style: TextStyle(fontSize: 16)),
                    SizedBox(height: 5),
-                    Text("\$500",style: TextStyle(fontSize: 16)),
+                    Text('\$'+price.toString(),style: TextStyle(fontSize: 16)),
                     SizedBox(height: 40),
-                    Text("Color:blue",style: TextStyle(color :Colors.grey,)),
+                    Text(color,style: TextStyle(color :Colors.grey,)),
                      ]),
-            ),
-            Expanded(
+            )
+            ,
+           Expanded(
               child: 
+             Container(
+               height: 200,
+               width: 200,
+               child:
                Stack( 
                 children: [
                   Positioned(
                     right: 0,
+
+                  
                     child: 
-                      Column(
-                        children:
-                         [
-                          IconButton(icon: Icon(Icons.delete), onPressed: null) ,
-                          SizedBox(height: 40),
-                          Row(
-                             mainAxisAlignment: MainAxisAlignment.end,
-                             children: 
-                            [
-                                Container(
-                                  margin:EdgeInsets.all(8),
-                                  width:25,
-                                  height: 25,
-                                  child: 
-                                    RaisedButton(
-                                     onPressed: substractQuantity ,
-                                     child :
-                                        Text('-', textAlign: TextAlign.center,),  
-                                                 ),
-                                ),
-                                Text(quantity.toString()),
-                                Container(
-                                  margin:EdgeInsets.all(8),
-                                  width:25,
-                                  height: 25,
-                                  child: 
-                                   RaisedButton(onPressed:() {addQuantity();},
-                                    child :
-                                       Text('+',textAlign: TextAlign.center,)
-                                                ),
-                                ),
-                                SizedBox(width: 10),
-                            ],
-                         )
+                      Container(
+                        padding: EdgeInsets.only(top: 40),
+
+                        child: Column(
+                          
+                          
+                          children:
+                           [
+                            IconButton(icon: Icon(Icons.delete), onPressed: null) ,
+                            SizedBox(height: 40),
+                            Button(),
+                           
+                           ],
+                         ),
+                      ) 
+                           )
                        ]
-                     )
-                  )
-               ]
-              )
-             )
+                    
+                  )))
+               
+           
+           ]
  
-            ],
+            
            ),
-       ),
-      );
+       );
+     
         }
 
   
