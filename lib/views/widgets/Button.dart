@@ -31,6 +31,7 @@ class Button_State extends State<Button> {
         height: 25,
         child: RaisedButton(
           onPressed: quantity > 1 ? substractQuantity : null,
+          //color: Colors.grey[400],
           child: Text(
             '-',
             textAlign: TextAlign.center,
@@ -49,6 +50,7 @@ class Button_State extends State<Button> {
         width: 25,
         height: 25,
         child: RaisedButton(
+            //color: Colors.grey[400],
             onPressed: addQuantity,
             child: Text(
               '+',
