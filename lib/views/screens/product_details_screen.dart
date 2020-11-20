@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/custom_action_bar.dart';
 import '../widgets/image_swiper.dart';
-import '../widgets/Button.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -10,21 +9,23 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  int moreInfoState = 0;
+  bool _visible = false;
+  String _moreInfoText = "MORE INFO ▼";
 
   @override
-  Widget moreInfo(moreInfoState) {
-    if (moreInfoState != 0) {
-      moreInfoState = 0;
-      return Text(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 13,
-        ),
-      );
-    } else
-      return null;
+  void moreInfo() {
+    setState(() {
+      _visible = !_visible;
+    });
+    if (_visible == true) {
+      setState(() {
+        _moreInfoText = "LESS INFO ▲";
+      });
+    } else {
+      setState(() {
+        _moreInfoText = "MORE INFO ▼";
+      });
+    }
   }
 
   Widget build(BuildContext context) {
@@ -53,11 +54,9 @@ class _ProductPageState extends State<ProductPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            left:
-                                115), // the paading neeed to change because it's not always practical
-                        child: Button(),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        // child: RaisedButton(),
                       )
                     ],
                   ),
@@ -77,9 +76,11 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8.0,
-                    horizontal: 24.0,
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    left: 24.0,
+                    right: 24.0,
+                    bottom: 1,
                   ),
                   child: Text(
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
@@ -91,78 +92,69 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 24.0,
+                    vertical: 8.0,
                     horizontal: 24.0,
                   ),
                   child: Row(
                     children: <Widget>[
-                      /*Container(
-                        margin: EdgeInsets.all(8),
-                        width: 30,
-                        height: 25,
-                        color: Colors.white,
-                        alignment: Alignment.center,
-                        child: RaisedButton(
-                          color: Colors.grey,
-                          onPressed: null,
-                          child: Text(
-                            "▼",
-                          ),
-                        ),
-                      ),*/
                       GestureDetector(
-                        onTap: null,
+                        onTap: moreInfo,
                         child: Container(
                             width: 100.0,
                             height: 42.0,
                             //alignment: Alignment.topLeft,
                             child: Text(
-                              "MORE INFO ▼",
+                              _moreInfoText,
                               style: TextStyle(
                                 color: Colors.grey,
                               ),
                             )),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 1,
+                          horizontal: 1,
+                        ),
+                        child: Visibility(
+                          visible: _visible,
+                          child: Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 24,
+                    top: 0,
                     left: 24,
                     right: 24,
-                    bottom: 74,
+                    bottom: 6,
                   ),
                   child: Text(
-                    "YOU MIGHT ALSO LIKE",
+                    "YOU MIGHT ALSO LIKE :",
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
-                //Padding(),
-                /* Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 24.0,
-                    left: 24.0,
-                    right: 24.0,
-                  ),
-                  child: Expanded(
-                    child: Container(
-                      height: 65.0,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(12.0),
+                Container(
+                  height: 400.0,
+                  child: PageView(children: [
+                    for (var i = 5; i < 8; i++)
+                      Container(
+                        child: Image(
+                          image: AssetImage("images/$i.jpg"),
+                          fit: BoxFit.cover,
+                          width: 200,
+                          height: 250,
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Add To Bag",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                ),*/
+                  ]),
+                ),
               ],
             ),
             CustomActionBar(
