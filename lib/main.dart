@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import './views/screens/bag_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
-    @override
+  @override
   Widget build(BuildContext context) {
-     return MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         primarySwatch: Colors.blue,
-       
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
-          );
-      
-        }
-        }
-      
-      
+    );
+  }
+}
