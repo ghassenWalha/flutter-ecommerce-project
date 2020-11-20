@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import '../../models/product.dart';
+import 'package:flutter_ecommerce_project/views/widgets/favorite_button.dart';
 
 class ProductView extends StatefulWidget {
   final Product product;
@@ -15,7 +16,7 @@ class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
+      padding: EdgeInsets.all(10),
       child: Hero(
         tag: this.widget.product.id,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -29,26 +30,10 @@ class _ProductViewState extends State<ProductView> {
               },
               child: Container(
                 child: Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: isFav
-                        ? Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                          )
-                        : Icon(
-                            Icons.favorite_outline,
-                            color: Colors.black,
-                          ),
-                    onPressed: () {
-                      setState(() {
-                        isFav = !isFav;
-                      });
-                    },
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width / 3.5,
-                height: MediaQuery.of(context).size.width / 4,
+                    alignment: Alignment.topRight,
+                    child: FavoriteButton(isFav)),
+                width: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.width / 2,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   image: DecorationImage(
@@ -67,7 +52,7 @@ class _ProductViewState extends State<ProductView> {
           ),
           Text(
             "\$${this.widget.product.price} ",
-            style: TextStyle(color: Colors.grey, fontSize: 15),
+            style: TextStyle(color: Colors.grey, fontSize: 20),
           ),
         ]),
       ),

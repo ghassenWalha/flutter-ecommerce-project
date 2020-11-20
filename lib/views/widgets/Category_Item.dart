@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/category.dart';
 
 /* this widget present an element of the category widget .
  it is formed by column widget that contains an image ,
   and a text widget that contains the category label _ souheil  */
 class CategoryItem extends StatelessWidget {
-  final String title;
-  final String path;
+  final Category category;
 
-  CategoryItem({this.title, this.path});
+  CategoryItem(this.category);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,8 @@ class CategoryItem extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 4,
               height: MediaQuery.of(context).size.width / 4,
               decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(path)),
+                  image: DecorationImage(
+                      image: NetworkImage(category.imageUrl), fit: BoxFit.fill),
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
             ),
             Container(
@@ -29,7 +30,7 @@ class CategoryItem extends StatelessWidget {
                 child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      title,
+                      category.name,
                       style: TextStyle(fontSize: 20, color: Colors.grey),
                     )))
           ],

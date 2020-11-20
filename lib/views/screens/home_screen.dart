@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/views/widgets/Category_Item.dart';
-import 'package:flutter_ecommerce_project/views/widgets/Category_List.dart';
-import 'package:flutter_ecommerce_project/views/widgets/Product_View.dart';
+import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_item.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
+import 'package:flutter_ecommerce_project/views/widgets/product_list.dart';
+
+import 'package:flutter_ecommerce_project/views/widgets/product_view.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/views/widgets/Product_List_View.dart';
+import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
+import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,32 +17,52 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
-    return SafeArea(
+    return TitledProductList(
+      title: "Bestsellers",
+      productList: [
+        for (var i = 0; i < 10; i++)
+          Product(
+            id: 1,
+            name: "sofa",
+            description: "#######",
+            price: "19.00",
+            imgUrl:
+                "https://www.manutan-collectivites.fr/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/C/h/Chaire_de_professeur,_plateau_beige-cf_4174455.jpg",
+          ),
+      ],
+    );
+
+    /*SafeArea(
       child: Center(
-        child: ProductListView(
-          productList: [
-            for (var i = 0; i < 7; i++)
+        child: ProductGridView(
+          [
+            for (var i = 0; i < 10; i++)
               Product(
                 id: 1,
                 name: "sofa",
                 description: "#######",
                 price: "19.00",
                 imgUrl:
-                    "https://www.solentbeds.co.uk/images/products/standard/7526.jpg",
+                    "https://www.manutan-collectivites.fr/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/C/h/Chaire_de_professeur,_plateau_beige-cf_4174455.jpg",
               ),
           ],
         ),
       ),
     );
-    /*CategoryList({
-      "Sofa":
-          "https://www.ikea.com/us/en/images/products/morabo-sofa-gunnared-dark-gray-metal__0602115_PE680184_S5.JPG",
-      "chaire":
-          "https://3docean.img.customer.envatousercontent.com/files/97175802/chaire%201.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=845d4a678d6bde450224ca0297c067c7",
-      "Table":
-          "https://www.cocktail-scandinave.fr/Vbeta2018/wp-content/uploads/2018/02/RGATA180AL.jpg",
-      "bed":
-          "https://cdn.shopify.com/s/files/1/2660/5202/products/xoir1j2ihw9b4bw2apj5_1400x.jpg?v=1598896503"
-    });*/
+    
+
+     ListView(
+
+        children: <Widget>[
+          CategoryList([
+            for (var i = 0; i < 10; i++)
+              Category(
+                  id: 1,
+                  name: "sofa",
+                  imageUrl:
+                      "https://ii1.pepperfry.com/media/catalog/product/r/o/568x625/royal-wing-chair-in-blue-color-by-dreamzz-furniture-royal-wing-chair-in-blue-color-by-dreamzz-furnit-6hcjya.jpg")
+          ]),
+
+    */
   }
 }
