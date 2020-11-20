@@ -27,6 +27,7 @@ class ProductList extends StatelessWidget {
     return Container(
         child: ListView(
       scrollDirection: Axis.horizontal,
+      itemExtent: MediaQuery.of(context).size.width / 2,
       children: this.widgetsList,
     ));
   }

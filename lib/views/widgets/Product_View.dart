@@ -2,11 +2,15 @@ import "package:flutter/material.dart";
 import '../../models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/favorite_button.dart';
 
+/* this widget present the view of a single product .
+   it contains a picture of the product , its name and price 
+   the constructeur takes as parameter the product that you want to dispaly _souheil  */
+
 class ProductView extends StatefulWidget {
   final Product product;
-  ProductView(
-    this.product,
-  );
+
+  //constructor
+  ProductView(this.product);
   @override
   _ProductViewState createState() => _ProductViewState();
 }
@@ -24,6 +28,8 @@ class _ProductViewState extends State<ProductView> {
             child: InkWell(
               enableFeedback: true,
               onDoubleTap: () {
+                //this methode  change  the isFave variable when
+                // the product is doubleTaped so that the FavoriteButton change its color
                 setState(() {
                   isFav = !isFav;
                 });
@@ -48,7 +54,7 @@ class _ProductViewState extends State<ProductView> {
           ),
           Text(
             this.widget.product.name,
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 25, color: Colors.black38),
           ),
           Text(
             "\$${this.widget.product.price} ",

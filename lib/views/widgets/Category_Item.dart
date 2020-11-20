@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 
-/* this widget present an element of the category widget .
+/* this widget present the category widget .
  it is formed by column widget that contains an image ,
   and a text widget that contains the category label _ souheil  */
 class CategoryItem extends StatelessWidget {
@@ -31,7 +31,7 @@ class CategoryItem extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       category.name,
-                      style: TextStyle(fontSize: 20, color: Colors.grey),
+                      style: TextStyle(fontSize: 20, color: Colors.black38),
                     )))
           ],
         ));

@@ -3,6 +3,9 @@ import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+/* this widget represents a grid view of products . it uses the StaggeredGridView 
+widget from an external package  that had been added to the project  _souheil */
+
 class ProductGridView extends StatelessWidget {
   final List<Product> productList;
 
@@ -21,19 +24,9 @@ class ProductGridView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) =>
               ProductView(productList[index]),
           staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
-          mainAxisSpacing: 8.0,
-          crossAxisSpacing: 20,
-          padding: EdgeInsets.all(10),
-        )
-
-        /*GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 7,
-          crossAxisSpacing: 7,
-          children: [
-            ...productList.map((produit) => ProductView(produit)).toList()
-          ],
-        )*/
-        );
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          padding: EdgeInsets.all(5),
+        ));
   }
 }
