@@ -7,69 +7,35 @@ import 'package:flutter_ecommerce_project/views/widgets/button.dart';
 
 // ignore: must_be_immutable
 class MyBag extends StatefulWidget {
-  String color;
-  String name;
-  double price;
-  String imageUrl;
-  int quantity = 1;
-  int index;
-  VoidCallback removeUser;
-  VoidCallback addQuantity;
-  MyBag(
-      {name,
-      imageUrl,
-      price,
-      color,
-      //quantity,
-      index,
-      removeUser,
-      key,
-      addQuantity})
-      : super(key: key) {
-    this.name = name;
-    this.price = price;
-    this.color = color;
-    this.imageUrl = imageUrl;
-    //this.quantity = quantity;
-    this.index = index;
-    this.removeUser = removeUser;
-  }
+  final String color;
+  final String name;
+  final double price;
+  final String imageUrl;
+  final int quantity;
+  final int index;
+  final key;
+  final Function remove;
+  final Function addQuantity;
+  MyBag({
+    this.name,
+    this.imageUrl,
+    this.price,
+    this.color,
+    this.quantity,
+    this.index,
+    this.remove,
+    this.key,
+    this.addQuantity,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyBagState(
-        name, imageUrl, price, color, quantity, index, removeUser, addQuantity);
+    return MyBagState();
   }
 }
 
 class MyBagState extends State<MyBag> {
-  String color;
-  String name;
-  double price;
-  String imageUrl;
-  int quantity;
-  int index;
-  VoidCallback removeUser;
-  VoidCallback addQuantity;
-
-  MyBagState(
-      name, imageUrl, price, color, quantity, index, removeUser, addQuantity) {
-    this.name = name;
-    this.price = price;
-    this.color = color;
-    this.imageUrl = imageUrl;
-    this.quantity = quantity;
-    this.index = index;
-    this.removeUser = removeUser;
-    this.addQuantity = addQuantity;
-  }
-  /*void delete(int index) {
-    void setState() {
-      BagList.bagList.removeAt(index);
-    }
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +51,8 @@ class MyBagState extends State<MyBag> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   image: DecorationImage(
-                      image: new AssetImage(imageUrl), fit: BoxFit.contain))),
+                      image: new AssetImage(widget.imageUrl),
+                      fit: BoxFit.contain))),
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.4,
@@ -93,11 +60,12 @@ class MyBagState extends State<MyBag> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Text(name, style: TextStyle(fontSize: 16)),
+            Text(widget.name, style: TextStyle(fontSize: 16)),
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Text('\$' + price.toString(), style: TextStyle(fontSize: 16)),
+            Text('\$' + widget.price.toString(),
+                style: TextStyle(fontSize: 16)),
             SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-            Text(color,
+            Text(widget.color,
                 style: TextStyle(
                   color: Colors.grey,
                 )),
@@ -112,13 +80,11 @@ class MyBagState extends State<MyBag> {
                 icon: Icon(Icons.delete),
                 onPressed: () {
                   /*setState(() {*/
-                  widget.removeUser();
+                  widget.remove(widget.index);
                 } /*);*/,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-              Button(() {
-                addQuantity();
-              }, quantity),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+              ButtonItem(widget.addQuantity, widget.quantity),
             ],
           ),
         )

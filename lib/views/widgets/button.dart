@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
   }
 }*/
 
-class Button extends StatelessWidget {
+class ButtonItem extends StatelessWidget {
   int quantity;
   //ButtonState(this.quantity);
 
@@ -25,8 +25,8 @@ class Button extends StatelessWidget {
     });
   }*/
 
-  VoidCallback adQuantity;
-  Button(this.adQuantity, this.quantity);
+  Function adQuantity;
+  ButtonItem(this.adQuantity, this.quantity);
 
   Widget build(BuildContext context) {
     return Container(
@@ -51,11 +51,12 @@ class Button extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.07,
             height: MediaQuery.of(context).size.height * 0.04,
             child: RaisedButton(
-                onPressed: () {
-                  print('quantity : ');
-                  print(quantity);
-                  adQuantity;
-                },
+                onPressed:
+                    //print('quantity : ');
+                    //print(quantity);
+                    adQuantity
+                //print(quantity);
+                ,
                 child: Text(
                   '+',
                   textAlign: TextAlign.center,
