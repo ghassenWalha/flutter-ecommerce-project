@@ -25,18 +25,7 @@ class TitledProductList extends StatelessWidget {
                   title,
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ))),
-        new Expanded(
-            child: ProductList([
-          for (var i = 0; i < 10; i++)
-            Product(
-              id: 1,
-              name: "sofa",
-              description: "#######",
-              price: "19.00",
-              imgUrl:
-                  "https://www.manutan-collectivites.fr/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/C/h/Chaire_de_professeur,_plateau_beige-cf_4174455.jpg",
-            ),
-        ]))
+        new Expanded(child: ProductList(productList))
       ],
     );
   }

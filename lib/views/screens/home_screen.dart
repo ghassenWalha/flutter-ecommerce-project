@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
-import 'package:flutter_ecommerce_project/views/widgets/category_item.dart';
-import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
-import 'package:flutter_ecommerce_project/views/widgets/product_list.dart';
-
-import 'package:flutter_ecommerce_project/views/widgets/product_view.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,21 +13,31 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(children: <Widget>[
-      Expanded(
+      Container(
+          height: MediaQuery.of(context).size.height / 2.7,
           child: TitledCategoryList(title: "Categories", categoryList: [
+            for (var i = 0; i < 10; i++)
+              Category(
+                  id: 1,
+                  name: "sofa",
+                  imageUrl:
+                      "https://images.dfs.co.uk/i/dfs/ace_3h_revive_sky_view1"),
+          ])),
+      Expanded(
+          child: TitledProductList(title: "Best sellers", productList: [
         for (var i = 0; i < 10; i++)
-          Category(
+          Product(
               id: 1,
               name: "table",
-              imageUrl:
+              price: "1200",
+              imgUrl:
                   "https://cdn3.hellin.fr/13839-zoom_default/table-a-manger-rectangulaire-en-bois-pieds-metal-jonas.jpg"),
       ]))
     ]));
   }
 }
+
 /*
-    
-    ,
         new Expanded(
             child: ProductGridView(
           [
