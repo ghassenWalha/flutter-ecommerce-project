@@ -34,7 +34,6 @@ class _ProductPageState extends State<ProductPage> {
         body: Stack(
           children: [
             ListView(
-              //padding: EdgeInsets.all(0),
               children: [
                 ImageSwipe(),
                 Padding(
@@ -91,42 +90,40 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8.0,
-                    horizontal: 24.0,
+                  padding: const EdgeInsets.only(
+                    top: 3,
+                    left: 24.0,
+                    right: 24.0,
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: moreInfo,
-                        child: Container(
-                            width: 100.0,
-                            height: 42.0,
-                            //alignment: Alignment.topLeft,
-                            child: Text(
-                              _moreInfoText,
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 1,
-                          horizontal: 1,
-                        ),
-                        child: Visibility(
-                          visible: _visible,
-                          child: Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 13,
-                            ),
+                  child: GestureDetector(
+                    onTap: moreInfo,
+                    child: Container(
+                        width: 100.0,
+                        height: 42.0,
+                        //alignment: Alignment.topLeft,
+                        child: Text(
+                          _moreInfoText,
+                          style: TextStyle(
+                            color: Colors.grey,
                           ),
-                        ),
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 24.0,
+                    right: 24.0,
+                    bottom: 3,
+                  ),
+                  child: Visibility(
+                    visible: _visible,
+                    child: Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 13,
                       ),
-                    ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -183,9 +180,10 @@ class _ProductPageState extends State<ProductPage> {
                 child: Text(
                   "Add To Cart",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600),
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

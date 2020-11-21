@@ -13,8 +13,10 @@ class _ImageSwipeState extends State<ImageSwipe> {
     return Container(
       height: 400.0,
       child: Stack(
+        // we used Stack to have the images and the dots ,to show which picture you're on, together
         children: [
           PageView(
+            // to swipe and see all images
             onPageChanged: (num) {
               setState(() {
                 _selectedPage = num;
@@ -41,6 +43,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
               children: [
                 for (var i = 0; i < 4; i++)
                   AnimatedContainer(
+                    // Animated Container to have a better visualitation of the dots of every pic
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeOutCubic,
                     margin: EdgeInsets.symmetric(
