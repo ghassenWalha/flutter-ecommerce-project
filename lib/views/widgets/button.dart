@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatefulWidget {
+/*class Button extends StatefulWidget {
   int quantity;
   Button(this.quantity);
   @override
   State<StatefulWidget> createState() {
     return ButtonState(quantity);
   }
-}
+}*/
 
-class ButtonState extends State<Button> {
+class Button extends StatelessWidget {
   int quantity;
-  ButtonState(this.quantity);
+  //ButtonState(this.quantity);
 
-  void addQuantity() {
+  /*void addQuantity() {
     setState(() {
       quantity++;
     });
@@ -23,11 +23,10 @@ class ButtonState extends State<Button> {
     setState(() {
       quantity--;
     });
-  }
+  }*/
 
-  int get finalquantity {
-    return quantity;
-  }
+  VoidCallback adQuantity;
+  Button(this.adQuantity, this.quantity);
 
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +37,7 @@ class ButtonState extends State<Button> {
             width: MediaQuery.of(context).size.width * 0.07,
             height: MediaQuery.of(context).size.height * 0.04,
             child: RaisedButton(
-              onPressed: quantity > 1 ? substractQuantity : null,
+              onPressed: quantity > 1 ? adQuantity : null,
               child: Text(
                 '-',
                 textAlign: TextAlign.center,
@@ -52,7 +51,11 @@ class ButtonState extends State<Button> {
             width: MediaQuery.of(context).size.width * 0.07,
             height: MediaQuery.of(context).size.height * 0.04,
             child: RaisedButton(
-                onPressed: addQuantity,
+                onPressed: () {
+                  print('quantity : ');
+                  print(quantity);
+                  adQuantity;
+                },
                 child: Text(
                   '+',
                   textAlign: TextAlign.center,
