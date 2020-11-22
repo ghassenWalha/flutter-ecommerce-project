@@ -144,7 +144,7 @@ class _ProductPageState extends State<ProductPage> {
                     for (var i = 5; i < 8; i++)
                       Container(
                         child: Image(
-                          image: AssetImage("images/$i.jpg"),
+                          image: AssetImage("assets/images/$i.jpg"),
                           fit: BoxFit.cover,
                           width: 200,
                           height: 250,

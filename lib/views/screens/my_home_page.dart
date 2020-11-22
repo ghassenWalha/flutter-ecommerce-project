@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: HomeScreen(),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: [

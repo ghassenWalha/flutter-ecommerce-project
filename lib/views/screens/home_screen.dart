@@ -12,28 +12,31 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(children: <Widget>[
+        child: SingleChildScrollView(
+                  child: Column(children: <Widget>[
       Container(
-          height: MediaQuery.of(context).size.height / 2.7,
-          child: TitledCategoryList(title: "Categories", categoryList: [
-            for (var i = 0; i < 10; i++)
-              Category(
-                  id: 1,
-                  name: "sofa",
-                  imageUrl:
-                      "https://images.dfs.co.uk/i/dfs/ace_3h_revive_sky_view1"),
-          ])),
-      Expanded(
-          child: TitledProductList(title: "Best sellers", productList: [
-        for (var i = 0; i < 10; i++)
-          Product(
-              id: 1,
-              name: "table",
-              price: "1200",
-              imgUrl:
-                  "https://cdn3.hellin.fr/13839-zoom_default/table-a-manger-rectangulaire-en-bois-pieds-metal-jonas.jpg"),
+            height: MediaQuery.of(context).size.height / 2.7,
+            child: TitledCategoryList(title: "Categories", categoryList: [
+              for (var i = 0; i < 10; i++)
+                Category(
+                    id: 1,
+                    name: "sofa",
+                    imageUrl:
+                        "https://images.dfs.co.uk/i/dfs/ace_3h_revive_sky_view1"),
+            ])),
+      Container(
+          height:400,
+            child: TitledProductList(title: "Best sellers", productList: [
+          for (var i = 0; i < 10; i++)
+            Product(
+                id: 1,
+                name: "table",
+                price: "1200",
+                imgUrl:
+                    "https://cdn3.hellin.fr/13839-zoom_default/table-a-manger-rectangulaire-en-bois-pieds-metal-jonas.jpg"),
       ]))
-    ]));
+    ]),
+        ));
   }
 }
 

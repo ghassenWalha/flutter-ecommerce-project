@@ -26,7 +26,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
               for (var i = 1; i < 5; i++)
                 Container(
                   child: Image(
-                    image: AssetImage("images/$i.jpg"),
+                    image: AssetImage("assets/images/$i.jpg"),
                     fit: BoxFit.cover,
                     width: 200,
                     height: 250,

@@ -47,7 +47,7 @@ class CustomActionBar extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Image(
-                  image: AssetImage("images/back_arrow.png"),
+                  image: AssetImage("assets/images/back_arrow.png"),
                   color: Colors.white,
                   width: 16.0,
                   height: 16.0,
@@ -65,7 +65,7 @@ class CustomActionBar extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Image(
-                  image: AssetImage("images/heart.png"),
+                  image: AssetImage("assets/images/heart.png"),
                   color: Colors.white,
                   width: 16.0,
                   height: 16.0,

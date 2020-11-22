@@ -27,7 +27,7 @@ class TitledCategoryList extends StatelessWidget {
                 ))),
         Container(
             height: MediaQuery.of(context).size.height / 4,
-            child: Expanded(child: CategoryList(categoryList)))
+           child: CategoryList(categoryList))
       ],
     );
   }
