@@ -37,7 +37,9 @@ class CustomActionBar extends StatelessWidget {
         children: [
           if (_hasBackArrow)
             GestureDetector(
-              onTap: null,
+              onTap: () {
+                Navigator.pop(context);
+              },
               child: Container(
                 width: 42.0,
                 height: 42.0,

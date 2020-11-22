@@ -19,49 +19,52 @@ class _ProductViewState extends State<ProductView> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
-              enableFeedback: true,
-              onDoubleTap: () {
-                //this methode  change  the isFave variable when
-                // the product is doubleTaped so that the FavoriteButton change its color
-                setState(() {
-                  isFav = !isFav;
-                });
-              },
-              child: Container(
-      padding: EdgeInsets.all(10),
-      child: Hero(
-        tag: this.widget.product.id,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            child:  Container(
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: FavoriteButton(isFav)),
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.width / 2,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      this.widget.product.imgUrl,
+    return InkWell(
+        enableFeedback: true,
+        onTap: () {
+          Navigator.pushNamed(context, "/product_details_screen");
+        },
+        onDoubleTap: () {
+          //this methode  change  the isFave variable when
+          // the product is doubleTaped so that the FavoriteButton change its color
+          setState(() {
+            isFav = !isFav;
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Hero(
+            tag: this.widget.product.id,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                child: Container(
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: FavoriteButton(isFav)),
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        this.widget.product.imgUrl,
+                      ),
+                      fit: BoxFit.fill,
                     ),
-                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-            ),
-          ,
-          Text(
-            this.widget.product.name,
-            style: TextStyle(fontSize: 25, color: Colors.black38),
+              Text(
+                this.widget.product.name,
+                style: TextStyle(fontSize: 25, color: Colors.black38),
+              ),
+              Text(
+                "\$${this.widget.product.price} ",
+                style: TextStyle(color: Colors.grey, fontSize: 20),
+              ),
+            ]),
           ),
-          Text(
-            "\$${this.widget.product.price} ",
-            style: TextStyle(color: Colors.grey, fontSize: 20),
-          ),
-        ]),
-      ),
-    ));
+        ));
   }
 }
