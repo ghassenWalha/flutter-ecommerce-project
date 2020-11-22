@@ -19,13 +19,7 @@ class _ProductViewState extends State<ProductView> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      child: Hero(
-        tag: this.widget.product.id,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            child: InkWell(
+    return  InkWell(
               enableFeedback: true,
               onDoubleTap: () {
                 //this methode  change  the isFave variable when
@@ -35,6 +29,12 @@ class _ProductViewState extends State<ProductView> {
                 });
               },
               child: Container(
+      padding: EdgeInsets.all(10),
+      child: Hero(
+        tag: this.widget.product.id,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            child:  Container(
                 child: Align(
                     alignment: Alignment.topRight,
                     child: FavoriteButton(isFav)),
@@ -51,7 +51,7 @@ class _ProductViewState extends State<ProductView> {
                 ),
               ),
             ),
-          ),
+          ,
           Text(
             this.widget.product.name,
             style: TextStyle(fontSize: 25, color: Colors.black38),
@@ -62,6 +62,6 @@ class _ProductViewState extends State<ProductView> {
           ),
         ]),
       ),
-    );
+    ));
   }
 }
