@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
 import './views/screens/product_details_screen.dart';
+
+import './views/screens/bag_screen.dart';
+
 
 void main() {
   runApp(MyApp());
