@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_ecommerce_project/views/widgets/bag_list_view.dart';
-import 'package:flutter_ecommerce_project/views/widgets/button.dart';
+import 'package:flutter_ecommerce_project/views/widgets/item_counter.dart';
 
-//import 'bag_list.dart';
-//import 'package:flutter_ecommerce_project/views/widgets/product_info.dart';
+/*
 
-// ignore: must_be_immutable
-class MyBag extends StatefulWidget {
+This widget is responsible for creating the bag item 
+_Zohra&Amal
+
+*/
+class BagItem extends StatefulWidget {
   final String color;
   final String name;
   final double price;
@@ -16,7 +17,8 @@ class MyBag extends StatefulWidget {
   final key;
   final Function remove;
   final Function addQuantity;
-  MyBag({
+  final Function substractQuantity;
+  BagItem({
     this.name,
     this.imageUrl,
     this.price,
@@ -26,16 +28,16 @@ class MyBag extends StatefulWidget {
     this.remove,
     this.key,
     this.addQuantity,
+    this.substractQuantity,
   }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return MyBagState();
+    return BagItemState();
   }
 }
 
-class MyBagState extends State<MyBag> {
+class BagItemState extends State<BagItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,6 +46,7 @@ class MyBagState extends State<MyBag> {
           top: MediaQuery.of(context).size.width * 0.03,
           bottom: MediaQuery.of(context).size.width * 0.03),
       child: Row(children: [
+        //The picture of the product
         Expanded(
           child: Container(
               width: MediaQuery.of(context).size.width * 0.4,
@@ -54,6 +57,7 @@ class MyBagState extends State<MyBag> {
                       image: new AssetImage(widget.imageUrl),
                       fit: BoxFit.contain))),
         ),
+        //Name,Price and the Color of the Product
         Container(
           width: MediaQuery.of(context).size.width * 0.4,
           padding: EdgeInsets.only(left: 15),
@@ -76,15 +80,16 @@ class MyBagState extends State<MyBag> {
           child: Column(
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.035),
+              //Delete Icon
               IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () {
-                  /*setState(() {*/
                   widget.remove(widget.index);
-                } /*);*/,
+                },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-              ButtonItem(widget.addQuantity, widget.quantity),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+              ItemCounter(widget.addQuantity, widget.quantity,
+                  widget.substractQuantity), //ItemCounter
             ],
           ),
         )

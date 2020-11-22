@@ -1,3 +1,4 @@
+/*This is the fake data */
 List<Map<String, dynamic>> bagList = [
   {
     'imageUrl': 'assets/velvet_chair.jpg',

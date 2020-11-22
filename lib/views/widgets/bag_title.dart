@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/*
+
+This widget is responsible for the Bag Title
+_Zohra&Amal
+*/
 class BagTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
