@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 
-import './views/screens/my_home_page.dart';
-
-
-import './views/screens/product_details_screen.dart';
-
-import './views/screens/bag_screen.dart';
-
- 
 void main() {
   runApp(MyApp());
 }
@@ -22,8 +15,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-            home:MyHomePage()
-
     );
   }
 }
