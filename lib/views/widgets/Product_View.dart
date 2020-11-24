@@ -22,7 +22,8 @@ class _ProductViewState extends State<ProductView> {
     return InkWell(
         enableFeedback: true,
         onTap: () {
-          Navigator.pushNamed(context, "/product_details_screen");
+          Navigator.pushNamed(context, "/product_details_screen",
+              arguments: this.widget.product);
         },
         onDoubleTap: () {
           //this methode  change  the isFave variable when
@@ -47,8 +48,8 @@ class _ProductViewState extends State<ProductView> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     image: DecorationImage(
-                      image: NetworkImage(
-                        this.widget.product.imgUrl,
+                      image: AssetImage(
+                        this.widget.product.imgUrl[0],
                       ),
                       fit: BoxFit.fill,
                     ),

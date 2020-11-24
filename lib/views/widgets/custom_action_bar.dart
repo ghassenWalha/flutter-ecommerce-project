@@ -5,15 +5,20 @@ class CustomActionBar extends StatelessWidget {
   final bool hasBackArrrow;
   final bool hasTitle;
   final bool hasBackground;
+  final bool hasFavoriteIcon;
   CustomActionBar(
-      {this.title, this.hasBackArrrow, this.hasTitle, this.hasBackground});
+      {this.title,
+      this.hasBackArrrow,
+      this.hasTitle,
+      this.hasBackground,
+      this.hasFavoriteIcon});
 
   @override
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
     bool _hasTitle = hasTitle ?? true;
     bool _hasBackground = hasBackground ?? true;
-
+    bool _hasFavoriteIcon = hasFavoriteIcon ?? true;
     return Container(
       decoration: BoxDecoration(
           gradient: _hasBackground
@@ -56,23 +61,24 @@ class CustomActionBar extends StatelessWidget {
                 ),
               ),
             ),
-          GestureDetector(
-            onTap: null,
-            child: Container(
-                width: 42.0,
-                height: 42.0,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                alignment: Alignment.center,
-                child: Image(
-                  image: AssetImage("assets/images/heart.png"),
-                  color: Colors.white,
-                  width: 16.0,
-                  height: 16.0,
-                )),
-          )
+          if (_hasFavoriteIcon)
+            GestureDetector(
+              onTap: null,
+              child: Container(
+                  width: 42.0,
+                  height: 42.0,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  alignment: Alignment.center,
+                  child: Image(
+                    image: AssetImage("assets/images/heart.png"),
+                    color: Colors.white,
+                    width: 16.0,
+                    height: 16.0,
+                  )),
+            )
         ],
       ),
     );

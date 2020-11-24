@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_filter.dart';
 
 import './views/screens/my_home_page.dart';
 
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
       '/': (context) => MyHomePage(),
       // When navigating to the "/second" route, build the SecondScreen widget.
       '/product_details_screen': (context) => ProductPage(),
+      '/category_filter': (context) => CategoryFilter()
     });
   }
 }

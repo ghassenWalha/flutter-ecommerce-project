@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 
 import '../widgets/custom_action_bar.dart';
 import '../widgets/image_swiper.dart';
@@ -12,7 +13,6 @@ class _ProductPageState extends State<ProductPage> {
   bool _visible = false;
   String _moreInfoText = "MORE INFO ▼";
 
-  @override
   void moreInfo() {
     setState(() {
       _visible = !_visible;
@@ -29,13 +29,15 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget build(BuildContext context) {
+    final Product pp = ModalRoute.of(context).settings.arguments;
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             ListView(
               children: [
-                ImageSwipe(),
+                ImageSwipe(pp.imgUrl),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 24.0,
@@ -46,7 +48,7 @@ class _ProductPageState extends State<ProductPage> {
                   child: Row(
                     children: [
                       Text(
-                        "Product Name",
+                        pp.name,
                         style: TextStyle(
                           fontSize: 25,
                           color: Colors.black,
@@ -66,7 +68,7 @@ class _ProductPageState extends State<ProductPage> {
                     horizontal: 24.0,
                   ),
                   child: Text(
-                    "\$89.00",
+                    "\$" + pp.price,
                     style: TextStyle(
                       color: Colors.red[800],
                       fontSize: 20,
@@ -82,7 +84,7 @@ class _ProductPageState extends State<ProductPage> {
                     bottom: 1,
                   ),
                   child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
+                    pp.description,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -141,10 +143,10 @@ class _ProductPageState extends State<ProductPage> {
                 Container(
                   height: 400.0,
                   child: PageView(children: [
-                    for (var i = 5; i < 8; i++)
+                    for (var i = 3; i < 7; i++)
                       Container(
                         child: Image(
-                          image: AssetImage("assets/images/$i.jpg"),
+                          image: AssetImage(pp.imgUrl[i]),
                           fit: BoxFit.cover,
                           width: 200,
                           height: 250,

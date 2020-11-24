@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_filter.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
 
@@ -17,9 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
             height: MediaQuery.of(context).size.height / 2.7,
             child: TitledCategoryList(title: "Categories", categoryList: [
-              for (var i = 0; i < 10; i++)
+              for (var i = 1; i < 10; i++)
                 Category(
-                    id: 1,
+                    id: i * 10,
                     name: "sofa",
                     imageUrl:
                         "https://images.dfs.co.uk/i/dfs/ace_3h_revive_sky_view1"),
@@ -27,13 +28,23 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
             height: 400,
             child: TitledProductList(title: "Best sellers", productList: [
-              for (var i = 0; i < 10; i++)
+              for (var i = 1; i < 7; i++)
                 Product(
                     id: i,
                     name: "table",
                     price: "1200",
-                    imgUrl:
-                        "https://cdn3.hellin.fr/13839-zoom_default/table-a-manger-rectangulaire-en-bois-pieds-metal-jonas.jpg"),
+                    description: "mlmlmlmlm",
+                    category: "sofa",
+                    imgUrl: [
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                      "assets/images/$i.jpg",
+                    ]),
             ]))
       ]),
     ));
