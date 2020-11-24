@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,18 +12,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  PageController pageController;
   int currentIndex = 0;
-
   void onSelect(int index) {
     setState(() {
       this.currentIndex = index;
+      pageController.animateToPage(currentIndex,
+          duration: Duration(milliseconds: 300), curve: Curves.linear);
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    pageController = new PageController();
+  }
+
+  List<Widget> _screens = [
+    HomeScreen(),
+    Center(
+      child: Text("Dashboard"),
+    ),
+    Center(
+      child: BagScreen(),
+    ),
+    Center(
+      child: Text("Login"),
+    )
+  ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: HomeScreen(),
+        body: PageView(
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          children: _screens,
+        ),
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

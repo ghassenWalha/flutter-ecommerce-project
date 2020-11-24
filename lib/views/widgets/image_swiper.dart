@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ImageSwipe extends StatefulWidget {
+  final List<String> urls;
+  ImageSwipe(this.urls);
+
   @override
   _ImageSwipeState createState() => _ImageSwipeState();
 }
@@ -26,7 +29,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
               for (var i = 1; i < 5; i++)
                 Container(
                   child: Image(
-                    image: AssetImage("assets/images/$i.jpg"),
+                    image: AssetImage(this.widget.urls[i]),
                     fit: BoxFit.cover,
                     width: 200,
                     height: 250,
@@ -41,7 +44,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < 4; i++)
+                for (var i = 0; i < 1; i++)
                   AnimatedContainer(
                     // Animated Container to have a better visualitation of the dots of every pic
                     duration: Duration(milliseconds: 300),
