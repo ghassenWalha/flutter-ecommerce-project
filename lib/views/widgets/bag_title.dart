@@ -11,7 +11,7 @@ class BagTitle extends StatelessWidget {
     return Card(
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.only(top: 70, bottom: 2),
+        padding: EdgeInsets.only(top: 30, bottom: 2),
         width: double.infinity,
         child: Text('My Bag', style: TextStyle(fontSize: 30)),
       ),

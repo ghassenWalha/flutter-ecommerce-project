@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
+import 'package:flutter_ecommerce_project/views/widgets/admin_panel.dart';
+import 'package:flutter_ecommerce_project/views/widgets/filters.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -31,13 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _screens = [
     HomeScreen(),
     Center(
-      child: Text("Dashboard"),
+      child: AdminPanel(),
     ),
     Center(
       child: BagScreen(),
     ),
     Center(
-      child: Text("Login"),
+      child: Filters(),
     )
   ];
   @override
