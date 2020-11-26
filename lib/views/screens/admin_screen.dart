@@ -24,15 +24,15 @@ class AdminScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        child: Column(children: [
-          Container(
-            color: Colors.white,
-            padding: EdgeInsets.only(bottom: 0),
-            child: AdminPanel(),
-          )
-        ]),
+      body: Column(children: [
+        AdminPanel(),
+      ]),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey[400],
+        onPressed: null,
+        child: Icon(
+          Icons.add,
+        ),
       ),
     );
   }

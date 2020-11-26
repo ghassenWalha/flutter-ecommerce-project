@@ -25,6 +25,7 @@ class AdminPanelState extends State<AdminPanel> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.8,

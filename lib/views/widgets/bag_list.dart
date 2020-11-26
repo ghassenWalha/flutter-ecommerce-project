@@ -40,7 +40,7 @@ class BagListState extends State<BagList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromRGBO(241,246,249, 1),
+      color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.73,

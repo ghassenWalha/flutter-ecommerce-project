@@ -43,9 +43,7 @@ class BagItemState extends State<BagItem> {
     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
-      margin: EdgeInsets.only(
-          top: 2,
-          bottom: 2),
+      margin: EdgeInsets.only(top: 2, bottom: 2),
       child: Row(children: [
         //The picture of the product
         Container(
@@ -67,27 +65,24 @@ class BagItemState extends State<BagItem> {
         Container(
           width: MediaQuery.of(context).size.width * 0.32,
           padding: EdgeInsets.only(left: 16),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              
-            children: [
-           Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-           
-             children: [
-                Text(widget.name, style: TextStyle(fontSize: 16)),
-            Text('\$' + widget.price.toString(),
-                style: TextStyle(fontSize: 16)),
-             ],
-           ),
-
-            Text(widget.color,
-                style: TextStyle(
-                  color: Colors.grey,
-                )),
-          ]),
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(widget.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.price.toString(),
+                        style: TextStyle(fontSize: 16)),
+                  ],
+                ),
+                Text('Color : ' + widget.color,
+                    style: TextStyle(
+                      color: Colors.grey,
+                    )),
+              ]),
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.28,
@@ -96,10 +91,14 @@ class BagItemState extends State<BagItem> {
             children: [
               //Delete Icon
               IconButton(
-                icon: Icon(Icons.delete),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red[600],
+                ),
                 onPressed: () {
                   widget.remove(widget.index);
-                },),
+                },
+              ),
               ItemCounter(widget.addQuantity, widget.quantity,
                   widget.substractQuantity), //ItemCounter
             ],
