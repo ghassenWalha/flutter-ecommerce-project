@@ -15,13 +15,22 @@ class SearchItem extends SearchDelegate<Widget> {
   }
 
   List<Map<String, dynamic>> filtredList() {
-    List<dynamic> widgetFilteredList = new List();
+    List<Map<String, dynamic>> widgetFilteredList = [
+      {
+        'name': 'zohra',
+        'price': 300,
+        'color': 'blue',
+        'quantity': 2,
+        //'imageUrl': 'zo',
+      }
+    ];
+
     int i;
     while (i < bagList.length) {
       if (query = bagList[i]['name']) {
         widgetFilteredList[i]['name'] = bagList[i]['name'];
         widgetFilteredList[i]['price'] = bagList[i]['price'];
-        widgetFilteredList[i]['imageUrl'] = bagList[i]['imageUrl'];
+        //widgetFilteredList[i]['imageUrl'] = bagList[i]['imageUrl'];
         widgetFilteredList[i]['color'] = bagList[i]['color'];
         widgetFilteredList[i]['quantity'] = bagList[i]['quantity'];
       }
@@ -55,12 +64,12 @@ class SearchItem extends SearchDelegate<Widget> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return ListView.builder(
+    /*return ListView.builder(
         itemCount: bagList.length,
         itemBuilder: (context, i) {
           return ProductItemAdmin(
             name: filtredList()[i]['name'],
-            imageUrl: filtredList()[i]['imageUrl'],
+            //  imageUrl: filtredList()[i]['imageUrl'],
             price: filtredList()[i]['price'],
             color: filtredList()[i]['color'],
             quantity: filtredList()[i]['quantity'],
@@ -68,7 +77,7 @@ class SearchItem extends SearchDelegate<Widget> {
             index: i,
             //remove: remove,
           );
-        });
+        });*/
   }
 
   @override

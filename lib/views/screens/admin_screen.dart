@@ -7,10 +7,11 @@ class AdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        elevation: 0.2,
+        backgroundColor: Colors.grey[400],
         actions: <Widget>[
           IconButton(
-            color: Colors.black,
+            color: Colors.white,
             onPressed: () {
               showSearch(context: context, delegate: SearchItem());
             },
@@ -20,10 +21,9 @@ class AdminScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Search Bar',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
-      drawer: Drawer(),
       body: Container(
         width: double.infinity,
         child: Column(children: [

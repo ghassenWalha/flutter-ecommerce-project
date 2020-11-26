@@ -7,7 +7,7 @@ class BagScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        //height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(children: [
           BagTitle(),
