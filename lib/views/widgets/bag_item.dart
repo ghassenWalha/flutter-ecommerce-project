@@ -41,10 +41,11 @@ class BagItemState extends State<BagItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.width * 0.04,
-          bottom: MediaQuery.of(context).size.width * 0.04),
+          top: 2,
+          bottom: 2),
       child: Row(children: [
         //The picture of the product
         Container(
@@ -67,13 +68,21 @@ class BagItemState extends State<BagItem> {
           width: MediaQuery.of(context).size.width * 0.32,
           padding: EdgeInsets.only(left: 16),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Text(widget.name, style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+              Column(crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              
+            children: [
+           Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+           
+             children: [
+                Text(widget.name, style: TextStyle(fontSize: 16)),
             Text('\$' + widget.price.toString(),
                 style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+             ],
+           ),
+
             Text(widget.color,
                 style: TextStyle(
                   color: Colors.grey,
@@ -83,16 +92,14 @@ class BagItemState extends State<BagItem> {
         Container(
           width: MediaQuery.of(context).size.width * 0.28,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
               //Delete Icon
               IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () {
                   widget.remove(widget.index);
-                },
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                },),
               ItemCounter(widget.addQuantity, widget.quantity,
                   widget.substractQuantity), //ItemCounter
             ],

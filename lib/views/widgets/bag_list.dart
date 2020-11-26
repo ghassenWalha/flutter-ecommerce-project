@@ -40,9 +40,10 @@ class BagListState extends State<BagList> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color.fromRGBO(241,246,249, 1),
       child: Column(children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.of(context).size.height * 0.73,
           child: ListView.builder(
               itemCount: list.length,
               itemBuilder: (context, i) {
