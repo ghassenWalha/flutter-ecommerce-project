@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
+import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -11,41 +12,61 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  PageController pageController;
+  int currentIndex = 0;
+  void onSelect(int index) {
     setState(() {
-      
-      _counter++;
+      this.currentIndex = index;
+      pageController.animateToPage(currentIndex,
+          duration: Duration(milliseconds: 300), curve: Curves.linear);
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    pageController = new PageController();
+  }
+
+  List<Widget> _screens = [
+    HomeScreen(),
+    Center(
+      child: Text("Dashboard"),
+    ),
+    Center(
+      child: BagScreen(),
+    ),
+    Center(
+      child: Text("Login"),
+    )
+  ];
+  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-     
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        body: PageView(
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          children: _screens,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        backgroundColor: Colors.white,
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.lock), label: "admin Dashbord"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag), label: "Bag"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: "login/sign in"),
+          ],
+          currentIndex: currentIndex,
+          onTap: onSelect,
+        ));
   }
 }
