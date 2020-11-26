@@ -19,13 +19,13 @@ class TitledCategoryList extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+            padding: EdgeInsets.symmetric(horizontal: 6.0),
             child: Text(
               title,
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
         Container(
-            height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery.of(context).size.height / 6,
             child: CategoryList(categoryList))
       ],
     );

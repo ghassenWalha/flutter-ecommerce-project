@@ -22,9 +22,11 @@ class TitledProductList extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               title,
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
-        Expanded(child: ProductList(productList))
+        Container(
+            height: (MediaQuery.of(context).size.height / 4) * 1.3,
+            child: ProductList(productList))
       ],
     );
   }
