@@ -25,10 +25,11 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: MediaQuery.of(context).size.height / 5,
         child: ListView(
-      scrollDirection: Axis.horizontal,
-      children: this.widgetsList,
-      itemExtent: MediaQuery.of(context).size.width / 3,
-    ));
+          scrollDirection: Axis.horizontal,
+          children: this.widgetsList,
+          itemExtent: MediaQuery.of(context).size.width / 4,
+        ));
   }
 }
