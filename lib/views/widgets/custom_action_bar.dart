@@ -16,7 +16,7 @@ class CustomActionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
-    bool _hasTitle = hasTitle ?? true;
+    //bool _hasTitle = hasTitle ?? true;
     bool _hasBackground = hasBackground ?? true;
     bool _hasFavoriteIcon = hasFavoriteIcon ?? true;
     return Container(

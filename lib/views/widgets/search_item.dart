@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
 //import 'package:flutter_ecommerce_project/views/widgets/admin_panel.dart';
-import 'package:flutter_ecommerce_project/views/widgets/product_item_admin.dart';
 
 class SearchItem extends SearchDelegate<Widget> {
   List<String> namelist = List<String>();

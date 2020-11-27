@@ -18,7 +18,8 @@ class ProductGridView extends StatelessWidget {
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: StaggeredGridView.countBuilder(
+        child: Center(
+            child: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
           itemCount: productList.length,
           itemBuilder: (BuildContext context, int index) =>
@@ -27,6 +28,6 @@ class ProductGridView extends StatelessWidget {
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
           padding: EdgeInsets.all(5),
-        ));
+        )));
   }
 }
