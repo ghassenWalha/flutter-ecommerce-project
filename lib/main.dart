@@ -9,6 +9,7 @@ import './views/screens/product_details_screen.dart';
 import './views/screens/bag_screen.dart';
 
 import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
+import './views/screens/edit_product.dart';
 
 void main() {
   runApp(MyApp());

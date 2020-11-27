@@ -33,18 +33,22 @@ class _ProductViewState extends State<ProductView> {
           });
         },
         child: Container(
+          width: MediaQuery.of(context).size.width / 3,
+          height: (MediaQuery.of(context).size.height / 4) * 1.3,
           padding: EdgeInsets.all(10),
           child: Hero(
             tag: this.widget.product.id,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
+                width: MediaQuery.of(context).size.width / 3,
+                height: MediaQuery.of(context).size.width / 2.5,
                 child: Container(
                   child: Align(
                       alignment: Alignment.topRight,
                       child: FavoriteButton(isFav)),
                   width: MediaQuery.of(context).size.width / 2,
-                  height: MediaQuery.of(context).size.width / 2,
+                  height: MediaQuery.of(context).size.width / 6,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     image: DecorationImage(
@@ -58,11 +62,11 @@ class _ProductViewState extends State<ProductView> {
               ),
               Text(
                 this.widget.product.name,
-                style: TextStyle(fontSize: 25, color: Colors.black38),
+                style: TextStyle(fontSize: 20, color: Colors.black38),
               ),
               Text(
                 "\$${this.widget.product.price} ",
-                style: TextStyle(color: Colors.grey, fontSize: 20),
+                style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
             ]),
           ),

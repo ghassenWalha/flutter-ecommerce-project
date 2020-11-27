@@ -18,8 +18,9 @@ class CategoryItem extends StatelessWidget {
               arguments: category.name);
         },
         child: Container(
-            width: MediaQuery.of(context).size.width / 3,
-            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width / 4,
+            height: MediaQuery.of(context).size.height / 5,
+            padding: EdgeInsets.all(5),
             child: Hero(
                 tag: category.id,
                 child: Column(
@@ -27,18 +28,17 @@ class CategoryItem extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width / 4,
-                      height: MediaQuery.of(context).size.width / 4,
+                      height: MediaQuery.of(context).size.width / 5,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(category.imageUrl),
+                              image: AssetImage(category.imageUrl),
                               fit: BoxFit.fill),
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0))),
                     ),
                     Container(
-                        padding: EdgeInsets.all(10),
                         child: Align(
-                            alignment: Alignment.topLeft,
+                            alignment: Alignment.center,
                             child: Text(
                               category.name,
                               style: TextStyle(
