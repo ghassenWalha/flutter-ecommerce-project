@@ -41,53 +41,64 @@ class BagItemState extends State<BagItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
-      margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.width * 0.03,
-          bottom: MediaQuery.of(context).size.width * 0.03),
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.22,
+      margin: EdgeInsets.only(top: 2, bottom: 2),
       child: Row(children: [
         //The picture of the product
-        Expanded(
-          child: Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.3,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  image: DecorationImage(
-                      image: new AssetImage(widget.imageUrl),
-                      fit: BoxFit.contain))),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          padding: EdgeInsets.only(left: 10),
+          height: MediaQuery.of(context).size.height * 0.16,
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Image(
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width * 0.36,
+                //height: MediaQuery.of(context).size.height * 0.4,
+                image: new AssetImage(
+                  widget.imageUrl,
+                ),
+              )),
         ),
         //Name,Price and the Color of the Product
         Container(
-          width: MediaQuery.of(context).size.width * 0.4,
-          padding: EdgeInsets.only(left: 15),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Text(widget.name, style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Text('\$' + widget.price.toString(),
-                style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-            Text(widget.color,
-                style: TextStyle(
-                  color: Colors.grey,
-                )),
-          ]),
+          width: MediaQuery.of(context).size.width * 0.32,
+          padding: EdgeInsets.only(left: 16),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(widget.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.price.toString(),
+                        style: TextStyle(fontSize: 16)),
+                  ],
+                ),
+                Text('Color : ' + widget.color,
+                    style: TextStyle(
+                      color: Colors.grey,
+                    )),
+              ]),
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.28,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.035),
               //Delete Icon
               IconButton(
-                icon: Icon(Icons.delete),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red[600],
+                ),
                 onPressed: () {
                   widget.remove(widget.index);
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.07),
               ItemCounter(widget.addQuantity, widget.quantity,
                   widget.substractQuantity), //ItemCounter
             ],

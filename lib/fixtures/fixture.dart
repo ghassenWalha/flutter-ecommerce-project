@@ -15,9 +15,9 @@ List<Map<String, dynamic>> bagList = [
     'quantity': 1,
   },
   {
-    'imageUrl': 'assets/images/chair.jpg',
+    'imageUrl': 'assets/images/5.jpg',
     'price': 200.00,
-    'color': 'Grey',
+    'color': 'yellow',
     'name': 'Chair',
     'quantity': 1,
   },

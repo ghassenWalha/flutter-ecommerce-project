@@ -25,25 +25,26 @@ class AdminPanelState extends State<AdminPanel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-      children: [
+      color: Colors.grey[50],
+      child: Column(children: [
         SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, i) {
-                  return ProductItemAdmin(
-                    name: list[i]['name'],
-                    imageUrl: list[i]['imageUrl'],
-                    price: list[i]['price'],
-                    color: list[i]['color'],
-                    quantity: list[i]['quantity'],
-                    key: ValueKey(list[i]['name']),
-                    index: i,
-                    remove: remove,
-                  );
-                })),
-      ],
-    ));
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, i) {
+                return ProductItemAdmin(
+                  name: list[i]['name'],
+                  imageUrl: list[i]['imageUrl'],
+                  price: list[i]['price'],
+                  color: list[i]['color'],
+                  quantity: list[i]['quantity'],
+                  key: ValueKey(list[i]['name']),
+                  index: i,
+                  remove: remove,
+                );
+              }),
+        )
+      ]),
+    );
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/models/category.dart';
-import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
+import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Category_Item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Category_List.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Home.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Product_View.dart';
-import 'package:flutter_ecommerce_project/views/widgets/admin_panel.dart';
 import 'package:flutter_ecommerce_project/views/widgets/filters.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _screens = [
     HomeScreen(),
     Center(
-      child: AdminPanel(),
+      child: AdminScreen(),
     ),
     Center(
       child: BagScreen(),

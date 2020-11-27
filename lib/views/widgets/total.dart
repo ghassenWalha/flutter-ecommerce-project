@@ -28,7 +28,7 @@ class _TotalState extends State<Total> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 80),
+      padding: const EdgeInsets.only(left: 75,bottom: 10),
       child: Row(children: [
         Text('Total : ', style: TextStyle(fontSize: 18)),
         SizedBox(width: 20),
