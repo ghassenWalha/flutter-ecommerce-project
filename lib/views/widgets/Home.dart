@@ -7,9 +7,7 @@ class Home extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 2,
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://3docean.img.customer.envatousercontent.com/files/268616478/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=a7ee51e76b43acca1e220db7edad8ad9"))),
+          image: DecorationImage(image: AssetImage("assets/images/5.jpg"))),
     );
   }
 }
