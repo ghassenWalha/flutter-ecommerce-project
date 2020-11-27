@@ -14,12 +14,12 @@ class TitledCategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6.0),
+            padding: EdgeInsets.only(top: 10.0, left: 10),
             child: Text(
               title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

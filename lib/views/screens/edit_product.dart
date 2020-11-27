@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 //import 'package:flutter_ecommerce_project/models/product.dart';
 
 import '../widgets/add_image.dart';
@@ -13,7 +14,7 @@ class EditProduct extends StatefulWidget {
 class _State extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
-    //final Product pp = ModalRoute.of(context).settings.arguments;
+    final Product pp = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: ListView(
@@ -33,8 +34,16 @@ class _State extends State<EditProduct> {
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CustomizedButton('Cancel'),
-            CustomizedButton('Save'),
+            CustomizedButton(
+              textName: 'Cancel',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CustomizedButton(
+              textName: 'Save',
+              onPressed: () {},
+            ),
           ],
         ),
       ),

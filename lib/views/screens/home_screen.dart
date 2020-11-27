@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Home.dart';
-import 'package:flutter_ecommerce_project/views/widgets/category_filter.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
 
@@ -14,12 +13,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(children: [
-      Home(),
+      Home(title: "NewCollection", imgurl: "assets/images/5.jpg"),
       Align(
         alignment: Alignment(0, 2),
         child: Container(
             decoration: BoxDecoration(
-                color: Colors.black26, borderRadius: BorderRadius.circular(20)),
+                color: Colors.white, borderRadius: BorderRadius.circular(40)),
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
                 TitledCategoryList(title: "Categories", categoryList: [

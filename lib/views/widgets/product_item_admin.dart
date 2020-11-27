@@ -90,7 +90,11 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
           width: MediaQuery.of(context).size.width * 0.28,
           child: Row(
             children: [
-              IconButton(icon: Icon(Icons.edit), onPressed: null),
+              IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/edt");
+                  }),
               //Delete Icon
               IconButton(
                 icon: Icon(

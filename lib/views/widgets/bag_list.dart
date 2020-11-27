@@ -43,7 +43,7 @@ class BagListState extends State<BagList> {
       color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.73,
+          height: MediaQuery.of(context).size.height * 0.725,
           child: ListView.builder(
               itemCount: list.length,
               itemBuilder: (context, i) {

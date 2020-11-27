@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
-
-import 'custom_action_bar.dart';
 import 'filters.dart';
 
 class CategoryFilter extends StatelessWidget {
-  List<String> filters = ["price", "date", "likes"];
+  final List<String> filters = ["price", "date", "likes"];
 
   @override
   Widget build(BuildContext context) {
