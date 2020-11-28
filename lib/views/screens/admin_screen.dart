@@ -6,6 +6,7 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // building the search bar 
       appBar: AppBar(
         elevation: 0.2,
         backgroundColor: Colors.grey[400],
@@ -25,8 +26,10 @@ class AdminScreen extends StatelessWidget {
         ),
       ),
       body: Column(children: [
+        // building the list of products 
         AdminPanel(),
       ]),
+      // this button is responsible for adding a new product by the administrator 
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey[400],
         onPressed: null,
