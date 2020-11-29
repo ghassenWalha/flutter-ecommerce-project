@@ -21,6 +21,7 @@ class ItemCounter extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.04,
             //Minus Button
             child: RaisedButton(
+              disabledColor: Colors.grey[300],
               onPressed: quantity > 1 ? substractQuantity : null,
               child: Text(
                 '-',

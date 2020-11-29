@@ -35,6 +35,7 @@ class _TotalState extends State<Total> {
         Text('\$' + calculate().toString(), style: TextStyle(fontSize: 20)),
         SizedBox(width: 40),
         RaisedButton(
+          disabledColor: Colors.grey[300],
             child: Text('Payer', style: TextStyle(fontSize: 15)),
             onPressed: null),
       ]),
