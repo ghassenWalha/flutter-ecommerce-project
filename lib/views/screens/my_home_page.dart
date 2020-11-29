@@ -85,7 +85,23 @@ class _MyHomePageState extends State<MyHomePage> {
           children: _screens,
         ),
         backgroundColor: Colors.white,
-        bottomNavigationBar: CustomNavigationBar(
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.lock), label: "admin Dashbord"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag), label: "Bag"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: "login/sign in"),
+          ],
+          currentIndex: currentIndex,
+          onTap: onSelect,
+        ));
+
+    /*CustomNavigationBar(
           iconSize: 30.0,
           selectedColor: Colors.orangeAccent,
           strokeColor: Color(0x300c18fb),
@@ -115,6 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           currentIndex: currentIndex,
           onTap: onSelect,
-        ));
+        )*/
   }
 }
