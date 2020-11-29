@@ -33,15 +33,13 @@ class _ProductViewState extends State<ProductView> {
         });
       },
       child: Container(
-        width: MediaQuery.of(context).size.width / 3,
-        height: (MediaQuery.of(context).size.height / 4) * 1.2,
+        width: (MediaQuery.of(context).size.width / 4) * 1.5,
+        height: (MediaQuery.of(context).size.height / 4) * 1.5,
         padding: EdgeInsets.all(10),
-        /*child: Hero(
-            tag: this.widget.product.id,*/
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            width: MediaQuery.of(context).size.width / 3,
-            height: MediaQuery.of(context).size.width / 2.8,
+            width: MediaQuery.of(context).size.width / 2.4,
+            height: MediaQuery.of(context).size.width / 2.4,
             child: Container(
               child: Align(
                   alignment: Alignment.topRight, child: FavoriteButton(isFav)),

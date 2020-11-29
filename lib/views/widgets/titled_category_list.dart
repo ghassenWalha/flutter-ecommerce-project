@@ -14,17 +14,18 @@ class TitledCategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.only(top: 10.0, left: 10),
+            padding: EdgeInsets.only(top: 30.0, left: 30),
             child: Text(
               title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
         Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height / 6,
             child: CategoryList(categoryList))
       ],
