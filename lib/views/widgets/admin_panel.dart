@@ -30,7 +30,7 @@ class AdminPanelState extends State<AdminPanel> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.785,
           child: ListView.builder(
-              itemCount: 1,
+              itemCount: list.length,
               itemBuilder: (context, i) {
                 return ProductItemAdmin(
                   name: list[i]['name'],

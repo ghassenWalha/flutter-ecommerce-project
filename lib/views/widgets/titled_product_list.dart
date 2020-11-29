@@ -14,18 +14,17 @@ class TitledProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.only(left: 30),
             child: Text(
               title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )),
         Container(
-            height: (MediaQuery.of(context).size.height / 4) * 1.3,
+            height: (MediaQuery.of(context).size.height / 4) * 1.5,
             child: ProductList(productList))
       ],
     );
