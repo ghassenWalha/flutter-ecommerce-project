@@ -1,7 +1,11 @@
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
+
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -32,14 +36,41 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _screens = [
     HomeScreen(),
     Center(
-      child: Text("Dashboard"),
+      child: AdminScreen(),
     ),
     Center(
       child: BagScreen(),
     ),
     Center(
-      child: Text("Login"),
-    )
+        child: CustomNavigationBar(
+      iconSize: 30.0,
+      selectedColor: Color(0xff0c18fb),
+      strokeColor: Color(0x300c18fb),
+      unSelectedColor: Colors.grey[600],
+      backgroundColor: Colors.white,
+      items: [
+        CustomNavigationBarItem(
+          icon: Icon(
+            AntDesign.home,
+          ),
+        ),
+        CustomNavigationBarItem(
+          icon: Icon(
+            AntDesign.search1,
+          ),
+        ),
+        CustomNavigationBarItem(
+          icon: Icon(
+            AntDesign.shoppingcart,
+          ),
+        ),
+        CustomNavigationBarItem(
+          icon: Icon(
+            AntDesign.user,
+          ),
+        ),
+      ],
+    ))
   ];
   @override
   Widget build(BuildContext context) {
@@ -69,5 +100,37 @@ class _MyHomePageState extends State<MyHomePage> {
           currentIndex: currentIndex,
           onTap: onSelect,
         ));
+
+    /*CustomNavigationBar(
+          iconSize: 30.0,
+          selectedColor: Colors.orangeAccent,
+          strokeColor: Color(0x300c18fb),
+          unSelectedColor: Colors.black.withOpacity(0.7),
+          backgroundColor: Colors.blueGrey.withOpacity(0.3),
+          items: [
+            CustomNavigationBarItem(
+              icon: Icon(
+                AntDesign.home,
+              ),
+            ),
+            CustomNavigationBarItem(
+              icon: Icon(
+                AntDesign.setting,
+              ),
+            ),
+            CustomNavigationBarItem(
+              icon: Icon(
+                AntDesign.shoppingcart,
+              ),
+            ),
+            CustomNavigationBarItem(
+              icon: Icon(
+                AntDesign.user,
+              ),
+            ),
+          ],
+          currentIndex: currentIndex,
+          onTap: onSelect,
+        )*/
   }
 }

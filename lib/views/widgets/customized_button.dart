@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class CustomizedButton extends StatefulWidget {
   Function fct;
   final String textName;
-  CustomizedButton(this.textName, this.fct);
+
+  final VoidCallback onPressed;
+  CustomizedButton({this.textName, @required this.onPressed});
+
   @override
   _CustomizedButtonState createState() => _CustomizedButtonState();
 }
@@ -16,12 +19,17 @@ class _CustomizedButtonState extends State<CustomizedButton> {
       height: 50,
       width: 100,
       child: FloatingActionButton(
-        heroTag: this.widget.textName,
+        heroTag: this
+            .widget
+            .textName, //  each floatActionbutton shouldn have a unique herotag when it is used to navigate betwwen pages
+
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25))),
         backgroundColor:
             widget.textName == 'Save' ? Colors.black : Colors.white,
-        onPressed: this.widget.fct,
+
+        onPressed: this.widget.onPressed,
+
         child: Text(
           widget.textName,
           style: TextStyle(

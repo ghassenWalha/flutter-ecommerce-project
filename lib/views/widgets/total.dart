@@ -28,13 +28,14 @@ class _TotalState extends State<Total> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 80),
+      padding: const EdgeInsets.only(left: 75,bottom: 10),
       child: Row(children: [
         Text('Total : ', style: TextStyle(fontSize: 18)),
         SizedBox(width: 20),
         Text('\$' + calculate().toString(), style: TextStyle(fontSize: 20)),
         SizedBox(width: 40),
         RaisedButton(
+          disabledColor: Colors.grey[300],
             child: Text('Payer', style: TextStyle(fontSize: 15)),
             onPressed: null),
       ]),

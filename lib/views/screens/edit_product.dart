@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../models/product.dart';
 import '../screens/bag_screen.dart';
 import '../screens/product_details_screen.dart';
+
 
 import '../widgets/add_image.dart';
 import '../widgets/add_details.dart';
@@ -16,7 +18,6 @@ class _State extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
     //final Product product = ModalRoute.of(context).settings.arguments;
-    //print(product.imgUrl);
     return SafeArea(
       child: Scaffold(
         body: ListView(
@@ -31,6 +32,21 @@ class _State extends State<EditProduct> {
                 bottom: 4.0,
               ),
               child: AddDetails(),
+            ),
+          ],
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CustomizedButton(
+              textName: 'Cancel',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CustomizedButton(
+              textName: 'Save',
+              onPressed: () {},
             ),
           ],
         ),

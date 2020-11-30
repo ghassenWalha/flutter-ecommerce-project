@@ -37,48 +37,70 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.width * 0.03,
-          bottom: MediaQuery.of(context).size.width * 0.03),
+        top: 2,
+        bottom: 2,
+      ),
       child: Row(children: [
         //The picture of the product
-        Expanded(
-          child: Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.3,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  image: DecorationImage(
-                      image: new AssetImage(widget.imageUrl),
-                      fit: BoxFit.contain))),
-        ),
-        //Name,Price and the Color of the Product
+        /*  Expanded(
+          child:*/
         Container(
           width: MediaQuery.of(context).size.width * 0.4,
-          padding: EdgeInsets.only(left: 15),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Text(widget.name, style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Text('\$' + widget.price.toString(),
-                style: TextStyle(fontSize: 16)),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-            Text(widget.color,
-                style: TextStyle(
-                  color: Colors.grey,
-                )),
-          ]),
+          padding: EdgeInsets.only(left: 10),
+          height: MediaQuery.of(context).size.height * 0.16,
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Image(
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width * 0.36,
+                //height: MediaQuery.of(context).size.height * 0.4,
+                image: new AssetImage(
+                  widget.imageUrl,
+                ),
+              )),
+        ),
+        /*),*/
+        //Name,Price and the Color of the Product
+        Container(
+          width: MediaQuery.of(context).size.width * 0.32, //0.4
+          padding: EdgeInsets.only(left: 16), //15
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(widget.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.price.toString(),
+                        style: TextStyle(fontSize: 16)),
+                  ],
+                ),
+                Text('Color : ' + widget.color,
+                    style: TextStyle(
+                      color: Colors.grey,
+                    )),
+              ]),
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.28,
           child: Row(
             children: [
-              IconButton(icon: Icon(Icons.edit), onPressed: null),
+              IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/edt");
+                  }),
               //Delete Icon
               IconButton(
-                icon: Icon(Icons.delete),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red[400],
+                ),
                 onPressed: () {
                   widget.remove(widget.index);
                 },

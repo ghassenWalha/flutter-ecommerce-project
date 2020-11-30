@@ -25,8 +25,8 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
-        width: 430,
+
+        height: (MediaQuery.of(context).size.height / 4) * 1.3,
         child: ListView(
           scrollDirection: Axis.horizontal,
           itemExtent: MediaQuery.of(context).size.width / 2,

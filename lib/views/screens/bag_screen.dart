@@ -7,12 +7,13 @@ class BagScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
+       
+        //height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(children: [
           BagTitle(),
           Container(
-            color: Colors.white,
+           color: Colors.white,
             padding: EdgeInsets.only(bottom: 0),
             child: BagList(),
           )
