@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/models/product.dart';
-
+import '../../models/product.dart';
+import '../../views/widgets/titled_product_list.dart';
 import '../widgets/custom_action_bar.dart';
 import '../widgets/image_swiper.dart';
+import '../../fixtures/fixture.dart';
+import '../widgets/item_counter.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  int quantity = 1;
+  final list = bagList;
   bool _visible = false;
   String _moreInfoText = "MORE INFO ▼";
 
@@ -28,9 +32,42 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
+  /*This function adds 1 to the quantity when we click on the plus button*/
+  void addQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  /*This function substract 1 from the quantity when we click on the minus button*/
+  void substractQuantity() {
+    setState(() {
+      quantity--;
+    });
+  }
+
   Widget build(BuildContext context) {
     final Product pp = ModalRoute.of(context).settings.arguments;
-
+    List<Product> youMightLike = [];
+    for (var i = 1; i < 7; i++)
+      youMightLike.add(
+        Product(
+            id: i,
+            name: "table",
+            price: "1200",
+            description: "mlmlmlmlm",
+            category: "sofa",
+            imgUrl: [
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+              "assets/images/$i.jpg",
+            ]),
+      );
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -46,18 +83,22 @@ class _ProductPageState extends State<ProductPage> {
                     bottom: 4.0,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        pp.name,
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          pp.name,
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        // child: RaisedButton(),
+                      Container(
+                        height: 50,
+                        child: ItemCounter(
+                            addQuantity, quantity, substractQuantity),
                       )
                     ],
                   ),
@@ -128,31 +169,12 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 0,
-                    left: 24,
-                    right: 24,
-                    bottom: 6,
-                  ),
-                  child: Text(
-                    "YOU MIGHT ALSO LIKE :",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
                 Container(
-                  height: 400.0,
-                  child: PageView(children: [
-                    for (var i = 3; i < 7; i++)
-                      Container(
-                        child: Image(
-                          image: AssetImage(pp.imgUrl[i]),
-                          fit: BoxFit.cover,
-                          width: 200,
-                          height: 250,
-                        ),
-                      ),
-                  ]),
+                  height: 400,
+                  child: TitledProductList(
+                    title: "YOU MIGHT ALSO LIKE :",
+                    productList: youMightLike,
+                  ),
                 ),
               ],
             ),

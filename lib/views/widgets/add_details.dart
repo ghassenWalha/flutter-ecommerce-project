@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/customized_button.dart';
+import '../screens/bag_screen.dart';
+import '../screens/product_details_screen.dart';
 
 class AddDetails extends StatefulWidget {
   @override
@@ -6,34 +9,88 @@ class AddDetails extends StatefulWidget {
 }
 
 class _AddDetailsState extends State<AddDetails> {
+  var _formKey = GlobalKey<FormState>();
+  String _productName, _price, _desccription, _moreInfo;
+  void cancelEdit() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BagScreen(),
+        ));
+  }
+
+  void saveEdit() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+
+    //_formKey.currentState.save();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
-      child: ListView(
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.local_mall_rounded),
-              labelText: 'Product Name',
-            ),
-            onSaved: null,
+      height: 400,
+      child: Scaffold(
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Product Name',
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Please enter Product Name";
+                  }
+                },
+                onSaved: (input) => _productName = input,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Price',
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Please enter Price";
+                  }
+                },
+                onSaved: (input) => _price = input,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Please enter Description";
+                  }
+                },
+                onSaved: (input) => _desccription = input,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'More Info',
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Please enter the More Info";
+                  }
+                },
+                onSaved: (input) => _moreInfo = input,
+              ),
+            ],
           ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.attach_money_rounded),
-              labelText: 'Price',
-            ),
-            onSaved: null,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.description_rounded),
-              labelText: 'Description',
-            ),
-            onSaved: null,
-          ),
-        ],
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CustomizedButton('Cancel', cancelEdit),
+            CustomizedButton('Save', saveEdit),
+          ],
+        ),
       ),
     );
   }

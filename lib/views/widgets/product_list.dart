@@ -25,10 +25,12 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: 200,
+        width: 430,
         child: ListView(
-      scrollDirection: Axis.horizontal,
-      itemExtent: MediaQuery.of(context).size.width / 2,
-      children: this.widgetsList,
-    ));
+          scrollDirection: Axis.horizontal,
+          itemExtent: MediaQuery.of(context).size.width / 2,
+          children: this.widgetsList,
+        ));
   }
 }

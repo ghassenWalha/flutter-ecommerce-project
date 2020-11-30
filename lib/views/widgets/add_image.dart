@@ -3,14 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../widgets/plus_image.dart';
+
 class AddImage extends StatefulWidget {
   //final List<String> urls;
-  //AddImage(this.urls);
+  // AddImage(this.urls);
   @override
   _State createState() => _State();
 }
 
 class _State extends State<AddImage> {
+  List<Widget> moreImage = [];
   int limit = 4;
   int _selectedPage = 0;
   File _image;
@@ -29,7 +32,7 @@ class _State extends State<AddImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400.0,
+      height: 300.0,
       child: Stack(
         // we used Stack to have the images and the dots ,to show which picture you're on, together
         children: [
@@ -47,7 +50,7 @@ class _State extends State<AddImage> {
                     image: AssetImage("assets/images/$i.jpg"),
                     fit: BoxFit.cover,
                     width: 200,
-                    height: 250,
+                    height: 200,
                   ),
                 ),
               GestureDetector(

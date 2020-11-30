@@ -20,12 +20,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Flutter Demo', initialRoute: '/', routes: {
-      // When navigating to the "/" route, build the FirstScreen widget.
-      '/': (context) => MyHomePage(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      '/product_details_screen': (context) => ProductPage(),
-      '/category_filter': (context) => CategoryFilter()
-    });
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        initialRoute: '/',
+        routes: {
+          // When navigating to the "/" route, build the FirstScreen widget.
+          '/': (context) => MyHomePage(),
+          // When navigating to the "/second" route, build the SecondScreen widget.
+          '/product_details_screen': (context) => ProductPage(),
+          '/category_filter': (context) => CategoryFilter()
+        });
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomizedButton extends StatefulWidget {
+  Function fct;
   final String textName;
-  CustomizedButton(this.textName);
+  CustomizedButton(this.textName, this.fct);
   @override
   _CustomizedButtonState createState() => _CustomizedButtonState();
 }
@@ -15,11 +16,12 @@ class _CustomizedButtonState extends State<CustomizedButton> {
       height: 50,
       width: 100,
       child: FloatingActionButton(
+        heroTag: this.widget.textName,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25))),
         backgroundColor:
             widget.textName == 'Save' ? Colors.black : Colors.white,
-        onPressed: null,
+        onPressed: this.widget.fct,
         child: Text(
           widget.textName,
           style: TextStyle(
