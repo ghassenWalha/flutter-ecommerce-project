@@ -13,23 +13,44 @@ class AddImage extends StatefulWidget {
 class _State extends State<AddImage> {
   int limit = 4;
   int _selectedPage = 0;
-  File _image;
+  List<File> _images = [];
+  List<String> _images1 = [];
   //bool _visible = false;
+
+  void supprimer(int i) {
+    if (i < _images1.length)
+      setState(() {
+        limit--;
+        _images1.removeAt(i);
+      });
+    else
+      setState(() {
+        limit--;
+        _images.removeAt(i - _images1.length);
+      });
+  }
+
+  void initState() {
+    super.initState();
+    for (var i = 1; i < 5; i++) {
+      _images1.add("assets/images/$i.jpg");
+    }
+  }
 
   Future _getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      limit++;
-      //_visible = true;
-    });
+    if (image != null)
+      setState(() {
+        _images.add(image);
+        limit++;
+        //_visible = true;
+      });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400.0,
+      height: 300.0,
       child: Stack(
         // we used Stack to have the images and the dots ,to show which picture you're on, together
         children: [
@@ -41,28 +62,38 @@ class _State extends State<AddImage> {
               });
             },
             children: [
-              for (var i = 1; i < 5; i++)
-                Container(
+              ..._images1.map(
+                (image) => Container(
                   child: Image(
-                    image: AssetImage("assets/images/$i.jpg"),
-                    fit: BoxFit.cover,
+                    image: AssetImage(image),
+                    fit: BoxFit.fill,
                     width: 200,
-                    height: 250,
+                    // height: 250,
                   ),
                 ),
+              ),
+              ..._images.map((image) {
+                return Container(
+                  color: Colors.black12,
+                  child: Stack(
+                    children: [
+                      Image.file(
+                        image,
+                        fit: BoxFit.fill,
+                      ),
+                    ],
+                  ),
+                  width: 200,
+                  height: 250,
+                );
+              }).toList(),
               GestureDetector(
                 onTap: _getImage,
                 child: Container(
                   color: Colors.black12,
-                  child: _image == null
-                      ? Icon(
-                          FontAwesomeIcons.plus,
-                        )
-                      : Stack(
-                          children: [
-                            Image.file(_image),
-                          ],
-                        ),
+                  child: Icon(
+                    FontAwesomeIcons.plus,
+                  ),
                   width: 200,
                   height: 250,
                 ),
@@ -98,7 +129,9 @@ class _State extends State<AddImage> {
               ? Positioned(
                   top: 1,
                   right: 1,
-                  child: IconButton(icon: Icon(Icons.cancel), onPressed: null),
+                  child: IconButton(
+                      icon: Icon(Icons.cancel),
+                      onPressed: () => supprimer(_selectedPage)),
                 )
               : Container(),
         ],
