@@ -1,16 +1,35 @@
 # flutter_ecommerce_project
 
-A new Flutter project.
+# how to contribute to this project:
+1. Clown this project
+2. Check out to your branch
 
-## Getting Started
+```
+git checkout <branch name>
+ exp: git checkout sprint1/home
+```
 
-This project is a starting point for a Flutter application.
+3. start working on that banch 
+4. when you done push to you branch 
 
-A few resources to get you started if this is your first Flutter project:
+```
+git push origin <branch name>
+ exp: git push origin sprint1/home
+```
+# architecture:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+* lib:
+  * models  
+  * views:
+    * screens
+    * widgets
+  * services
+ 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# useful tip:
+before you start working on your branch after the first time, pull the branch you are working on.
+
+```
+git pull origin <branch name>
+ exp: git push origin sprint1/home
+```
