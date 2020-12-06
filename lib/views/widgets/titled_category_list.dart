@@ -27,8 +27,8 @@ class TitledCategoryList extends StatelessWidget {
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height / 6,
-            child: CategoryList(categoryList))
-      ],
+           // child: CategoryList(categoryList))
+      )],
     );
   }
 }

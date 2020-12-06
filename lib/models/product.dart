@@ -2,9 +2,10 @@ class Product {
   final int id;
   final String name;
   final String description;
-  final String price;
+  final double price;
   final String category;
-  final List<String> imgUrl;
+  final List<String> imgsUrl;
+  final String imgUrl;
 
   Product({
     this.id,
@@ -12,7 +13,8 @@ class Product {
     this.description,
     this.category,
     this.price,
-    this.imgUrl,
+    this.imgsUrl,
+    this.imgUrl
   });
 
   factory Product.fromJson(Map<dynamic, dynamic> json) {
@@ -21,7 +23,8 @@ class Product {
       name: json["name"],
       description: json["description"],
       price: json["price"],
-      imgUrl: json["imgUrl"],
+      imgsUrl: json["imgsUrl"],
+      imgUrl: json["imgUrl"]
     );
   }
 
@@ -30,5 +33,7 @@ class Product {
         "name": name,
         "description": description,
         "price": price,
+        "imgsUrl": imgsUrl,
+        "imgUrl" : imgUrl,
       };
 }

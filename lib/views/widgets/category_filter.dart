@@ -54,8 +54,8 @@ class CategoryFilter extends StatelessWidget {
                           name: "sofa",
                           description: "#######",
                           category: "sofa",
-                          price: "19.00",
-                          imgUrl: [
+                          price: 19.00,
+                          imgsUrl: [
                             "assets/images/$i.jpg",
                             "assets/images/$i.jpg",
                             "assets/images/$i.jpg",

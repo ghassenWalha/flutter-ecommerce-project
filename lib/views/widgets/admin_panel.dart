@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/ProductService.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_item_admin.dart';
 
 import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
@@ -13,13 +15,15 @@ class AdminPanel extends StatefulWidget {
 }
 
 class AdminPanelState extends State<AdminPanel> {
-  final list = bagList;
+  final ProductService productService = ProductService();
+  
+   
   /*This function removes a widget when we click on the  delete button*/
-  void remove(id) {
+  /*void remove(id) {
     setState(() {
       list.removeAt(id);
     });
-  }
+  }*/
 
 /* Here we build the list */
   @override
@@ -28,22 +32,31 @@ class AdminPanelState extends State<AdminPanel> {
       color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.785,
-          child: ListView.builder(
-              itemCount: list.length,
+          height: MediaQuery.of(context).size.height * 0.78,
+          
+          child: FutureBuilder(future:productService.getProducts(),
+          builder: (BuildContext context , AsyncSnapshot<List<Product>> snapshot){
+            if (snapshot.hasData){
+              List<Product> products = snapshot.data;
+              return ListView.builder(
+
+              itemCount: products.length,
               itemBuilder: (context, i) {
                 return ProductItemAdmin(
-                  name: list[i]['name'],
-                  imageUrl: list[i]['imageUrl'],
-                  price: list[i]['price'],
-                  color: list[i]['color'],
-                  quantity: list[i]['quantity'],
-                  key: ValueKey(list[i]['name']),
+                  name: products[i].name,
+                  imageUrl: products[i].imgUrl,
+                  price: products[i].price,
+                  /*color: products[i].,*/
+                  /*quantity: products[i].,*/
+                  key: ValueKey(products[i].name),
                   index: i,
-                  remove: remove,
+                  remove: null /*remove,*/
                 );
-              }),
-        )
+              });
+            }
+          }
+          
+        ))
       ]),
     );
   }

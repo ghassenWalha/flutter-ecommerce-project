@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,6 +14,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  /*String url = 'localhost:3002/api/categories';
+List list;
+  bool _isDataLoading = true;
+
+  Future<List> _getCategories() async{
+
+    var response = await http.get(
+      Uri.encodeFull(url),
+      headers: {"Accept": 'application/json'},
+    );
+      setState(() {
+
+      var listData = json.decode(response.body);
+      list = listData['results'];
+
+      _isDataLoading = false;
+    });
+    return list;
+  }
+  */
   List<Product> productGenerator() {
     List<Product> list = [];
 
@@ -18,10 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
       list.add(Product(
           id: i,
           name: "table",
-          price: "1200",
+          price: 1200.0,
           description: "mlmlmlmlm",
           category: "sofa",
-          imgUrl: [
+          imgsUrl: [
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
@@ -33,7 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ]));
     return list;
   }
-
+  
+  @override
   Widget build(BuildContext context) {
     return Stack(children: [
       Image.asset(
@@ -72,12 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
                 TitledCategoryList(title: "Categories", categoryList: [
-                  for (var i = 1; i < 10; i++)
+                  for (var i = 1; i < 10/*list.length*/; i++)
                     Category(
-                        id: i * 10,
-                        name: "sofa",
-                        imageUrl: "assets/images/1.jpg"),
-                ]),
+                        id: 10/*list[i]['id']*/,
+                        name: 'sofa' /*list[i]['name']*/,
+                        imageUrl: '/assets/sofa.jpg'/*list[i]['imageUrl'])*/,
+                )]),
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(
