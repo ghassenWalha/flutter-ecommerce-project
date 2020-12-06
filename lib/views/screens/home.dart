@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/components/rounded_button.dart';
+import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/screens/login.dart';
 import 'package:flutter_ecommerce_project/views/screens/registration.dart';
 
