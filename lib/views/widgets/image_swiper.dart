@@ -14,7 +14,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400.0,
+      height: 300.0,
       child: Stack(
         // we used Stack to have the images and the dots ,to show which picture you're on, together
         children: [
@@ -26,11 +26,11 @@ class _ImageSwipeState extends State<ImageSwipe> {
               });
             },
             children: [
-              for (var i = 1; i < 5; i++)
+              for (var i = 1; i < 6; i++)
                 Container(
                   child: Image(
                     image: AssetImage(this.widget.urls[i]),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitHeight,
                     width: 200,
                     height: 250,
                   ),
@@ -44,7 +44,7 @@ class _ImageSwipeState extends State<ImageSwipe> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < 1; i++)
+                for (var i = 0; i < 5; i++)
                   AnimatedContainer(
                     // Animated Container to have a better visualitation of the dots of every pic
                     duration: Duration(milliseconds: 300),

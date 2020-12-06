@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'favorite_button.dart';
+
 class CustomActionBar extends StatelessWidget {
   final String title;
   final bool hasBackArrrow;
@@ -72,12 +74,7 @@ class CustomActionBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   alignment: Alignment.center,
-                  child: Image(
-                    image: AssetImage("assets/images/heart.png"),
-                    color: Colors.white,
-                    width: 16.0,
-                    height: 16.0,
-                  )),
+                  child: FavoriteButton(false)),
             )
         ],
       ),

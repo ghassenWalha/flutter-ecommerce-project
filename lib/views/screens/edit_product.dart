@@ -6,6 +6,9 @@ import '../widgets/add_image.dart';
 import '../widgets/add_details.dart';
 import '../widgets/customized_button.dart';
 
+import '../widgets/add_image.dart';
+import '../widgets/add_details.dart';
+
 class EditProduct extends StatefulWidget {
   @override
   _State createState() => _State();
@@ -14,7 +17,7 @@ class EditProduct extends StatefulWidget {
 class _State extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
-    final Product pp = ModalRoute.of(context).settings.arguments;
+    // final Product pp = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: ListView(

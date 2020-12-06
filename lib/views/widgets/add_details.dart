@@ -14,25 +14,28 @@ class _AddDetailsState extends State<AddDetails> {
         children: [
           TextFormField(
             decoration: InputDecoration(
-              icon: Icon(Icons.local_mall_rounded),
               labelText: 'Product Name',
             ),
             onSaved: null,
           ),
           TextFormField(
             decoration: InputDecoration(
-              icon: Icon(Icons.attach_money_rounded),
               labelText: 'Price',
             ),
             onSaved: null,
           ),
           TextFormField(
             decoration: InputDecoration(
-              icon: Icon(Icons.description_rounded),
               labelText: 'Description',
             ),
             onSaved: null,
           ),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: 'More Info',
+            ),
+            onSaved: null,
+          )
         ],
       ),
     );
