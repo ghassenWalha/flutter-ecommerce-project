@@ -3,16 +3,16 @@ import 'package:flutter_ecommerce_project/views/widgets/text_field_container.dar
 
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
-  const RoundedPasswordField({
-    Key key,
-    this.onChanged,
-  }) : super(key: key);
+  final TextEditingController controller;
+  const RoundedPasswordField({Key key, this.onChanged, this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
         obscureText: true,
+        controller: this.controller,
         onChanged: onChanged,
         cursorColor: Colors.orange[700],
         decoration: InputDecoration(

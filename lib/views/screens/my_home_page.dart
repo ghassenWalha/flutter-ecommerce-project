@@ -45,37 +45,36 @@ class _MyHomePageState extends State<MyHomePage> {
     LoginInRegistrationScreen()
     //Center(
 
-      
-      //   child: CustomNavigationBar(
-      // iconSize: 30.0,
-      // selectedColor: Color(0xff0c18fb),
-      // strokeColor: Color(0x300c18fb),
-      // unSelectedColor: Colors.grey[600],
-      // backgroundColor: Colors.white,
-      // items: [
-      //   CustomNavigationBarItem(
-      //     icon: Icon(
-      //       AntDesign.home,
-      //     ),
-      //   ),
-      //   CustomNavigationBarItem(
-      //     icon: Icon(
-      //       AntDesign.search1,
-      //     ),
-      //   ),
-      //   CustomNavigationBarItem(
-      //     icon: Icon(
-      //       AntDesign.shoppingcart,
-      //     ),
-      //   ),
-      //   CustomNavigationBarItem(
-      //     icon: Icon(
-      //       AntDesign.user,
-      //     ),
-      //   ),
-      // ],
+    //   child: CustomNavigationBar(
+    // iconSize: 30.0,
+    // selectedColor: Color(0xff0c18fb),
+    // strokeColor: Color(0x300c18fb),
+    // unSelectedColor: Colors.grey[600],
+    // backgroundColor: Colors.white,
+    // items: [
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.home,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.search1,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.shoppingcart,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.user,
+    //     ),
+    //   ),
+    // ],
     //)
-   // )
+    // )
   ];
   @override
   Widget build(BuildContext context) {
