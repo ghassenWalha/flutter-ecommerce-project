@@ -5,6 +5,7 @@ import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
+import 'package:flutter_ecommerce_project/views/screens/loginIn_registration_screen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,36 +42,39 @@ class _MyHomePageState extends State<MyHomePage> {
     Center(
       child: BagScreen(),
     ),
-    Center(
-        child: CustomNavigationBar(
-      iconSize: 30.0,
-      selectedColor: Color(0xff0c18fb),
-      strokeColor: Color(0x300c18fb),
-      unSelectedColor: Colors.grey[600],
-      backgroundColor: Colors.white,
-      items: [
-        CustomNavigationBarItem(
-          icon: Icon(
-            AntDesign.home,
-          ),
-        ),
-        CustomNavigationBarItem(
-          icon: Icon(
-            AntDesign.search1,
-          ),
-        ),
-        CustomNavigationBarItem(
-          icon: Icon(
-            AntDesign.shoppingcart,
-          ),
-        ),
-        CustomNavigationBarItem(
-          icon: Icon(
-            AntDesign.user,
-          ),
-        ),
-      ],
-    ))
+    LoginInRegistrationScreen()
+    //Center(
+
+    //   child: CustomNavigationBar(
+    // iconSize: 30.0,
+    // selectedColor: Color(0xff0c18fb),
+    // strokeColor: Color(0x300c18fb),
+    // unSelectedColor: Colors.grey[600],
+    // backgroundColor: Colors.white,
+    // items: [
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.home,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.search1,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.shoppingcart,
+    //     ),
+    //   ),
+    //   CustomNavigationBarItem(
+    //     icon: Icon(
+    //       AntDesign.user,
+    //     ),
+    //   ),
+    // ],
+    //)
+    // )
   ];
   @override
   Widget build(BuildContext context) {
