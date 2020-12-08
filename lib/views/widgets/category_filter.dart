@@ -50,7 +50,7 @@ class CategoryFilter extends StatelessWidget {
                   [
                     for (var i = 1; i < 7; i++)
                       Product(
-                          id: i,
+                          id: i.toString(),
                           name: "sofa",
                           description: "#######",
                           category: "sofa",

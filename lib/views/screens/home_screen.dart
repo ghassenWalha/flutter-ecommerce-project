@@ -39,7 +39,7 @@ List list;
 
     for (var i = 6; i > 0; i--)
       list.add(Product(
-          id: i,
+          id: i.toString(),
           name: "table",
           price: 1200.0,
           description: "mlmlmlmlm",

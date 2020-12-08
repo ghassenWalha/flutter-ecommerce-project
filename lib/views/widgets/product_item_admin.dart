@@ -7,11 +7,11 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
-  final String color;
+  //final String color;
   final String name;
   final double price;
-  final String imageUrl;
-  final int quantity;
+  final List<String> imageUrl;
+  //final int quantity;
   final int index;
   final key;
   final Function remove;
@@ -20,8 +20,8 @@ class ProductItemAdmin extends StatefulWidget {
     this.name,
     this.imageUrl,
     this.price,
-    this.color,
-    this.quantity,
+    //this.color,
+    //this.quantity,
     this.index,
     this.remove,
     this.key,
@@ -36,6 +36,7 @@ class ProductItemAdmin extends StatefulWidget {
 class ProductItemAdminState extends State<ProductItemAdmin> {
   @override
   Widget build(BuildContext context) {
+    print(widget.imageUrl);
     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
@@ -57,8 +58,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
-                image: new AssetImage(
-                  widget.imageUrl,
+                image: new NetworkImage(
+                  widget.imageUrl[0],
                 ),
               )),
         ),
@@ -80,7 +81,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
-                Text('Color : ' + widget.color,
+                Text('Color : ' //+ widget.color
+                ,
                     style: TextStyle(
                       color: Colors.grey,
                     )),

@@ -1,11 +1,11 @@
 class Product {
-  final int id;
+  final String id;
   final String name;
   final String description;
   final double price;
   final String category;
   final List<String> imgsUrl;
-  final String imgUrl;
+
 
   Product({
     this.id,
@@ -13,20 +13,29 @@ class Product {
     this.description,
     this.category,
     this.price,
-    this.imgsUrl,
-    this.imgUrl
+    this.imgsUrl
   });
 
-  factory Product.fromJson(Map<dynamic, dynamic> json) {
-    return Product(
-      id: json["id"],
-      name: json["name"],
-      description: json["description"],
-      price: json["price"],
-      imgsUrl: json["imgsUrl"],
-      imgUrl: json["imgUrl"]
-    );
-  }
+
+  Product.fromJson(Map<dynamic, dynamic> json):
+    category = "123",
+     id= json["_id"],
+      name= json["name"],
+      description= json["description"],
+      price= double.parse(json["price"]),
+      imgsUrl= List<String>.from(json["imgUrls"].map((x) => x));
+  
+  // {
+   
+  //   return Product(
+  //     id: json["_id"],
+  //     name: json["name"],
+  //     // description: json["description"],
+  //     // price: double.parse(json["price"]),
+  //     // imgsUrl: json["imgUrls"].map((i)=>i).toList(),
+      
+  //   );
+  // }
 
   Map<dynamic, dynamic> toJson() => {
         "id": id,
@@ -34,6 +43,6 @@ class Product {
         "description": description,
         "price": price,
         "imgsUrl": imgsUrl,
-        "imgUrl" : imgUrl,
+       
       };
 }
