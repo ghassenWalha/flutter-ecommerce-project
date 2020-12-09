@@ -5,15 +5,17 @@ class Product {
   final double price;
   final String category;
   final List<String> imgsUrl;
-
-
+  final String color;
+  
   Product({
     this.id,
     this.name,
     this.description,
     this.category,
     this.price,
-    this.imgsUrl
+    this.imgsUrl,
+    this.color
+   
   });
 
 
@@ -23,8 +25,9 @@ class Product {
       name= json["name"],
       description= json["description"],
       price= double.parse(json["price"]),
-      imgsUrl= List<String>.from(json["imgUrls"].map((x) => x));
-  
+      imgsUrl= List<String>.from(json["imgUrls"].map((x) => x)),
+      color= json["color"];
+     
   // {
    
   //   return Product(

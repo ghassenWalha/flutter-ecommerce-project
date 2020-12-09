@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 
 /*
 
@@ -7,25 +9,19 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
-  //final String color;
-  final String name;
-  final double price;
-  final List<String> imageUrl;
-  //final int quantity;
-  final int index;
+ 
+  Product product;
+  //final int quantity
+  
   final key;
   final Function remove;
 
   ProductItemAdmin({
-    this.name,
-    this.imageUrl,
-    this.price,
-    //this.color,
-    //this.quantity,
-    this.index,
-    this.remove,
+  this.product,
+  this.remove,
     this.key,
   }) : super(key: key);
+ 
 
   @override
   State<StatefulWidget> createState() {
@@ -36,8 +32,7 @@ class ProductItemAdmin extends StatefulWidget {
 class ProductItemAdminState extends State<ProductItemAdmin> {
   @override
   Widget build(BuildContext context) {
-    print(widget.imageUrl);
-    return Container(
+     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(
@@ -59,7 +54,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
                 image: new NetworkImage(
-                  widget.imageUrl[0],
+                  widget.product.imgsUrl[0],
                 ),
               )),
         ),
@@ -76,8 +71,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(widget.name, style: TextStyle(fontSize: 16)),
-                    Text('\$' + widget.price.toString(),
+                    Text(widget.product.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.product.price.toString(),
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
@@ -104,7 +99,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   color: Colors.red[400],
                 ),
                 onPressed: () {
-                  widget.remove(widget.index);
+                  widget.remove(widget.product.id);
                 },
               ),
             ],

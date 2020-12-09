@@ -22,11 +22,11 @@ class AdminPanelState extends State<AdminPanel> {
    
    
   /*This function removes a widget when we click on the  delete button*/
-  /*void remove(id) {
+  void remove(id) {
     setState(() {
-      list.removeAt(id);
+     productService.deleteProduct(id);
     });
-  }*/
+  }
 
 /* Here we build the list */
 
@@ -58,14 +58,15 @@ class AdminPanelState extends State<AdminPanel> {
                 //Container(child: Text('name:'+products[i].name),)
                 
                 ProductItemAdmin(
-                  name: products[i].name,
-                  imageUrl: products[i].imgsUrl,
+                  product: Product(name: products[i].name,
+                  imgsUrl: products[i].imgsUrl,
                   price:products[i].price,
-                  /*color: products[i].,*/
+                  category: products[i].category, 
+                  description: products[i].description),                /*color: products[i].,*/
                   /*quantity: products[i].,*/
                   key: ValueKey(products[i].name),
-                  index: i,
-                  remove: (_)=>{} /*remove,*/
+                  /*index: i,*/
+                  remove:null /*remove*/,
                 )
                 ;
               });

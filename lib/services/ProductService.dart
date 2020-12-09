@@ -6,7 +6,7 @@ import 'package:http/http.dart';
  class ProductService {
 
 
-final String ProductUrl="http://192.168.1.2:3002/api/products";
+final String ProductUrl="http://localhost:3002/api/products";
 List<Product> products= []; 
 
 Future <List<Product>>getProducts() async{
@@ -23,6 +23,13 @@ return products;
 else{
   print( "can't get products");
   
+}
+}
+Future<void> deleteProduct(int id) async{
+  Response res= await delete("$ProductUrl/$id");
+if (res.statusCode==200)
+{
+  print("Deleted");
 }
 }
 }
