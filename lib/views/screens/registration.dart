@@ -1,13 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/models/user.dart';
+import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_password_field.dart';
 import 'package:flutter_ecommerce_project/views/screens/login.dart';
-import 'package:http/http.dart' as http;
 
 class RegistartionScreen extends StatefulWidget {
   @override
@@ -15,23 +12,6 @@ class RegistartionScreen extends StatefulWidget {
 }
 
 class _RegistartionScreenState extends State<RegistartionScreen> {
-  Future<User> addUser(name, email, password) async {
-    final url = "http://192.168.43.68:3002/api/users/";
-    print("hi");
-
-    final hh =
-        json.encode({"name": name, "email": email, "password": password});
-    try {
-      final response = await http.post(url,
-          headers: {"encoding": "ttop"},
-          body: {"name": 'doodle', "email": 'blue'});
-      print(response.body);
-      return User();
-    } catch (e) {
-      print(e);
-    }
-  }
-
   TextEditingController emailContoller = TextEditingController();
   TextEditingController usernameContoller = TextEditingController();
   TextEditingController passwordContoller = TextEditingController();
@@ -141,8 +121,14 @@ class _RegistartionScreenState extends State<RegistartionScreen> {
                           RoundedButton(
                             text: "SIGNUP",
                             press: () {
-                              addUser(usernameContoller.text,
-                                  emailContoller.text, passwordContoller.text);
+                              final user = UserService().addUser(
+                                  usernameContoller.text,
+                                  emailContoller.text,
+                                  passwordContoller.text);
+                              print(user);
+                              if (user != null) {
+                                Navigator.pushNamed(context, "/");
+                              }
                             },
                           ),
                           Text(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
-import 'package:flutter_ecommerce_project/views/widgets/titled_category_list.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
-                TitledCategoryList(title: "Categories", categoryList: [
+                CategoryList([
                   for (var i = 1; i < 10; i++)
                     Category(
                         id: i * 10,
