@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
-import 'category_item.dart';
+import 'package:flutter_ecommerce_project/views/widgets/Category_Item.dart';
 
-/* this widget present a scrolable horizontal list of the category Items .
-   it takes of Category objects and display them in a list   using CategoryItem widget.
-    you can add a new category after instantiation with add category methode  _ souheil  */
+/* this widget represent a titled and a scrollable list of categories . it's formed by 
+ column widget that contains a text widget and a CategoryList widget 
+  the constructor parameters are the title of the list and a list of categories   _souheil  */
 
 class CategoryList extends StatelessWidget {
-  final List<Widget> widgetsList = [];
+  final List<Category> categoryList;
 
-  // this is a constructor  that takes a List categories and creat a list of category_item widgets
-
-  CategoryList(List<Category> m1) {
-    m1.forEach((element) {
-      widgetsList.add(CategoryItem(element));
-    });
-  }
-
-  // this function add a new category to the list
-  void addCategory(Category c1) {
-    widgetsList.add(CategoryItem(c1));
-  }
-
+  CategoryList(this.categoryList);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: MediaQuery.of(context).size.height / 5,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: this.widgetsList,
-          itemExtent: MediaQuery.of(context).size.width / 4,
-        ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Padding(
+            padding: EdgeInsets.only(top: 30.0, left: 30),
+            child: Text(
+              "Category",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            )),
+        Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height / 6,
+            child: Container(
+                height: MediaQuery.of(context).size.height / 5,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemExtent: MediaQuery.of(context).size.width / 4,
+                  itemCount: categoryList.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return CategoryItem(categoryList[index]);
+                  },
+                )))
+      ],
+    );
   }
 }

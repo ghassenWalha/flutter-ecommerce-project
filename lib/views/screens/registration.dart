@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_password_field.dart';
@@ -10,6 +12,10 @@ class RegistartionScreen extends StatefulWidget {
 }
 
 class _RegistartionScreenState extends State<RegistartionScreen> {
+  TextEditingController emailContoller = TextEditingController();
+  TextEditingController usernameContoller = TextEditingController();
+  TextEditingController passwordContoller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,73 +71,86 @@ class _RegistartionScreenState extends State<RegistartionScreen> {
                         topLeft: Radius.circular(50),
                         topRight: Radius.circular(50))),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "New",
+                    padding: EdgeInsets.all(30),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    "New",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    "Account",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.01,
+                                ),
+                                RoundedInputField(
+                                  controller: emailContoller,
+                                  hintText: "Your Email",
+                                  onChanged: (value) {},
+                                ),
+                                RoundedInputField(
+                                  controller: usernameContoller,
+                                  hintText: "Username",
+                                  onChanged: (value) {},
+                                ),
+                                RoundedPasswordField(
+                                  controller: passwordContoller,
+                                  onChanged: (value) {},
+                                ),
+                              ],
+                            ),
+                          ),
+                          RoundedButton(
+                            text: "SIGNUP",
+                            press: () {
+                              final user = UserService().addUser(
+                                  usernameContoller.text,
+                                  emailContoller.text,
+                                  passwordContoller.text);
+                              print(user);
+                              if (user != null) {
+                                Navigator.pushNamed(context, "/");
+                              }
+                            },
+                          ),
+                          Text(
+                            "Already have an Account ?",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                              );
+                            },
+                            child: Text("Sign In",
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Account",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.01,
-                            ),
-                            RoundedInputField(
-                              hintText: "Your Email",
-                              onChanged: (value) {},
-                            ),
-                            RoundedInputField(
-                              hintText: "Username",
-                              onChanged: (value) {},
-                            ),
-                            RoundedPasswordField(
-                              onChanged: (value) {},
-                            ),
-                          ],
-                        ),
+                                    fontWeight: FontWeight.bold)),
+                          )
+                        ],
                       ),
-                      RoundedButton(
-                        text: "SIGNUP",
-                        press: () {},
-                      ),
-                      Text(
-                        "Already have an Account ?",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()),
-                          );
-                        },
-                        child: Text("Sign In",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                      )
-                    ],
-                  ),
-                ),
+                    )),
               ),
             ),
           ],

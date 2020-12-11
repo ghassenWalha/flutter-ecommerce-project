@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_password_field.dart';
@@ -10,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailContoller = TextEditingController();
+  TextEditingController passwordContoller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -81,14 +85,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: <Widget>[
                             RoundedInputField(
                               hintText: "Your Email",
+                              controller: emailContoller,
                               onChanged: (value) {},
                             ),
                             RoundedPasswordField(
+                              controller: passwordContoller,
                               onChanged: (value) {},
                             ),
                             RoundedButton(
                               text: "LOGIN",
-                              press: () {},
+                              press: () {
+                                final user = UserService().loginUser(
+                                    emailContoller.text,
+                                    passwordContoller.text);
+                                print(user);
+                                if (user == null) {
+                                  Navigator.pushNamed(context, "/");
+                                }
+                              },
                             ),
                           ],
                         ),
