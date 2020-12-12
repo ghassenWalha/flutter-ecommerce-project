@@ -17,21 +17,16 @@ class AdminPanel extends StatefulWidget {
 }
 
 class AdminPanelState extends State<AdminPanel> {
- ProductService productService = ProductService();
+  ProductService productService = ProductService();
 
-   
-   
   /*This function removes a widget when we click on the  delete button*/
   void remove(id) {
     setState(() {
-     productService.deleteProduct(id);
+      productService.deleteProduct(id);
     });
   }
 
 /* Here we build the list */
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +34,7 @@ class AdminPanelState extends State<AdminPanel> {
       color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
+
           height: MediaQuery.of(context).size.height * 0.78,
           
           child: 
@@ -74,6 +70,7 @@ class AdminPanelState extends State<AdminPanel> {
           
           
         )
+
       ]),
     );
   }
