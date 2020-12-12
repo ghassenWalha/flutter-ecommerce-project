@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/services/ProductService.dart';
+import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_item_admin.dart';
 
 import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
