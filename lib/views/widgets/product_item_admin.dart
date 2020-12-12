@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 
-import '../../services/product_service.dart';
-
 /*
 
 This widget is responsible for creating the Product item for the admin
@@ -11,17 +9,19 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
+ 
   Product product;
   //final int quantity
-
+  
   final key;
   final Function remove;
 
   ProductItemAdmin({
-    this.product,
-    this.remove,
+  this.product,
+  this.remove,
     this.key,
   }) : super(key: key);
+ 
 
   @override
   State<StatefulWidget> createState() {
@@ -30,10 +30,11 @@ class ProductItemAdmin extends StatefulWidget {
 }
 
 class ProductItemAdminState extends State<ProductItemAdmin> {
-  ProductService productService = ProductService();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+      print( widget.product.imgsUrl);
+     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(
@@ -54,8 +55,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
-                image: new NetworkImage(
-                  widget.product.imgsUrl[0],
+                image: new AssetImage(
+                  "assets/images/velvet_chair.jpg",
                 ),
               )),
         ),
@@ -77,9 +78,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
-                Text(
-                    'Color : ' //+ widget.color
-                    ,
+                Text('Color : ' //+ widget.color
+                ,
                     style: TextStyle(
                       color: Colors.grey,
                     )),
@@ -100,8 +100,8 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   Icons.delete,
                   color: Colors.red[400],
                 ),
-                onPressed: () async {
-                  await productService.deleteProduct(widget.product.id);
+                onPressed: () {
+                  widget.remove(widget.product.id);
                 },
               ),
             ],

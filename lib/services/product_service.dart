@@ -4,7 +4,7 @@ import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:http/http.dart';
 
 class ProductService {
-  final String ProductUrl = "http://192.168.1.6:3002/api/products";
+  final String ProductUrl = "http://192.168.1.3:3002/api/products";
   List<Product> products = [];
 //Get Products :
   Future<List<Product>> getProducts() async {
@@ -12,9 +12,9 @@ class ProductService {
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       // Product pp = Product.fromJson(body[0]);
-      //print(body);
-      products = body.map((dynamic item) => Product.fromJson(item)).toList();
-      //print(products.length);
+    //  print(body);
+      products = body.map(( item) => Product.fromJson(item)).toList();
+      print(products);
       return products;
     } else {
       print("can't get products");

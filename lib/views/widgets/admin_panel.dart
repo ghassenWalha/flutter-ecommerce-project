@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/services/product_service.dart';
+import 'package:flutter_ecommerce_project/services/Product_Service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_item_admin.dart';
 
 import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
@@ -21,6 +21,7 @@ class AdminPanelState extends State<AdminPanel> {
 
   /*This function removes a widget when we click on the  delete button*/
   void remove(id) {
+    print("admin"+id);
     setState(() {
       productService.deleteProduct(id);
     });
@@ -39,14 +40,19 @@ class AdminPanelState extends State<AdminPanel> {
                 future: productService.getProducts(),
                 builder: (BuildContext context,
                     AsyncSnapshot<List<Product>> snapshot) {
-                  if (snapshot.hasData) {
-                    print('hey');
-                    List<Product> products = snapshot.data;
+                  print("hey");
 
-                    return ListView.builder(
+                  if (snapshot.hasData) {
+                    print("11111");
+                    List<Product> products = snapshot.data;
+                    
+                     return
+              
+                    ListView.builder(
                         itemCount: products.length,
                         itemBuilder: (context, i) {
-                          return ProductItemAdmin(
+                          return
+                              ProductItemAdmin(
                             product: products[i],
                             key: ValueKey(products[i].name),
                             remove: remove,
