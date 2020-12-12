@@ -61,7 +61,6 @@ class _ProductPageState extends State<ProductPage> {
     void addQuantity() {
       setState(() {
         quantity++;
-        ;
       });
     }
 
