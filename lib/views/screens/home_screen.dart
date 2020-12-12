@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
- 
   List<Product> productGenerator() {
     List<Product> list = [];
 
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]));
     return list;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -76,15 +75,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: SingleChildScrollView(
               child: Column(children: [
-                  CategoryList( 
-                   [
+                CategoryList([
                   for (var i = 1; i < 10; i++)
-                   
                     Category(
-                        id: 10/*list[i]['id']*/,
-                        name: 'sofa' /*list[i]['name']*/,
-                        imageUrl: '/assets/sofa.jpg'/*list[i]['imageUrl'])*/,
-                )]),
+                      id: 10,
+                      name: 'sofa',
+                      imageUrl: 'assets/images/1.jpg',
+                    )
+                ]),
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(

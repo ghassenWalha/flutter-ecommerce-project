@@ -6,25 +6,41 @@ import 'package:http/http.dart';
 class ProductService {
   final String ProductUrl = "http://192.168.1.6:3002/api/products";
   List<Product> products = [];
-
+//Get Products :
   Future<List<Product>> getProducts() async {
     dynamic res = await get(ProductUrl);
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      Product pp = Product.fromJson(body[0]);
-      print(body);
+      // Product pp = Product.fromJson(body[0]);
+      //print(body);
       products = body.map((dynamic item) => Product.fromJson(item)).toList();
-      print(products.length);
+      //print(products.length);
       return products;
     } else {
       print("can't get products");
     }
   }
 
-  Future<void> deleteProduct(int id) async {
+// Delete Product :
+  Future<void> deleteProduct(String id) async {
     Response res = await delete("$ProductUrl/$id");
     if (res.statusCode == 200) {
       print("Deleted");
+    }
+  }
+
+//Get Products By Category :
+  Future<List<Product>> getProductsByCategory(String category) async {
+    dynamic res = await get("$ProductUrl/$category");
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      // Product pp = Product.fromJson(body[0]);
+      //print(body);
+      products = body.map((dynamic item) => Product.fromJson(item)).toList();
+      //print(products.length);
+      return products;
+    } else {
+      print("can't get products");
     }
   }
 }

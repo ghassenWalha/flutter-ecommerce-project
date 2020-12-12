@@ -49,10 +49,11 @@ class BagListState extends State<BagList> {
               itemCount: list.length,
               itemBuilder: (context, i) {
                 return BagItem(
-                  product: Product(name: list[i]['name'],
-                  imgsUrl: list[i]['imageUrl'],
-                  price: list[i]['price'],
-                  color: list[i]['color']),
+                  product: Product(
+                      name: list[i]['name'],
+                      imgsUrl: list[i]['imageUrl'],
+                      price: list[i]['price'],
+                      color: list[i]['color']),
                   quantity: list[i]['quantity'],
                   key: ValueKey(list[i]['name']),
                   remove: remove,
