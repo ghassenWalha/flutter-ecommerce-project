@@ -11,6 +11,7 @@ class ProductView extends StatefulWidget {
 
   //constructor
   ProductView(this.product);
+
   @override
   _ProductViewState createState() => _ProductViewState();
 }

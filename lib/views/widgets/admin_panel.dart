@@ -44,10 +44,10 @@ class AdminPanelState extends State<AdminPanel> {
           child: 
               FutureBuilder(future:productService.getProducts(),
           builder: (BuildContext context , AsyncSnapshot<List<Product>> snapshot){
-            print("hey");
+           
       
             if (snapshot.hasData){
-              print("11111");
+             
               List<Product> products = snapshot.data;
              
               return ListView.builder(
@@ -55,18 +55,12 @@ class AdminPanelState extends State<AdminPanel> {
               itemCount: products.length,
               itemBuilder: (context, i) {
                 return 
-                //Container(child: Text('name:'+products[i].name),)
+               
                 
                 ProductItemAdmin(
-                  product: Product(name: products[i].name,
-                  imgsUrl: products[i].imgsUrl,
-                  price:products[i].price,
-                  category: products[i].category, 
-                  description: products[i].description),                /*color: products[i].,*/
-                  /*quantity: products[i].,*/
+                  product: products[i],                
                   key: ValueKey(products[i].name),
-                  /*index: i,*/
-                  remove:null /*remove*/,
+                  remove:remove,
                 )
                 ;
               });
