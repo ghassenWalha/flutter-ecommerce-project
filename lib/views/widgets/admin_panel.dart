@@ -40,13 +40,13 @@ class AdminPanelState extends State<AdminPanel> {
                 future: productService.getProducts(),
                 builder: (BuildContext context,
                     AsyncSnapshot<List<Product>> snapshot) {
-                  print("hey");
+                  
 
                   if (snapshot.hasData) {
-                    print("11111");
+                   
                     List<Product> products = snapshot.data;
                     
-                     return
+                     return 
               
                     ListView.builder(
                         itemCount: products.length,

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/category_service.dart';
+import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
@@ -14,7 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Product> productGenerator() {
+  ProductService productService=new ProductService();
+  CategoryService categoryService=new CategoryService();
+  /*List<Product> productGenerator() {
     List<Product> list = [];
 
     for (var i = 6; i > 0; i--)
@@ -35,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             "assets/images/$i.jpg",
           ]));
     return list;
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -75,21 +79,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: SingleChildScrollView(
               child: Column(children: [
-                CategoryList([
-                  for (var i = 1; i < 10; i++)
+                CategoryList(categoryService.getcategories())
+                ]
+            )) )
+                )
+                ]
+                );
+                }
+                }
+                /*[
+                 /* for (var i = 1; i < 10; i++)
                     Category(
                       id: 10,
                       name: 'sofa',
                       imageUrl: 'assets/images/1.jpg',
                     )
-                ]),
+                ])*/,
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(
-                        title: "Best sellers", productList: productGenerator()))
+                        title: "Best sellers", productList: productService.getProducts()))
               ]),
             )),
-      )
-    ]);
-  }
-}
+      )*/

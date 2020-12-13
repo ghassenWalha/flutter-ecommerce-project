@@ -13,7 +13,7 @@ import 'package:flutter_ecommerce_project/views/widgets/Category_Item.dart';
   the constructor parameters are the title of the list and a list of categories   _souheil  */
 
 class CategoryList extends StatelessWidget {
-  final List<Category> categoryList;
+  final Future<List<Category>> categoryList;
 
 
   CategoryList(this.categoryList);
@@ -35,15 +35,30 @@ class CategoryList extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 6,
             child: Container(
                 height: MediaQuery.of(context).size.height / 5,
-                child: ListView.builder(
+                child: FutureBuilder(
+                future: categoryList,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Category>> snapshot) {
+                  
+
+                  if (snapshot.hasData) {
+                   
+                    List<Category> categories = snapshot.data;
+                    
+                     return ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemExtent: MediaQuery.of(context).size.width / 4,
-                  itemCount: categoryList.length,
+                  itemCount: categories.length,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return CategoryItem(categoryList[index]);
+                    return CategoryItem(categories[index]);
                   },
-                )))
-      ],
-    );
+                );} else {
+                    return Center(
+                      child: Text('no data'),
+                    );
+                  }})))]);
+   
+   
   }
 }
+

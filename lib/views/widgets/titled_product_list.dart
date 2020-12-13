@@ -7,12 +7,14 @@ import 'package:flutter_ecommerce_project/views/widgets/product_list.dart';
   the constructor parameters are the title of the list and a list of products   _souheil  */
 
 class TitledProductList extends StatelessWidget {
-  final String title;
-  final List<Product> productList;
+  Future<List<Product>>productList;
+  String title;
+  /*final List<Product> productList;*/
 
-  TitledProductList({this.title, this.productList});
+  TitledProductList({this.title,this.productList});
+  
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,

@@ -7,7 +7,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 widget from an external package  that had been added to the project  _souheil */
 
 class ProductGridView extends StatelessWidget {
-  final List<Product> productList;
+  final Future<List<Product>> productList;
 
   /// final List<ProductView> productListView = [];
 
@@ -19,15 +19,31 @@ class ProductGridView extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Center(
-            child: StaggeredGridView.countBuilder(
+           child: FutureBuilder(
+                future: productList,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Product>> snapshot)  {
+                  
+
+          if (snapshot.hasData) {
+                   
+         List<Product> products = snapshot.data;
+                    
+        return  StaggeredGridView.countBuilder(
           crossAxisCount: 4,
-          itemCount: productList.length,
+          itemCount: products.length,
           itemBuilder: (BuildContext context, int index) =>
-              ProductView(productList[index]),
+              ProductView(products[index]),
           staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
           padding: EdgeInsets.all(5),
-        )));
+        );}else{return Center(
+                      child: Text('no data'),
+                    );}})));
   }
 }
+
+
+
+ 
