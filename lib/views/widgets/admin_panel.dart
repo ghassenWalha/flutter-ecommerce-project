@@ -13,6 +13,8 @@ class AdminPanel extends StatefulWidget {
 }
 
 class AdminPanelState extends State<AdminPanel> {
+  Future product;
+
   final list = bagList;
   /*This function removes a widget when we click on the  delete button*/
   void remove(id) {
