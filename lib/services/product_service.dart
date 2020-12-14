@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 import '../models/product.dart';
 
 class ProductService {
-  final String ProductUrl = "http://192.168.1.118:3001/api/products";
+  final String ProductUrl = "http://192.168.43.68:3001/api/products";
   List<Product> products = [];
 
   Future<List<Product>> getProducts() async {
@@ -40,7 +40,7 @@ class ProductService {
     }
   }
 
-  Future<void> deleteProduct(int id) async {
+  Future<void> deleteProduct(String id) async {
     Response res = await delete("$ProductUrl/$id");
     if (res.statusCode == 200) {
       print("Deleted");

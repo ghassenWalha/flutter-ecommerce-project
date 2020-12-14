@@ -70,31 +70,32 @@ class _HomeScreenState extends State<HomeScreen> {
         left: 10,
       ),
       Positioned(
-          top: MediaQuery.of(context).size.height / 2.7,
-          child: Container(
-              height: MediaQuery.of(context).size.height / 1.7,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(30)),
-              child: SingleChildScrollView(
-                  child: Column(children: [
+        top: MediaQuery.of(context).size.height / 2.7,
+        child: Container(
+            height: MediaQuery.of(context).size.height / 1.7,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(30)),
+            child: SingleChildScrollView(
+              child: Column(children: [
                 CategoryList(categoryService.getcategories())
-              ]))))
-    ]);
-  }
-}
-/*[
-                 /* for (var i = 1; i < 10; i++)
+
+                /* for (var i = 1; i < 10; i++)
                     Category(
                       id: 10,
                       name: 'sofa',
                       imageUrl: 'assets/images/1.jpg',
                     )
-                ])*/,
+                ])*/
+                ,
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(
-                        title: "Best sellers", productList: productService.getProducts()))
+                        title: "Best sellers",
+                        productList: productService.getProducts()))
               ]),
             )),
-      )*/
+      )
+    ]);
+  }
+}
