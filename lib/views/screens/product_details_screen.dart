@@ -17,12 +17,12 @@ class _ProductPageState extends State<ProductPage> {
 
     for (var i = 6; i > 0; i--)
       list.add(Product(
-          id: i,
+          id: i.toString(),
           name: "table",
-          price: "1200",
+          price: 1200,
           description: "mlmlmlmlm",
           category: "sofa",
-          imgUrl: [
+          imgsUrl: [
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
@@ -76,7 +76,7 @@ class _ProductPageState extends State<ProductPage> {
         body: Stack(
           children: [
             ListView(children: [
-              ImageSwipe(pp.imgUrl),
+              ImageSwipe(pp.imgsUrl),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 24.0,
@@ -110,7 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                   horizontal: 24.0,
                 ),
                 child: Text(
-                  "\$" + pp.price,
+                  "\$" + pp.price.toString(),
                   style: TextStyle(
                     color: Colors.red[800],
                     fontSize: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/bag_item.dart';
 import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
 import 'package:flutter_ecommerce_project/views/widgets/total.dart';
@@ -48,13 +49,12 @@ class BagListState extends State<BagList> {
               itemCount: list.length,
               itemBuilder: (context, i) {
                 return BagItem(
-                  name: list[i]['name'],
-                  imageUrl: list[i]['imageUrl'],
+                  product: Product(name: list[i]['name'],
+                  imgsUrl: list[i]['imageUrl'],
                   price: list[i]['price'],
-                  color: list[i]['color'],
+                  color: list[i]['color']),
                   quantity: list[i]['quantity'],
                   key: ValueKey(list[i]['name']),
-                  index: i,
                   remove: remove,
                   addQuantity: () {
                     addQuantity(i);

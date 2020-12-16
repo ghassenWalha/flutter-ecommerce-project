@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
+import 'package:http/http.dart';
 
 /*
 
@@ -7,16 +10,22 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
-  final String color;
+  //final String id;
   final String name;
+  final String description;
   final double price;
-  final String imageUrl;
+  //final String category;
+  final String moreInfo;
+  final String color;
+  final List<String> imageUrl;
   final int quantity;
   final int index;
   final key;
   final Function remove;
 
   ProductItemAdmin({
+    this.moreInfo,
+    this.description,
     this.name,
     this.imageUrl,
     this.price,
@@ -58,7 +67,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
                 image: new AssetImage(
-                  widget.imageUrl,
+                  widget.imageUrl[0],
                 ),
               )),
         ),
@@ -93,8 +102,19 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
               IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/edt");
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => EditProduct(
+                        update: true,
+                        name: widget.name,
+                        imageUrl: widget.imageUrl,
+                        price: widget.price,
+                        description: widget.description,
+                        moreInfo: widget.moreInfo,
+                        key: widget.key,
+                      ),
+                    ));
                   }),
+
               //Delete Icon
               IconButton(
                 icon: Icon(

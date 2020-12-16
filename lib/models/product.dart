@@ -1,34 +1,50 @@
 class Product {
-  final int id;
+  final String id;
   final String name;
   final String description;
-  final String price;
+  final String moreInfo;
+  final double price;
   final String category;
-  final List<String> imgUrl;
+  final List<String> imgsUrl;
+  final String color;
 
-  Product({
-    this.id,
-    this.name,
-    this.description,
-    this.category,
-    this.price,
-    this.imgUrl,
-  });
+  Product(
+      {this.id,
+      this.name,
+      this.description,
+      this.moreInfo,
+      this.category,
+      this.price,
+      this.imgsUrl,
+      this.color});
 
-  factory Product.fromJson(Map<dynamic, dynamic> json) {
-    return Product(
-      id: json["id"],
-      name: json["name"],
-      description: json["description"],
-      price: json["price"],
-      imgUrl: json["imgUrl"],
-    );
-  }
+  Product.fromJson(Map<dynamic, dynamic> json)
+      : category = "123",
+        id = json["_id"],
+        name = json["name"],
+        description = json["description"],
+        moreInfo = json["moreInfo"],
+        price = double.parse(json["price"]),
+        imgsUrl = List<String>.from(json["imgUrls"].map((x) => x)),
+        color = json["color"];
+
+  // {
+
+  //   return Product(
+  //     id: json["_id"],
+  //     name: json["name"],
+  //     // description: json["description"],
+  //     // price: double.parse(json["price"]),
+  //     // imgsUrl: json["imgUrls"].map((i)=>i).toList(),
+
+  //   );
+  // }
 
   Map<dynamic, dynamic> toJson() => {
         "id": id,
         "name": name,
         "description": description,
         "price": price,
+        "imgsUrl": imgsUrl,
       };
 }

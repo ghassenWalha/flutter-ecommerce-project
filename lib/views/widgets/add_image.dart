@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddImage extends StatefulWidget {
-  //final List<String> urls;
-  //AddImage(this.urls);
+  final List<String> urls;
+  AddImage(this.urls);
   @override
   _State createState() => _State();
 }
@@ -33,7 +33,7 @@ class _State extends State<AddImage> {
   void initState() {
     super.initState();
     for (var i = 1; i < 5; i++) {
-      _images1.add("assets/images/$i.jpg");
+      _images1.add(this.widget.urls[i]);
     }
   }
 

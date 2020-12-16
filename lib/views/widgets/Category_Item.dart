@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:http/http.dart' as http;
 
 /* this widget present the category widget .
  it is formed by column widget that contains an image ,
@@ -8,7 +11,6 @@ class CategoryItem extends StatelessWidget {
   final Category category;
 
   CategoryItem(this.category);
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
