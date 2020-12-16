@@ -25,11 +25,11 @@ class UserService {
             email: body["email"],
             favorite: body["favorite"]);
 
-        /* final SharedPreferences prefs = await SharedPreferences.getInstance();
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString("token", user.token);
         prefs.setString("email", user.email);
         prefs.setString("username", user.name);
-*/
+
         return user;
       } else {
         return null;

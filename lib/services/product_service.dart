@@ -14,10 +14,9 @@ class ProductService {
   Future<List<Product>> getProducts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
-
+    print(token);
     dynamic res = await http
         .get("$ProductUrl/adminpannel", headers: {"x-auth-token": token});
-
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       Product pp = Product.fromJson(body[0]);
