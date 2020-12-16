@@ -3,12 +3,18 @@ import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
 import 'filters.dart';
 
+/*
+   this widget represents a category filter  widget that is formed by a title  
+    and product grid view   that represents the products of a specific category
+*/
+
 class CategoryFilter extends StatelessWidget {
   final List<String> filters = ["price", "date", "likes"];
 
   @override
   Widget build(BuildContext context) {
     String category = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
         body: Padding(
             padding: EdgeInsets.only(top: 20),
@@ -43,7 +49,7 @@ class CategoryFilter extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       )),
-                  Filters()
+                  Filters(filters)
                 ]),
                 Flexible(
                     child: ProductGridView(

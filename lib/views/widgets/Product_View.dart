@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/favorite_button.dart';
 
@@ -22,9 +23,14 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) {
     return InkWell(
       enableFeedback: true,
-      onTap: () {
-        Navigator.pushNamed(context, "/product_details_screen",
-            arguments: this.widget.product);
+      onTap: () async {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        if (prefs.getString("token") == null) {
+          Navigator.pushNamed(context, "/");
+        } else {
+          Navigator.pushNamed(context, "/product_details_screen",
+              arguments: this.widget.product);
+        }
       },
       onDoubleTap: () {
         //this methode  change  the isFave variable when

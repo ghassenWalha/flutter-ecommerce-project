@@ -3,7 +3,7 @@ import 'package:flutter_ecommerce_project/models/category.dart';
 
 /* this widget present the category widget .
  it is formed by column widget that contains an image ,
-  and a text widget that contains the category label _ souheil  */
+  and a text widget that contains the category label  _souheil  */
 class CategoryItem extends StatelessWidget {
   final Category category;
 
