@@ -27,50 +27,35 @@ class AdminPanelState extends State<AdminPanel> {
   }
 
 /* Here we build the list */
-
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
+            height: MediaQuery.of(context).size.height * 0.78,
+            child: FutureBuilder(
+                future: productService.getProducts(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Product>> snapshot) {
+                  if (snapshot.hasData) {
+                    List<Product> products = snapshot.data;
 
-          height: MediaQuery.of(context).size.height * 0.78,
-          
-          child: 
-              FutureBuilder(future:productService.getProducts(),
-          builder: (BuildContext context , AsyncSnapshot<List<Product>> snapshot){
-           
-      
-            if (snapshot.hasData){
-             
-              List<Product> products = snapshot.data;
-             
-              return ListView.builder(
-
-              itemCount: products.length,
-              itemBuilder: (context, i) {
-                return 
-               
-                
-                ProductItemAdmin(
-                  product: products[i],                
-                  key: ValueKey(products[i].name),
-                  remove:remove,
-                )
-                ;
-              });
-            }else{
-              return Center(child: Text('no data'),);
-            }
-          }
-          
-        )
-          
-          
-          
-        )
-
+                    return ListView.builder(
+                        itemCount: products.length,
+                        itemBuilder: (context, i) {
+                          return ProductItemAdmin(
+                            product: products[i],
+                            key: ValueKey(products[i].name),
+                            remove: remove,
+                          );
+                        });
+                  } else {
+                    return Center(
+                      child: Text('no data'),
+                    );
+                  }
+                }))
       ]),
     );
   }

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "images" : [
     {
       "idiom" : "universal",
@@ -19,5 +20,27 @@
   "info" : {
     "version" : 1,
     "author" : "xcode"
+=======
+  "images": [
+    {
+      "idiom": "universal",
+      "filename": "LaunchImage.png",
+      "scale": "1x"
+    },
+    {
+      "idiom": "universal",
+      "filename": "LaunchImage@2x.png",
+      "scale": "2x"
+    },
+    {
+      "idiom": "universal",
+      "filename": "LaunchImage@3x.png",
+      "scale": "3x"
+    }
+  ],
+  "info": {
+    "version": 1,
+    "author": "xcode"
+>>>>>>> fc13ac4377bb24dcd4dbd67cbb285a000d2af7a3
   }
 }

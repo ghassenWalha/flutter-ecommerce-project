@@ -5,8 +5,6 @@ class Filters extends StatefulWidget {
   _FiltersState createState() => _FiltersState();
 }
 
-enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
-
 class _FiltersState extends State<Filters> {
   void choiceAction(String s) {
     print("working");

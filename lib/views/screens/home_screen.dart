@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
@@ -8,7 +6,6 @@ import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   @override

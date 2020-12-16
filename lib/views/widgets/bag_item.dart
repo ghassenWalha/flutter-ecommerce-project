@@ -10,15 +10,15 @@ _Zohra&Amal
 */
 class BagItem extends StatefulWidget {
   final Product product;
-  
+
   final int quantity;
-  
+
   final key;
   final Function remove;
   final Function addQuantity;
   final Function substractQuantity;
   BagItem({
-   this.product,
+    this.product,
     this.quantity,
     this.remove,
     this.key,

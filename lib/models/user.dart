@@ -1,6 +1,6 @@
 class User {
   final String name;
-  final String password;
+  final String token;
   final String email;
   final List bag;
   final List favorite;
@@ -8,7 +8,7 @@ class User {
 
   User(
       {this.name,
-      this.password,
+      this.token,
       this.bag,
       this.email,
       this.favorite,
@@ -17,7 +17,7 @@ class User {
   factory User.fromJson(Map<dynamic, dynamic> json) {
     return User(
         name: json["name"],
-        password: json["password"],
+        token: json["token"],
         bag: json["bag"],
         email: json["email"],
         favorite: json['favorite'],
@@ -26,7 +26,7 @@ class User {
 
   Map<dynamic, dynamic> toJson() => {
         "name": name,
-        "password": password,
+        "token": token,
         "bag": bag,
         "email": email,
         "favorite": favorite,
