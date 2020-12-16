@@ -12,8 +12,6 @@ class CategoryService {
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       Category cc = Category.fromJson(body[0]);
-      print(body);
-      print("------------------------------------------------------------");
       categories = body.map((dynamic item) => Category.fromJson(item)).toList();
       print(categories.length);
       return categories;

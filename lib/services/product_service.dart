@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/product.dart';
 
@@ -11,7 +12,11 @@ class ProductService {
   List<Product> products = [];
 
   Future<List<Product>> getProducts() async {
-    dynamic res = await http.get("$ProductUrl/adminpannel");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+
+    dynamic res = await http
+        .get("$ProductUrl/adminpannel", headers: {"x-auth-token": token});
 
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);

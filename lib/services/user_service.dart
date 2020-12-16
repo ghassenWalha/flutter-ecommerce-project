@@ -12,9 +12,11 @@ class UserService {
           headers: {"content-type": "application/json"},
           body: json
               .encode({"name": name, "email": email, "password": password}));
+
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(response.body);
         List<User> user = body.map((dynamic item) => User.fromJson(item));
+
         return user;
       } else {
         throw "can't get products";
