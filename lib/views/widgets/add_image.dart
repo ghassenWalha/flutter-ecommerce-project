@@ -15,13 +15,12 @@ class _State extends State<AddImage> {
   int limit = 4;
   int _selectedPage = 0;
   List<File> _imagesFilesList = [];
-  List<String> _imagesUrlList=[];
+  List<String> _imagesUrlList = [];
 
- void initState() {
+  void initState() {
     super.initState();
-      _imagesUrlList=this.widget.urls;
-    
-  }  
+    _imagesUrlList = this.widget.urls;
+  }
 
   void supprimer(int i) {
     if (i < _imagesUrlList.length)
@@ -36,7 +35,6 @@ class _State extends State<AddImage> {
       });
   }
 
-
   Future _getImage() async {
     var pickerFile = await imagepicker.getImage(source: ImageSource.gallery);
     if (pickerFile != null)
@@ -45,44 +43,48 @@ class _State extends State<AddImage> {
         limit++;
       });
   }
-  List<Widget>  _pageViewChildrenBuilder(){
-  return  [ ..._imagesUrlList.map(
-                (image) => Container(
-                  child: Image(
-                    image: AssetImage(image),
-                    fit: BoxFit.fill,
-                    width: 200,
-                    // height: 250,
-                  ),
-                ),
-              ).toList(),
-              ..._imagesFilesList.map((image) {
-                return Container(
-                  color: Colors.black12,
-                  child: Stack(
-                    children: [
-                      Image.file(
-                        image,
-                        fit: BoxFit.fill,
-                      ),
-                    ],
-                  ),
-                  width: 200,
-                  height: 250,
-                );}).toList(),
-                    GestureDetector(
-                onTap: _getImage,
-                child: Container(
-                  color: Colors.black12,
-                  child: Icon(
-                    FontAwesomeIcons.plus,
-                  ),
-                  width: 200,
-                  height: 250,
-                ),
-              )
-                ];
 
+  List<Widget> _pageViewChildrenBuilder() {
+    return [
+      ..._imagesUrlList
+          .map(
+            (image) => Container(
+              child: Image(
+                image: AssetImage(image),
+                fit: BoxFit.fill,
+                width: 200,
+                // height: 250,
+              ),
+            ),
+          )
+          .toList(),
+      ..._imagesFilesList.map((image) {
+        return Container(
+          color: Colors.black12,
+          child: Stack(
+            children: [
+              Image.file(
+                image,
+                fit: BoxFit.fill,
+              ),
+            ],
+          ),
+          width: 200,
+          height: 250,
+        );
+      }).toList(),
+      GestureDetector(
+        onTap: _getImage,
+        child: Container(
+          color: Colors.black12,
+          child: Icon(
+            FontAwesomeIcons.plus,
+          ),
+          width: 200,
+          height: 250,
+        ),
+      )
+    ];
   }
 
   @override
@@ -99,8 +101,7 @@ class _State extends State<AddImage> {
                 _selectedPage = num;
               });
             },
-            children:_pageViewChildrenBuilder() ,
-          
+            children: _pageViewChildrenBuilder(),
           ),
           Positioned(
             bottom: 20.0,
