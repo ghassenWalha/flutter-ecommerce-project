@@ -18,8 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
+        body: SingleChildScrollView(
+      child: Container(
+        width: size.width,
+        height: size.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(begin: Alignment.topCenter, colors: [
             Colors.orange[800],
@@ -98,10 +100,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 final user = UserService().loginUser(
                                     emailContoller.text,
                                     passwordContoller.text);
-                                print(user);
-                                if (user == null) {
-                                  Navigator.pushNamed(context, "/");
-                                }
+
+                                user.then((value) {
+                                  if (value != null) {
+                                    Navigator.pushNamed(context, "/");
+                                  }
+                                });
                               },
                             ),
                           ],
@@ -132,6 +136,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

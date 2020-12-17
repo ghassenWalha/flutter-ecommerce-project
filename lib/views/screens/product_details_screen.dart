@@ -174,7 +174,7 @@ class _ProductPageState extends State<ProductPage> {
                 height: (MediaQuery.of(context).size.height / 4) * 1.8,
                 child: TitledProductList(
                   title: "YOU MIGHT ALSO LIKE :",
-                  productList: productGenerator(),
+                  //productList: productGenerator(),
                 ),
               )
             ]),

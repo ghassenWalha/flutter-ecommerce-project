@@ -1,32 +1,30 @@
 import 'dart:convert';
-
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/product.dart';
 
 class ProductService {
-  final String ProductUrl = "http://192.168.1.6:3002/api/products";
-  List<Product> products = [];
+  final String productUrl = "http://192.168.43.68:3001/api/products";
+
 
   Future<List<Product>> getProducts() async {
-    dynamic res = await get(ProductUrl);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    dynamic res = await http
+        .get("$productUrl/adminpannel", headers: {"x-auth-token": token});
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      Product pp = Product.fromJson(body[0]);
-      print(body);
-      products = body.map((dynamic item) => Product.fromJson(item)).toList();
-      print(products.length);
+      List<Product> products = body.map((dynamic item) => Product.fromJson(item)).toList();
       return products;
     } else {
       print("can't get products");
+      return [];
     }
   }
 
-  Future<void> deleteProduct(int id) async {
-    Response res = await delete("$ProductUrl/$id");
-    if (res.statusCode == 200) {
-      print("Deleted");
-    }
-  }
 
   Future<void> addProduct(String name, String description, String moreInfo,
       double price, String category, List<String> imgUrls) async {
@@ -38,11 +36,9 @@ class ProductService {
       "category": category,
       "imgUrls": imgUrls,
     });
-    dynamic res = await post(ProductUrl, body: body);
+    dynamic res = await post(productUrl, body: body);
     if (res.statusCode == 200) {
-      List<dynamic> body = jsonDecode(res.body);
-      print(body);
-      print(products.length);
+    print("product added");
     } else {
       print("can't add product");
     }
@@ -57,12 +53,32 @@ class ProductService {
       "price": price,
       "imgUrls": imgUrls,
     });
-    dynamic res = await put(ProductUrl, body: body);
+    dynamic res = await put(productUrl, body: body);
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       print(body);
     } else {
       print("can't update product");
+
+    }
+      }
+//Get Products By Category :
+  Future<List<Product>> getProductsByCategory(String category) async {
+    dynamic res = await get("$productUrl/bycategory/$category");
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Product> products = body.map((dynamic item) => Product.fromJson(item)).toList();
+      return products;
+    } else {
+      print("can't get products");
+      return [];
+    }
+  }
+
+  Future<void> deleteProduct(String id) async {
+    Response res = await delete("$productUrl/$id");
+    if (res.statusCode == 200) {
+      print("Deleted");
     }
   }
 }

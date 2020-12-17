@@ -6,17 +6,18 @@ class Category {
   Category({this.id, this.name, this.imageUrl});
 
 
-factory Category.fromJson(Map<dynamic, dynamic> json) {
+  factory Category.fromJson(Map<dynamic, dynamic> json) {
     return Category(
       id: json["id"],
       name: json["name"],
-     imageUrl: json["imgUrl"],
+      imageUrl: json["imgUrl"],
     );
   }
 
   Map<dynamic, dynamic> toJson() => {
         "id": id,
         "name": name,
-        
+
       };
 }
+
