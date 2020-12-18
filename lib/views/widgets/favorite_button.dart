@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-/* this widget a favorite display the favorite button that
- adds a product to the favorites list of a user 
+/* this widget a favorite display the favorite button that adds a product to the favorites list of a user 
   it's formed by favorite icon  _souheil */
 
 class FavoriteButton extends StatefulWidget {

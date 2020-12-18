@@ -1,14 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:http/http.dart' as http;
 
 /* this widget present the category widget .
  it is formed by column widget that contains an image ,
-  and a text widget that contains the category label  _souheil  */
+  and a text widget that contains the category label _ souheil  */
 class CategoryItem extends StatelessWidget {
   final Category category;
 
   CategoryItem(this.category);
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -29,7 +31,7 @@ class CategoryItem extends StatelessWidget {
                   height: MediaQuery.of(context).size.width / 6,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(category.imageUrl),
+                          image: NetworkImage(category.imageUrl),
                           fit: BoxFit.fill),
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),

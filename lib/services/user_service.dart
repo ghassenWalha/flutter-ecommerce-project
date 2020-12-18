@@ -55,12 +55,12 @@ class UserService {
             email: body["email"],
             favorite: body["favorite"]);
 
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        /* final SharedPreferences prefs = await SharedPreferences.getInstance();
 
         prefs.setString("token", response.headers["x-auth-token"]);
         prefs.setString("email", user.email);
         prefs.setString("username", user.name);
-        return user;
+        return user;*/
       } else {
         throw response.body;
       }

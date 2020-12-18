@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/item_counter.dart';
 
 /*
@@ -8,23 +9,15 @@ _Zohra&Amal
 
 */
 class BagItem extends StatefulWidget {
-  final String color;
-  final String name;
-  final double price;
-  final String imageUrl;
+  final Product product;
   final int quantity;
-  final int index;
   final key;
   final Function remove;
   final Function addQuantity;
   final Function substractQuantity;
   BagItem({
-    this.name,
-    this.imageUrl,
-    this.price,
-    this.color,
+    this.product,
     this.quantity,
-    this.index,
     this.remove,
     this.key,
     this.addQuantity,
@@ -57,7 +50,7 @@ class BagItemState extends State<BagItem> {
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
                 image: new AssetImage(
-                  widget.imageUrl,
+                  widget.product.imgsUrl[0],
                 ),
               )),
         ),
@@ -73,12 +66,12 @@ class BagItemState extends State<BagItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(widget.name, style: TextStyle(fontSize: 16)),
-                    Text('\$' + widget.price.toString(),
+                    Text(widget.product.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.product.price.toString(),
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
-                Text('Color : ' + widget.color,
+                Text('Color : ' + widget.product.color,
                     style: TextStyle(
                       color: Colors.grey,
                     )),
@@ -96,7 +89,7 @@ class BagItemState extends State<BagItem> {
                   color: Colors.red[600],
                 ),
                 onPressed: () {
-                  widget.remove(widget.index);
+                  widget.remove(widget.product.id);
                 },
               ),
               ItemCounter(widget.addQuantity, widget.quantity,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 /*
 
@@ -7,22 +9,12 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
-  final String color;
-  final String name;
-  final double price;
-  final String imageUrl;
-  final int quantity;
-  final int index;
+  final Product product;
   final key;
   final Function remove;
 
   ProductItemAdmin({
-    this.name,
-    this.imageUrl,
-    this.price,
-    this.color,
-    this.quantity,
-    this.index,
+    this.product,
     this.remove,
     this.key,
   }) : super(key: key);
@@ -57,8 +49,9 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
-                image: new AssetImage(
-                  widget.imageUrl,
+
+                image: new NetworkImage(
+                  widget.product.imgsUrl[0],
                 ),
               )),
         ),
@@ -75,12 +68,14 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(widget.name, style: TextStyle(fontSize: 16)),
-                    Text('\$' + widget.price.toString(),
+                    Text(widget.product.name, style: TextStyle(fontSize: 16)),
+                    Text('\$' + widget.product.price.toString(),
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
-                Text('Color : ' + widget.color,
+                Text(
+                    'Color : ' //+ widget.color
+                    ,
                     style: TextStyle(
                       color: Colors.grey,
                     )),
@@ -93,16 +88,23 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
               IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/edt");
-                  }),
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          EditProduct(oldProduct: widget.product, update: true),
+                    ));
+
+                 
+                  }
+                  ),
+
               //Delete Icon
               IconButton(
                 icon: Icon(
                   Icons.delete,
                   color: Colors.red[400],
                 ),
-                onPressed: () {
-                  widget.remove(widget.index);
+                onPressed: () async {
+                  widget.remove(widget.product.id);
                 },
               ),
             ],

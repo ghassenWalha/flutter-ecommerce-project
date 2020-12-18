@@ -4,47 +4,89 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddImage extends StatefulWidget {
-  //final List<String> urls;
-  //AddImage(this.urls);
+  final List<String> urls;
+  AddImage(this.urls);
   @override
   _State createState() => _State();
 }
 
 class _State extends State<AddImage> {
-  int limit = 4;
+  final imagepicker = ImagePicker();
+  int limit;
   int _selectedPage = 0;
-  List<File> _images = [];
-  List<String> _images1 = [];
-  //bool _visible = false;
+  List<File> _imagesFilesList = [];
+  List<String> _imagesUrlList = [];
+
+  void initState() {
+    super.initState();
+    _imagesUrlList = this.widget.urls;
+    limit = _imagesUrlList.length;
+
+  }
 
   void supprimer(int i) {
-    if (i < _images1.length)
+    if (i < _imagesUrlList.length)
       setState(() {
         limit--;
-        _images1.removeAt(i);
+        _imagesUrlList.removeAt(i);
       });
     else
       setState(() {
         limit--;
-        _images.removeAt(i - _images1.length);
+        _imagesFilesList.removeAt(i - _imagesUrlList.length);
       });
-  }
-
-  void initState() {
-    super.initState();
-    for (var i = 1; i < 5; i++) {
-      _images1.add("assets/images/$i.jpg");
-    }
   }
 
   Future _getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (image != null)
+    var pickerFile = await imagepicker.getImage(source: ImageSource.gallery);
+    if (pickerFile != null)
       setState(() {
-        _images.add(image);
+        _imagesFilesList.add(File(pickerFile.path));
         limit++;
-        //_visible = true;
       });
+  }
+
+  List<Widget> _pageViewChildrenBuilder() {
+    return [
+      ..._imagesUrlList
+          .map(
+            (image) => Container(
+              child: Image(
+                image: NetworkImage(image),
+                fit: BoxFit.fill,
+                width: 200,
+                // height: 250,
+              ),
+            ),
+          )
+          .toList(),
+      ..._imagesFilesList.map((image) {
+        return Container(
+          color: Colors.black12,
+          child: Stack(
+            children: [
+              Image.file(
+                image,
+                fit: BoxFit.fill,
+              ),
+            ],
+          ),
+          width: 200,
+          height: 250,
+        );
+      }).toList(),
+      GestureDetector(
+        onTap: _getImage,
+        child: Container(
+          color: Colors.black12,
+          child: Icon(
+            FontAwesomeIcons.plus,
+          ),
+          width: 200,
+          height: 250,
+        ),
+      )
+    ];
   }
 
   @override
@@ -61,44 +103,7 @@ class _State extends State<AddImage> {
                 _selectedPage = num;
               });
             },
-            children: [
-              ..._images1.map(
-                (image) => Container(
-                  child: Image(
-                    image: AssetImage(image),
-                    fit: BoxFit.fill,
-                    width: 200,
-                    // height: 250,
-                  ),
-                ),
-              ),
-              ..._images.map((image) {
-                return Container(
-                  color: Colors.black12,
-                  child: Stack(
-                    children: [
-                      Image.file(
-                        image,
-                        fit: BoxFit.fill,
-                      ),
-                    ],
-                  ),
-                  width: 200,
-                  height: 250,
-                );
-              }).toList(),
-              GestureDetector(
-                onTap: _getImage,
-                child: Container(
-                  color: Colors.black12,
-                  child: Icon(
-                    FontAwesomeIcons.plus,
-                  ),
-                  width: 200,
-                  height: 250,
-                ),
-              )
-            ],
+            children: _pageViewChildrenBuilder(),
           ),
           Positioned(
             bottom: 20.0,

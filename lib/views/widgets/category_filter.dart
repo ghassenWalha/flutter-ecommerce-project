@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
+import '../../services/product_service.dart';
 import 'filters.dart';
-
-/*
-   this widget represents a category filter  widget that is formed by a title  
-    and product grid view   that represents the products of a specific category
-*/
 
 class CategoryFilter extends StatelessWidget {
   final List<String> filters = ["price", "date", "likes"];
-
+  ProductService productService = new ProductService();
   @override
   Widget build(BuildContext context) {
     String category = ModalRoute.of(context).settings.arguments;
-
     return Scaffold(
         body: Padding(
             padding: EdgeInsets.only(top: 20),
@@ -49,19 +44,22 @@ class CategoryFilter extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       )),
-                  Filters(filters)
+                  Filters()
                 ]),
                 Flexible(
+                    child: ProductGridView(
+                        productService.getProductsByCategory(category)))
+                /* Flexible(
                     child: ProductGridView(
                   [
                     for (var i = 1; i < 7; i++)
                       Product(
-                          id: i,
+                          id: i.toString(),
                           name: "sofa",
                           description: "#######",
                           category: "sofa",
-                          price: "19.00",
-                          imgUrl: [
+                          price: 19.00,
+                          imgsUrl: [
                             "assets/images/$i.jpg",
                             "assets/images/$i.jpg",
                             "assets/images/$i.jpg",
@@ -77,7 +75,7 @@ class CategoryFilter extends StatelessWidget {
                             "assets/images/$i.jpg",
                           ]),
                   ],
-                ))
+                ))*/
               ],
             )));
   }

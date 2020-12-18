@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/models/category.dart';
-import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/category_service.dart';
+import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
@@ -11,29 +11,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Product> productGenerator() {
-    List<Product> list = [];
-
-    for (var i = 6; i > 0; i--)
-      list.add(Product(
-          id: i,
-          name: "table",
-          price: "1200",
-          description: "mlmlmlmlm",
-          category: "sofa",
-          imgUrl: [
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-          ]));
-    return list;
-  }
-
+  ProductService productService = new ProductService();
+  CategoryService categoryService = new CategoryService();
+  
+  @override
   Widget build(BuildContext context) {
     return Stack(children: [
       Image.asset(
@@ -70,18 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: SingleChildScrollView(
-              child: Column(children: <Widget>[
-                CategoryList([
-                  for (var i = 1; i < 10; i++)
-                    Category(
-                        id: i * 10,
-                        name: "sofa",
-                        imageUrl: "assets/images/1.jpg"),
-                ]),
-                Container(
+              child: Column(children: [CategoryList(categoryService.getcategories()),
+              Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(
-                        title: "Best sellers", productList: productGenerator()))
+                        title: "Best sellers",
+                        productList: productService.getProducts()))
               ]),
             )),
       )

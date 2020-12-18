@@ -17,12 +17,12 @@ class _ProductPageState extends State<ProductPage> {
 
     for (var i = 6; i > 0; i--)
       list.add(Product(
-          id: i,
+          id: i.toString(),
           name: "table",
-          price: "1200",
+          price: 1200,
           description: "mlmlmlmlm",
           category: "sofa",
-          imgUrl: [
+          imgsUrl: [
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
             "assets/images/$i.jpg",
@@ -55,7 +55,7 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget build(BuildContext context) {
     int quantity = 1;
-    final Product pp = ModalRoute.of(context).settings.arguments;
+    final Product product = ModalRoute.of(context).settings.arguments;
 
     /*This function adds 1 to the quantity when we click on the plus button*/
     void addQuantity() {
@@ -76,7 +76,7 @@ class _ProductPageState extends State<ProductPage> {
         body: Stack(
           children: [
             ListView(children: [
-              ImageSwipe(pp.imgUrl),
+              ImageSwipe(product.imgsUrl),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 24.0,
@@ -88,7 +88,7 @@ class _ProductPageState extends State<ProductPage> {
                   children: [
                     Expanded(
                       child: Text(
-                        pp.name,
+                        product.name,
                         style: TextStyle(
                           fontSize: 25,
                           color: Colors.black,
@@ -110,7 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                   horizontal: 24.0,
                 ),
                 child: Text(
-                  "\$" + pp.price,
+                  "\$" + product.price.toString(),
                   style: TextStyle(
                     color: Colors.red[800],
                     fontSize: 20,
@@ -126,7 +126,7 @@ class _ProductPageState extends State<ProductPage> {
                   bottom: 1,
                 ),
                 child: Text(
-                  pp.description,
+                  product.description,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 13,
@@ -174,7 +174,7 @@ class _ProductPageState extends State<ProductPage> {
                 height: (MediaQuery.of(context).size.height / 4) * 1.8,
                 child: TitledProductList(
                   title: "YOU MIGHT ALSO LIKE :",
-                  productList: productGenerator(),
+                  //productList: productGenerator(),
                 ),
               )
             ]),

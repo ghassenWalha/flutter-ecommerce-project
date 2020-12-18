@@ -25,9 +25,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onSelect(int index) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    
+
     setState(() {
-    
       this.currentIndex = index;
       pageController.animateToPage(
           ((index == 3) && (prefs.get("token") != null))
