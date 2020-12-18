@@ -13,9 +13,37 @@ class RegistartionScreen extends StatefulWidget {
 }
 
 class _RegistartionScreenState extends State<RegistartionScreen> {
-  TextEditingController emailContoller = TextEditingController();
-  TextEditingController usernameContoller = TextEditingController();
-  TextEditingController passwordContoller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  String errorMessage = "";
+  // this methode add a new user if all the fields are not empty other wise it display an error
+  void signup(String username, String email, String password) {
+    if (username.isEmpty | email.isEmpty | password.isEmpty) {
+      setState(() {
+        errorMessage = "there is an empty field";
+      });
+    } else {
+      final result = UserService().addUser(username, email, password);
+
+      result.then((value) {
+        print(value);
+        if ((value is User)) {
+          Navigator.pushNamed(context, "/");
+        } else {
+          setState(() {
+            errorMessage = value;
+          });
+        }
+      });
+    }
+  }
+
+  void clearError() {
+    setState(() {
+      errorMessage = "";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +63,21 @@ class _RegistartionScreenState extends State<RegistartionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: size.height * 0.1,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: 42.0,
+                height: 42.0,
+                padding: EdgeInsets.only(top: 15, left: 10),
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(20),
@@ -100,40 +141,49 @@ class _RegistartionScreenState extends State<RegistartionScreen> {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            SizedBox(
-                              height: size.height * 0.01,
-                            ),
+                            (errorMessage != null)
+                                ? Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      errorMessage,
+                                      style: TextStyle(
+                                          color: Colors.redAccent,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                : SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
                             RoundedInputField(
-                              controller: emailContoller,
+                              controller: emailController,
                               hintText: "Your Email",
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                clearError();
+                              },
                             ),
                             RoundedInputField(
-                              controller: usernameContoller,
+                              controller: usernameController,
                               hintText: "Username",
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                clearError();
+                              },
                             ),
                             RoundedPasswordField(
-                              controller: passwordContoller,
-                              onChanged: (value) {},
+                              controller: passwordController,
+                              onChanged: (value) {
+                                clearError();
+                              },
                             ),
                           ],
                         ),
                       ),
                       RoundedButton(
-                        text: "SIGNUP",
-                        press: () {
-                          final user = UserService().addUser(
-                              usernameContoller.text,
-                              emailContoller.text,
-                              passwordContoller.text);
-                          user.then((value) {
-                            if ((value.name != null)) {
-                              Navigator.pushNamed(context, "/");
-                            }
-                          });
-                        },
-                      ),
+                          text: "SIGNUP",
+                          press: () {
+                            signup(usernameController.text,
+                                emailController.text, passwordController.text);
+                          }),
                       Text(
                         "Already have an Account ?",
                         style: TextStyle(color: Colors.black),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/user.dart';
 import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
@@ -11,8 +12,34 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailContoller = TextEditingController();
-  TextEditingController passwordContoller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  String errorMessage = "";
+
+  String signin(String email, String password) {
+    if (email.isEmpty | password.isEmpty) {
+      setState(() {
+        errorMessage = "there is an empty field";
+      });
+    } else {
+      final user = UserService().loginUser(email, password);
+      user.then((value) {
+        if ((value is User)) {
+          Navigator.pushNamed(context, "/");
+        } else {
+          setState(() {
+            errorMessage = value;
+          });
+        }
+      });
+    }
+  }
+
+  void clearError() {
+    setState(() {
+      errorMessage = "";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +59,21 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: size.height * 0.12,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: 42.0,
+                height: 42.0,
+                padding: EdgeInsets.only(top: 15, left: 10),
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(20),
@@ -75,9 +115,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.all(30),
                   child: Column(
                     children: <Widget>[
-                      SizedBox(
-                        height: size.height * 0.05,
-                      ),
+                      (errorMessage != null)
+                          ? Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                errorMessage,
+                                style: TextStyle(
+                                    color: Colors.redAccent,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          : SizedBox(
+                              height: size.height * 0.05,
+                            ),
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -87,27 +138,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: <Widget>[
                             RoundedInputField(
                               hintText: "Your Email",
-                              controller: emailContoller,
-                              onChanged: (value) {},
-                            ),
-                            RoundedPasswordField(
-                              controller: passwordContoller,
-                              onChanged: (value) {},
-                            ),
-                            RoundedButton(
-                              text: "LOGIN",
-                              press: () {
-                                final user = UserService().loginUser(
-                                    emailContoller.text,
-                                    passwordContoller.text);
-
-                                user.then((value) {
-                                  if (value != null) {
-                                    Navigator.pushNamed(context, "/");
-                                  }
-                                });
+                              controller: emailController,
+                              onChanged: (value) {
+                                clearError();
                               },
                             ),
+                            RoundedPasswordField(
+                              controller: passwordController,
+                              onChanged: (value) {
+                                clearError();
+                              },
+                            ),
+                            RoundedButton(
+                                text: "LOGIN",
+                                press: () {
+                                  signin(emailController.text,
+                                      passwordController.text);
+                                }),
                           ],
                         ),
                       ),

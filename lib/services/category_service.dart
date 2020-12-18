@@ -4,7 +4,8 @@ import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryService {
-  final String categoryUrl = "https://ecommerce-node-junior.herokuapp.com/api/categories";
+  final String categoryUrl =
+      "https://ecommerce-node-junior.herokuapp.com/api/categories";
   List<Category> categories = [];
 
   Future<List<Category>> getcategories() async {
@@ -18,4 +19,3 @@ class CategoryService {
     }
   }
 }
-
