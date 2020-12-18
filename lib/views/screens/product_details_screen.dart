@@ -55,7 +55,7 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget build(BuildContext context) {
     int quantity = 1;
-    final Product pp = ModalRoute.of(context).settings.arguments;
+    final Product product = ModalRoute.of(context).settings.arguments;
 
     /*This function adds 1 to the quantity when we click on the plus button*/
     void addQuantity() {
@@ -76,7 +76,7 @@ class _ProductPageState extends State<ProductPage> {
         body: Stack(
           children: [
             ListView(children: [
-              ImageSwipe(pp.imgsUrl),
+              ImageSwipe(product.imgsUrl),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 24.0,
@@ -88,7 +88,7 @@ class _ProductPageState extends State<ProductPage> {
                   children: [
                     Expanded(
                       child: Text(
-                        pp.name,
+                        product.name,
                         style: TextStyle(
                           fontSize: 25,
                           color: Colors.black,
@@ -110,7 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                   horizontal: 24.0,
                 ),
                 child: Text(
-                  "\$" + pp.price.toString(),
+                  "\$" + product.price.toString(),
                   style: TextStyle(
                     color: Colors.red[800],
                     fontSize: 20,
@@ -126,7 +126,7 @@ class _ProductPageState extends State<ProductPage> {
                   bottom: 1,
                 ),
                 child: Text(
-                  pp.description,
+                  product.description,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 13,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-
+import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 /*
 
@@ -9,7 +9,6 @@ _Zohra&Amal
 
 */
 class ProductItemAdmin extends StatefulWidget {
-
   final Product product;
   final key;
   final Function remove;
@@ -90,17 +89,13 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   icon: Icon(Icons.edit),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EditProduct(
-                        update: true,
-                        name: widget.name,
-                        imageUrl: widget.imageUrl,
-                        price: widget.price,
-                        description: widget.description,
-                        moreInfo: widget.moreInfo,
-                        key: widget.key,
-                      ),
+                      builder: (context) =>
+                          EditProduct(oldProduct: widget.product, update: true),
                     ));
-                  }),
+
+                 
+                  }
+                  ),
 
               //Delete Icon
               IconButton(

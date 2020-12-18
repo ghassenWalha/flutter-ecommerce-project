@@ -12,7 +12,7 @@ class AddImage extends StatefulWidget {
 
 class _State extends State<AddImage> {
   final imagepicker = ImagePicker();
-  int limit = 4;
+  int limit;
   int _selectedPage = 0;
   List<File> _imagesFilesList = [];
   List<String> _imagesUrlList = [];
@@ -20,6 +20,8 @@ class _State extends State<AddImage> {
   void initState() {
     super.initState();
     _imagesUrlList = this.widget.urls;
+    limit = _imagesUrlList.length;
+
   }
 
   void supprimer(int i) {
@@ -50,7 +52,7 @@ class _State extends State<AddImage> {
           .map(
             (image) => Container(
               child: Image(
-                image: AssetImage(image),
+                image: NetworkImage(image),
                 fit: BoxFit.fill,
                 width: 200,
                 // height: 250,

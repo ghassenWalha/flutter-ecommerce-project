@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
 
 class AddDetails extends StatefulWidget {
-  String productName = '';
-  double price = 0.0;
-  String description = '';
-  String moreInfo = '';
+  Map product;
   bool update;
   Function changedAtrribut;
 
-  AddDetails(
-      {this.description,
-      this.moreInfo,
-      this.price,
-      this.productName,
-      this.changedAtrribut,
-      this.update});
+  AddDetails({this.product, this.changedAtrribut, this.update});
 
   @override
   _AddDetailsState createState() => _AddDetailsState();
@@ -30,10 +22,10 @@ class _AddDetailsState extends State<AddDetails> {
 
   @override
   Widget build(BuildContext context) {
-    nameController.text = widget.productName;
-    descriptionController.text = widget.description;
-    moreInfoController.text = widget.moreInfo;
-    priceController.text = widget.price.toString();
+    nameController.text = widget.product["name"];
+    descriptionController.text = widget.product["description"];
+    moreInfoController.text = widget.product["moreInfo"];
+    priceController.text = widget.product["price"].toString();
     return Container(
       height: 250,
       child: ListView(
@@ -44,13 +36,7 @@ class _AddDetailsState extends State<AddDetails> {
               labelText: 'Product Name',
             ),
             onSaved: null,
-            onChanged: (value) => widget.changedAtrribut(
-              value,
-              widget.description,
-              widget.price,
-              widget.moreInfo,
-              category,
-            ),
+            onChanged: (value) => widget.changedAtrribut("name", value),
           ),
           TextFormField(
             controller: priceController,
@@ -58,13 +44,7 @@ class _AddDetailsState extends State<AddDetails> {
               labelText: 'Price',
             ),
             onSaved: null,
-            onChanged: (value) => widget.changedAtrribut(
-              widget.productName,
-              widget.description,
-              value,
-              widget.moreInfo,
-              category,
-            ),
+            onChanged: (value) => widget.changedAtrribut("price", value),
           ),
           TextFormField(
             controller: descriptionController,
@@ -72,13 +52,7 @@ class _AddDetailsState extends State<AddDetails> {
               labelText: 'Description',
             ),
             onSaved: null,
-            onChanged: (value) => widget.changedAtrribut(
-              widget.productName,
-              value,
-              widget.price,
-              widget.moreInfo,
-              category,
-            ),
+            onChanged: (value) => widget.changedAtrribut("description", value),
           ),
           TextFormField(
             controller: moreInfoController,
@@ -86,13 +60,7 @@ class _AddDetailsState extends State<AddDetails> {
               labelText: 'More Info',
             ),
             onSaved: null,
-            onChanged: (value) => widget.changedAtrribut(
-              widget.productName,
-              widget.description,
-              widget.price,
-              value,
-              category,
-            ),
+            onChanged: (value) => widget.changedAtrribut("moreInfo", value),
           ),
           Visibility(
             visible: !widget.update,
@@ -102,14 +70,7 @@ class _AddDetailsState extends State<AddDetails> {
                 ),
                 onSaved: null,
                 onChanged: (value) {
-                  category = value;
-                  widget.changedAtrribut(
-                    widget.productName,
-                    widget.description,
-                    widget.price,
-                    widget.moreInfo,
-                    value,
-                  );
+                  widget.changedAtrribut("category", value);
                 }),
           ),
         ],

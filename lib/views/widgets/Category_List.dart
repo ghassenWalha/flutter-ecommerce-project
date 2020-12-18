@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
-import 'package:flutter_ecommerce_project/views/widgets/Category_Item.dart';
+import 'package:flutter_ecommerce_project/views/widgets/category_Item.dart';
 
 
 

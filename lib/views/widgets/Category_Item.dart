@@ -31,7 +31,7 @@ class CategoryItem extends StatelessWidget {
                   height: MediaQuery.of(context).size.width / 6,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(category.imageUrl),
+                          image: NetworkImage(category.imageUrl),
                           fit: BoxFit.fill),
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),

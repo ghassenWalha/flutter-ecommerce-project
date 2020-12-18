@@ -12,50 +12,41 @@ import '../widgets/add_image.dart';
 import '../widgets/add_details.dart';
 
 class EditProduct extends StatefulWidget {
-  ProductService productService = new ProductService();
-   String id;
- String color;
- String name;
- double price;
- String category;
- String description;
- String moreInfo;
- List<String> imageUrl;
-  bool update = false;
-  final key;
-
-  EditProduct({
-    this.id,
-    this.category,
-    this.description,
-    this.update,
-    this.moreInfo,
-    this.name,
-    this.imageUrl,
-    this.price,
-    this.color,
-    this.key,
-  }) : super(key: key);
-
+  final Product oldProduct ;
+  final bool update ;
+  EditProduct({this.oldProduct,this.update});
   @override
   _State createState() => _State();
 }
 
 class _State extends State<EditProduct> {
+Map product;
   //fct (value) bech tsati state l champ
-  void changedAttribut(name,description,price,moreInfo,category) {
-    widget.name= name;
-    
-  }
+  @override
+  void initState() {
+    print(widget.oldProduct);
+   product=widget.oldProduct.toJson() ;
+      product['price'] = product['price'].toString();
 
+    super.initState();
+  }
+  void attributeChangedHundler(String attributeName, dynamic value) {
+    print('here');
+setState(() {
+  product[attributeName] = value.toString();
+});
+   
+  }
+ProductService productService = new ProductService();
   @override
   Widget build(BuildContext context) {
-    // final Product pp = ModalRoute.of(context).settings.arguments;
+
+  
     return SafeArea(
       child: Scaffold(
         body: ListView(
           children: [
-            AddImage(widget.imageUrl),
+            AddImage(product["imgsUrl"] ?? [] ),
             Padding(
               padding: const EdgeInsets.only(
                 top: 24.0,
@@ -65,11 +56,8 @@ class _State extends State<EditProduct> {
               ),
               child: AddDetails(
                 update: widget.update,
-                moreInfo: widget.moreInfo,
-                description: widget.description,
-                productName: widget.name,
-                price: widget.price,
-                changedAtrribut: changedAttribut,
+              product: product,
+                changedAtrribut: attributeChangedHundler,
               ),
             ),
           ],
@@ -87,8 +75,8 @@ class _State extends State<EditProduct> {
               textName: 'Save',
               onPressed: () {
                 widget.update 
-                ? widget.productService.updateProduct(widget.id, widget.name, widget.description, widget.moreInfo, widget.price, widget.imageUrl)
-                : widget.productService.addProduct(widget.name, widget.description, widget.moreInfo, widget.price, widget.category, widget.imageUrl)
+                ? productService.updateProduct(product).then((value) => Navigator.pop(context))
+                : productService.addProduct(product);
               },
             ),
           ],

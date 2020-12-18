@@ -55,7 +55,7 @@ class _ProductViewState extends State<ProductView> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 image: DecorationImage(
-                  image: AssetImage(
+                  image: NetworkImage(
                     this.widget.product.imgsUrl[0],
                   ),
                   fit: BoxFit.fill,
