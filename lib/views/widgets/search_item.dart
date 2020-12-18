@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
-// this widget is responsible for building the search item 
+
+// this widget is responsible for building the search item
 class SearchItem extends SearchDelegate<Widget> {
-  // building the list that contains the product names 
+  // building the list that contains the product names
   List<String> namelist = List<String>();
   int i = 0;
   List<String> list() {
-    while (i < bagList.length) {
-      namelist.add(bagList[i]['name']);
-      i++;
-    }
+    // while (i < bagList.length) {
+    // namelist.add(bagList[i]['name']);
+    i++;
+    //}
     return namelist;
   }
 
-
-
   @override
   List<Widget> buildActions(BuildContext context) {
-    //this button is responsible for clearing the text in the search bar 
+    //this button is responsible for clearing the text in the search bar
     return [
       IconButton(
           icon: Icon(Icons.clear),
@@ -40,16 +38,14 @@ class SearchItem extends SearchDelegate<Widget> {
   }
 
   @override
-  Widget buildResults(BuildContext context) {
-  
-  }
+  Widget buildResults(BuildContext context) {}
 
   @override
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = (query.isEmpty)
         ? list()
         : list().where((p) => p.startsWith(query)).toList();
- // building the suggestion list
+    // building the suggestion list
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) => ListTile(
@@ -57,7 +53,6 @@ class SearchItem extends SearchDelegate<Widget> {
             query = suggestionList[index];
             showResults(context);
           },
-       
           title: Text(suggestionList[index])),
     );
   }

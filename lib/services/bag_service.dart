@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BagService {
-  final String BagUrl = "http://192.168.43.68:3001/api/bag";
+  final String BagUrl = "http://192.168.1.118:3001/api/bag";
   List<Product> bag = [];
 
   Future<List<Product>> getBag() async {
