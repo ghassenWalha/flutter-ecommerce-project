@@ -24,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   PageController pageController;
   int currentIndex = 0;
   Map decodedToken;
+
   void onSelect(int index) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -41,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-
     pageController = new PageController();
   }
 
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _screens[1] = Center(child: BagScreen());
                   }
                 }
-              }
+              } else {}
               return Scaffold(
                   body: PageView(
                     controller: pageController,
