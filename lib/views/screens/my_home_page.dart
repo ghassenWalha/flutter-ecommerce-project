@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decodedToken = JwtDecoder.decode(token);
                   if (decodedToken["isAdmin"]) {
                     // change the navbar if the usr is admin
-                    _screens[1] = Center(child: BagScreen());
+                    _screens[1] = Center(child: AdminScreen());
                   }
                 }
               } else {}

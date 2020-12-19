@@ -26,6 +26,30 @@ class ProductItemAdmin extends StatefulWidget {
 }
 
 class ProductItemAdminState extends State<ProductItemAdmin> {
+  createAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text("Are you sure to delete this product ?"),
+              actions: <Widget>[
+                MaterialButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                MaterialButton(
+                  child: Text("Delete"),
+                  onPressed: () async {
+                    widget.remove(widget.product.id);
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ]);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -92,10 +116,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                       builder: (context) =>
                           EditProduct(oldProduct: widget.product, update: true),
                     ));
-
-                 
-                  }
-                  ),
+                  }),
 
               //Delete Icon
               IconButton(
@@ -104,7 +125,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                   color: Colors.red[400],
                 ),
                 onPressed: () async {
-                  widget.remove(widget.product.id);
+                  createAlertDialog(context);
                 },
               ),
             ],
