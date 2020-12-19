@@ -57,6 +57,20 @@ class ProductService {
     }
   }
 
+  // Search Product
+  Future<List<Product>> searchProduct(String search) async {
+    dynamic res = await get("$productUrl/search?search=$search");
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Product> products =
+          body.map((dynamic item) => Product.fromJson(item)).toList();
+      return products;
+    } else {
+      print("Can't get products");
+      return [];
+    }
+  }
+
 //Get Products By Category :
   Future<List<Product>> getProductsByCategory(String category) async {
     dynamic res = await get("$productUrl/bycategory/$category");

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/models/product.dart';
+import '../../services/product_service.dart';
 
 // this widget is responsible for building the search item
 class SearchItem extends SearchDelegate<Widget> {
   // building the list that contains the product names
+  String query;
   List<String> namelist = List<String>();
   int i = 0;
   List<String> list() {
@@ -42,18 +45,20 @@ class SearchItem extends SearchDelegate<Widget> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = (query.isEmpty)
-        ? list()
-        : list().where((p) => p.startsWith(query)).toList();
+    final productService = new ProductService();
+    List<Product> products;
+    productService.searchProduct(query).then((value) => products = value);
+    namelist = products == [] ? [] : products.map((e) => e.name).toList();
+
     // building the suggestion list
     return ListView.builder(
-      itemCount: suggestionList.length,
+      itemCount: namelist.length,
       itemBuilder: (context, index) => ListTile(
           onTap: () {
-            query = suggestionList[index];
+            query = namelist[index];
             showResults(context);
           },
-          title: Text(suggestionList[index])),
+          title: Text(namelist[index])),
     );
   }
 }
