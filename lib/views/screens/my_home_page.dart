@@ -58,53 +58,51 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    String token;
     return Container(
         child: FutureBuilder(
             future: SharedPreferences.getInstance(),
             builder: (BuildContext context,
                 AsyncSnapshot<SharedPreferences> snapshot) {
               if (snapshot.hasData) {
-                String token = snapshot.data.getString("token");
+                token = snapshot.data.getString("token");
                 if (token != null) {
                   decodedToken = JwtDecoder.decode(token);
                   if (decodedToken["isAdmin"]) {
                     // change the navbar if the usr is admin
                     _screens[1] = Center(child: BagScreen());
                   }
-                  return Scaffold(
-                      body: PageView(
-                        controller: pageController,
-                        onPageChanged: (index) async {
-                          setState(() {
-                            currentIndex = index;
-                          });
-                        },
-                        children: _screens,
-                      ),
-                      backgroundColor: Colors.white,
-                      bottomNavigationBar: BottomNavigationBar(
-                        type: BottomNavigationBarType.fixed,
-                        items: [
-                          BottomNavigationBarItem(
-                              icon: Icon(Icons.home_outlined), label: "Home"),
-                          ((token != null) && decodedToken["isAdmin"])
-                              ? BottomNavigationBarItem(
-                                  icon: Icon(Icons.lock),
-                                  label: "admin Dashbord")
-                              : BottomNavigationBarItem(
-                                  icon: Icon(Icons.favorite),
-                                  label: "favorite"),
-                          BottomNavigationBarItem(
-                              icon: Icon(Icons.shopping_bag), label: "Bag"),
-                          BottomNavigationBarItem(
-                              icon: Icon(Icons.person), label: "login/sign in"),
-                        ],
-                        currentIndex: currentIndex >= 3 ? 3 : currentIndex,
-                        onTap: onSelect,
-                      ));
                 }
               }
-              return Container();
+              return Scaffold(
+                  body: PageView(
+                    controller: pageController,
+                    onPageChanged: (index) async {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    children: _screens,
+                  ),
+                  backgroundColor: Colors.white,
+                  bottomNavigationBar: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    items: [
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.home_outlined), label: "Home"),
+                      ((token != null) && decodedToken["isAdmin"])
+                          ? BottomNavigationBarItem(
+                              icon: Icon(Icons.lock), label: "admin Dashbord")
+                          : BottomNavigationBarItem(
+                              icon: Icon(Icons.favorite), label: "favorite"),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.shopping_bag), label: "Bag"),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.person), label: "login/sign in"),
+                    ],
+                    currentIndex: currentIndex >= 3 ? 3 : currentIndex,
+                    onTap: onSelect,
+                  ));
             }));
   }
 }
