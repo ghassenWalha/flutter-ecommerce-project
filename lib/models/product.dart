@@ -17,23 +17,20 @@ class Product {
       this.color});
 
   Product.fromJson(Map<dynamic, dynamic> json)
-      : category = "123",
+      : category = json["category"],
         id = json["_id"],
         name = json["name"],
         description = json["description"],
         price = double.parse(json["price"]),
         imgsUrl = List<String>.from(json["imgUrls"].map((x) => x)),
         color = json["color"];
-
   // {
-
   //   return Product(
   //     id: json["_id"],
   //     name: json["name"],
   //     // description: json["description"],
   //     // price: double.parse(json["price"]),
   //     // imgsUrl: json["imgUrls"].map((i)=>i).toList(),
-
   //   );
   // }
 

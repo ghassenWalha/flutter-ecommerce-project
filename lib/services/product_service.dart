@@ -15,14 +15,25 @@ class ProductService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
     print(token);
+    print("a");
     dynamic res = await http
         .get("$ProductUrl/adminpannel", headers: {"x-auth-token": token});
+    print("C");
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      Product pp = Product.fromJson(body[0]);
+      print(body);
       products = body.map((dynamic item) => Product.fromJson(item)).toList();
-
-      print(products.length);
+      /*products = [
+        Product(
+            name: "table",
+            id: "3",
+            category: "sofa",
+            color: "green",
+            description: "AAAAAA",
+            price: 23,
+            imgsUrl: ["aze"])
+      ];*/
+      print("aze");
       return products;
     } else {
       print("can't get products");
