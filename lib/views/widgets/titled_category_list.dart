@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
-import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
 
 /* this widget represent a titled and a scrollable list of categories . it's formed by 
  column widget that contains a text widget and a CategoryList widget 

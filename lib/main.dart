@@ -7,7 +7,6 @@ import './views/screens/my_home_page.dart';
 
 import './views/screens/product_details_screen.dart';
 
-import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import './views/screens/edit_product.dart';
 
 void main() {

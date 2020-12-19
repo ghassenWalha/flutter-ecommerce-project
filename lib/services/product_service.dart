@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
 
 class ProductService {
-  final String productUrl = "https://ecommerce-node-junior.herokuapp.com/api/products/";
+  final String productUrl = "http://192.168.1.2:3001/api/products/";
 
 
   Future<List<Product>> getProducts() async {
@@ -30,12 +30,14 @@ class ProductService {
 
   Future<void> addProduct(Map product) async {
      product['price'] = product['price'].toString();
-     product["imgsUrl"] = product["imgsUrl"].toString();
+     product["imgUrls"] = product["imgsUrl"].toString();
+     print('////////////////');
+     print(product);
 
     dynamic res = await http.post(productUrl, headers: {"content-type": "application/json"}, body:  json
               .encode(product));
     if (res.statusCode == 200) {
-    print("product added");
+    print(res.body);
     } else {
       print("can't add product");
     }
@@ -43,8 +45,9 @@ class ProductService {
 
   Future<void> updateProduct(Map product) async {
          product['price'] = product['price'].toString();
-     product["imgsUrl"] = product["imgsUrl"].toString();
-  product["_id"] = product["id"];
+     product["imgUrls"] = product["imgsUrl"].toString();
+ 
+  print('/////////////');
   print(product);
     dynamic res = await http.put(productUrl, headers: {"content-type": "application/json"}, body:  json
               .encode(product));

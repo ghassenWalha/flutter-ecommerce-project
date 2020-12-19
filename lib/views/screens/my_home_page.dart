@@ -1,13 +1,10 @@
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
-import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/loginIn_registration_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/profile_screen.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {

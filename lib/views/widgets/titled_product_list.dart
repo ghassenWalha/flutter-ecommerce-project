@@ -7,8 +7,8 @@ import 'package:flutter_ecommerce_project/views/widgets/product_list.dart';
   the constructor parameters are the title of the list and a list of products   _souheil  */
 
 class TitledProductList extends StatelessWidget {
-  Future<List<Product>> productList;
-  String title;
+ final  Future<List<Product>> productList;
+  final String title;
   /*final List<Product> productList;*/
 
   TitledProductList({this.title, this.productList});

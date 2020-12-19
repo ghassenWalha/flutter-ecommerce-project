@@ -1,14 +1,13 @@
-import 'dart:developer';
 import 'package:flutter_ecommerce_project/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  final String userUrl = "http://192.168.43.68:3001/api/users/";
-  final String authUrl = "http://192.168.43.68:3001/api/auth/";
+  final String userUrl = "http://192.168.1.2:3001/api/users/";
+  final String authUrl = "http://192.168.1.2:3001/api/auth/";
 
-  Future<User> addUser(name, email, password) async {
+  Future<dynamic> addUser(name, email, password) async {
     try {
       final response = await http.post(userUrl,
           headers: {"content-type": "application/json"},
@@ -39,7 +38,7 @@ class UserService {
     }
   }
 
-  Future<User> loginUser(email, password) async {
+  Future<dynamic> loginUser(email, password) async {
     try {
       final response = await http.post(authUrl,
           headers: {"content-type": "application/json"},
@@ -55,14 +54,14 @@ class UserService {
             email: body["email"],
             favorite: body["favorite"]);
 
-        /* final SharedPreferences prefs = await SharedPreferences.getInstance();
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
 
         prefs.setString("token", response.headers["x-auth-token"]);
-        prefs.setString("email", user.email);
-        prefs.setString("username", user.name);
-        return user;*/
+        
+        return user;
       } else {
         throw response.body;
+        
       }
     } catch (e) {
       print(e);

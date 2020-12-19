@@ -34,6 +34,6 @@ class Product {
         "name": name,
         "description": description,
         "price": price,
-        "imgsUrl": imgsUrl,
+        "imgUrls": imgsUrl,
       };
 }

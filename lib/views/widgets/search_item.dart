@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/fixtures/fixture.dart';
 // this widget is responsible for building the search item 
 class SearchItem extends SearchDelegate<Widget> {
   // building the list that contains the product names 
-  List<String> namelist = List<String>();
-  int i = 0;
-  List<String> list() {
-    while (i < bagList.length) {
-      namelist.add(bagList[i]['name']);
-      i++;
-    }
-    return namelist;
-  }
+  // List<String> namelist = List<String>();
+  // int i = 0;
+  // List<String> list() {
+  //   while (i < bagList.length) {
+  //     namelist.add(bagList[i]['name']);
+  //     i++;
+  //   }
+  //   return namelist;
+  // }
 
 
 
@@ -46,19 +45,21 @@ class SearchItem extends SearchDelegate<Widget> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = (query.isEmpty)
-        ? list()
-        : list().where((p) => p.startsWith(query)).toList();
+  //  final suggestionList = (query.isEmpty)
+    //    ? list()
+      //  : list().where((p) => p.startsWith(query)).toList();
  // building the suggestion list
-    return ListView.builder(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, index) => ListTile(
-          onTap: () {
-            query = suggestionList[index];
-            showResults(context);
-          },
+    return Text("212");
+    
+    //  ListView.builder(
+    //   itemCount: suggestionList.length,
+    //   itemBuilder: (context, index) => ListTile(
+    //       onTap: () {
+    //         query = suggestionList[index];
+    //         showResults(context);
+    //       },
        
-          title: Text(suggestionList[index])),
-    );
+    //       title: Text(suggestionList[index])),
+    // );
   }
 }

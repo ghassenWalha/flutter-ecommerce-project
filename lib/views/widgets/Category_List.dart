@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
+import 'package:flutter_ecommerce_project/services/category_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_Item.dart';
 
 
@@ -13,10 +14,9 @@ import 'package:flutter_ecommerce_project/views/widgets/category_Item.dart';
   the constructor parameters are the title of the list and a list of categories   _souheil  */
 
 class CategoryList extends StatelessWidget {
-  final Future<List<Category>> categoryList;
+final CategoryService categoryService = new CategoryService();
 
-
-  CategoryList(this.categoryList);
+CategoryList();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +36,7 @@ class CategoryList extends StatelessWidget {
               child: Container(
                   height: MediaQuery.of(context).size.height / 5,
                   child: FutureBuilder(
-                      future: categoryList,
+                      future: categoryService.getcategories(),
                       builder: (BuildContext context,
                           AsyncSnapshot<List<Category>> snapshot) {
                         if (snapshot.hasData) {

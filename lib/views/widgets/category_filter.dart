@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_grid_view.dart';
 import '../../services/product_service.dart';
 import 'filters.dart';
 
 class CategoryFilter extends StatelessWidget {
   final List<String> filters = ["price", "date", "likes"];
-  ProductService productService = new ProductService();
+  final ProductService productService = new ProductService();
   @override
   Widget build(BuildContext context) {
     String category = ModalRoute.of(context).settings.arguments;

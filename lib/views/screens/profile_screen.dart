@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/views/screens/login.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
-import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatelessWidget {

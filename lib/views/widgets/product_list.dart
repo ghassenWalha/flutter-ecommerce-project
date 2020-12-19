@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Product_View.dart';
 
 /* this widget present a scrolable horizontal list of products .
@@ -8,7 +7,7 @@ import 'package:flutter_ecommerce_project/views/widgets/Product_View.dart';
    Product after instantiation with add category  _ souheil  */
 
 class ProductList extends StatelessWidget {
-  Future<List<Product>> productList;
+  final Future<List<Product>> productList;
 
   // this is a constructor  that takes a list of products and create a list of product_view widgets
 
