@@ -4,20 +4,28 @@ import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProfile extends StatefulWidget {
+  final decodedToken;
+  UpdateProfile(this.decodedToken);
+
   @override
   _UpdateProfileState createState() => _UpdateProfileState();
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
+  TextEditingController emailController;
+  TextEditingController nameController;
+  void initState() {
+    super.initState();
+    emailController =
+        TextEditingController(text: this.widget.decodedToken["email"]);
+    nameController =
+        TextEditingController(text: this.widget.decodedToken["name"]);
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController;
-    TextEditingController nameController;
-    bool changed = false;
-    Map decodedToken = ModalRoute.of(context).settings.arguments;
-
-    emailController = TextEditingController(text: decodedToken["email"]);
-    nameController = TextEditingController(text: decodedToken["name"]);
+    bool emailchanged = false;
+    bool usernamechanged = false;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
@@ -70,7 +78,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       RoundedInputField(
                                         controller: nameController,
                                         onChanged: (value) {
-                                          changed = true;
+                                          usernamechanged = !(value ==
+                                              this.widget.decodedToken["name"]);
                                         },
                                       ),
                                       Padding(
@@ -89,7 +98,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       RoundedInputField(
                                         controller: emailController,
                                         onChanged: (value) {
-                                          changed = true;
+                                          emailchanged = !(value ==
+                                              this.widget.decodedToken["name"]);
                                         },
                                       ),
                                       SizedBox(
@@ -104,10 +114,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       text: "UPDATE",
                                       color: Colors.grey,
                                       press: () {
-                                        if (!changed) {
-                                          print(emailController.text);
-                                          print(emailController.value);
-                                        }
+                                        if (emailchanged | usernamechanged) {}
                                       },
                                     )),
                                 Container(

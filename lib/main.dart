@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/product_details_screen': (context) => ProductPage(),
         '/category_filter': (context) => CategoryFilter(),
-        '/update_profile_screen': (context) => UpdateProfile()
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

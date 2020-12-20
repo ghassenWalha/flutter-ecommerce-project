@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/update_profile_screen.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -116,9 +117,9 @@ class Profile extends StatelessWidget {
                                 text: " EDIT",
                                 color: Colors.grey,
                                 press: () {
-                                  Navigator.pushNamed(
-                                      context, "/update_profile_screen",
-                                      arguments: decodedToken);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          UpdateProfile(decodedToken)));
                                 },
                               )),
                               Container(

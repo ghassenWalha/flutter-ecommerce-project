@@ -29,7 +29,6 @@ class UserService {
               bag: body["bag"],
               email: body["email"],
               favorite: body["favorite"]);
-
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString("token", user.token);
           return user;
@@ -63,8 +62,43 @@ class UserService {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
 
           prefs.setString("token", response.headers["x-auth-token"]);
+          print(user.token);
           /*prefs.setString("email", user.email);
                prefs.setString("username", user.name);*/
+          return user;
+        } else {
+          throw response.body;
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  dynamic updateUser(username, email) async {
+    try {
+      final response = await http.put(userUrl,
+          headers: {"content-type": "application/json"},
+          body: json.encode({"email": email, "name": username}));
+
+      final body = jsonDecode(response.body);
+
+      if (body["error"] != null) {
+        return body["error"];
+      } else {
+        if (response.statusCode == 200) {
+          User user = User(
+              name: body["name"],
+              isAdmin: body["isAdmin"],
+              token: response.headers["x-auth-token"],
+              bag: body["bag"],
+              email: body["email"],
+              favorite: body["favorite"]);
+
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.remove("token");
+          prefs.setString("token", response.headers["x-auth-token"]);
+          print(user.token);
           return user;
         } else {
           throw response.body;
