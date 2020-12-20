@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,8 +25,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   @override
   Widget build(BuildContext context) {
-    bool emailchanged = false;
-    bool usernamechanged = false;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
@@ -77,10 +76,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                           )),
                                       RoundedInputField(
                                         controller: nameController,
-                                        onChanged: (value) {
-                                          usernamechanged = !(value ==
-                                              this.widget.decodedToken["name"]);
-                                        },
+                                        onChanged: (value) {},
                                       ),
                                       Padding(
                                           padding: EdgeInsets.symmetric(
@@ -97,10 +93,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                           )),
                                       RoundedInputField(
                                         controller: emailController,
-                                        onChanged: (value) {
-                                          emailchanged = !(value ==
-                                              this.widget.decodedToken["name"]);
-                                        },
+                                        onChanged: (value) {},
                                       ),
                                       SizedBox(
                                         height: size.height * 0.04,
@@ -114,7 +107,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       text: "UPDATE",
                                       color: Colors.grey,
                                       press: () {
-                                        if (emailchanged | usernamechanged) {}
+                                        UserService().updateUser(
+                                            nameController.text,
+                                            emailController.text);
+                                        Navigator.pushNamed(context, "/");
                                       },
                                     )),
                                 Container(

@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-
   final String userUrl =
       "https://ecommerce-node-junior.herokuapp.com/api/users";
   final String authUrl = "https://ecommerce-node-junior.herokuapp.com/api/auth";
@@ -39,7 +38,6 @@ class UserService {
     }
   }
 
-
   dynamic loginUser(email, password) async {
     try {
       final response = await http.post(authUrl,
@@ -70,7 +68,6 @@ class UserService {
         } else {
           throw response.body;
         }
-
       }
     } catch (e) {
       print(e);
@@ -78,13 +75,13 @@ class UserService {
   }
 
   dynamic updateUser(username, email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
     try {
-      final response = await http.put(userUrl,
-          headers: {"content-type": "application/json"},
+      final response = await http.put("http://192.168.43.68:3001/api/users",
+          headers: {"content-type": "application/json", "x-auth-token": token},
           body: json.encode({"email": email, "name": username}));
-
       final body = jsonDecode(response.body);
-
       if (body["error"] != null) {
         return body["error"];
       } else {
