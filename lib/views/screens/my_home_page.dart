@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _screens = [
     HomeScreen(),
-    Center(child: AdminScreen()),
+    Center(child: Scaffold()),
     Center(
       child: BagScreen(),
     ),
