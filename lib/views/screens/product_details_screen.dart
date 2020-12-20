@@ -36,23 +36,27 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
+  int quantity = 1;
+
+  void addQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void substractQuantity() {
+    setState(() {
+      quantity--;
+    });
+  }
+
   Widget build(BuildContext context) {
-    int quantity = 1;
     final Product product = ModalRoute.of(context).settings.arguments;
 
     /*This function adds 1 to the quantity when we click on the plus button*/
-    // void addQuantity() {
-    //   setState(() {
-    //     quantity++;
-    //   });
-    // }
 
-/*This function substract 1 from the quantity when we click on the minus button*/
-    // void substractQuantity() {
-    //   setState(() {
-    //     quantity--;
-    //   });
-    // }
+    /*This function substract 1 from the quantity when we click on the minus button*/
+
 
     return SafeArea(
       child: Scaffold(
