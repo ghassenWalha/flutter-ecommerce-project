@@ -52,9 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
       child: BagScreen(),
     ),
     LoginInRegistrationScreen(),
-    Center(
-      child: Profile(),
-    )
   ];
   @override
   Widget build(BuildContext context) {

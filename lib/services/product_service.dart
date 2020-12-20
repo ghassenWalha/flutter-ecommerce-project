@@ -7,10 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
 
 class ProductService {
-
   final String productUrl =
       "https://ecommerce-node-junior.herokuapp.com/api/products/";
-
 
   Future<List<Product>> getProducts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,15 +28,16 @@ class ProductService {
   }
 
   Future<void> addProduct(Map product) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
 
     product['price'] = product['price'].toString();
-   
 
     dynamic res = await http.post(productUrl,
-        headers: {"content-type": "application/json"},
+        headers: {"content-type": "application/json", "x-auth-token": token},
         body: json.encode(product));
     if (res.statusCode == 200) {
-    print(res.body);
+      print(res.body);
 
       print("product added");
     } else {
@@ -47,15 +46,14 @@ class ProductService {
   }
 
   Future<void> updateProduct(Map product) async {
-         product['price'] = product['price'].toString();
-   
- 
- 
-  print(product);
-    dynamic res = await http.put(productUrl, headers: {"content-type": "application/json"}, body:  json
-              .encode(product));
+    product['price'] = product['price'].toString();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
 
-
+    print(product);
+    dynamic res = await http.put(productUrl,
+        headers: {"content-type": "application/json", "x-auth-token": token},
+        body: json.encode(product));
     if (res.statusCode == 200) {
       dynamic body = jsonDecode(res.body);
       print(body);
