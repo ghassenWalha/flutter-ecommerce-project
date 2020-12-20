@@ -97,9 +97,7 @@ class ProductItemAdminState extends State<ProductItemAdmin> {
                         style: TextStyle(fontSize: 16)),
                   ],
                 ),
-                Text(
-                    'Color : ' //+ widget.color
-                    ,
+                Text('Color : ${widget.product.color}',
                     style: TextStyle(
                       color: Colors.grey,
                     )),

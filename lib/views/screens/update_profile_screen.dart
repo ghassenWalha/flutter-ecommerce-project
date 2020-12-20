@@ -24,18 +24,26 @@ class _UpdateProfileState extends State<UpdateProfile> {
         TextEditingController(text: this.widget.decodedToken["name"]);
   }
 
+  bool nochange = false;
+  String message = "";
+
+  void nochanges() {
+    setState(() {
+      nochange = true;
+      message = "no changes are made";
+    });
+  }
+
+  void onchanges() {
+    setState(() {
+      nochange = false;
+      message = "";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool changed = false;
-    String message = "";
-
-    void nochanges() {
-      setState(() {
-        changed = true;
-        message = "no changes are made";
-      });
-    }
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -87,7 +95,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                           )),
                                       RoundedInputField(
                                         controller: nameController,
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          onchanges();
+                                        },
                                       ),
                                       Padding(
                                           padding: EdgeInsets.symmetric(
@@ -104,10 +114,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                           )),
                                       RoundedInputField(
                                         controller: emailController,
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          onchanges();
+                                        },
                                       ),
-                                      (changed)
-                                          ? Text(message)
+                                      (nochange)
+                                          ? Container(
+                                              height: size.height * 0.04,
+                                              child: Text(
+                                                message,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20),
+                                              ))
                                           : SizedBox(
                                               height: size.height * 0.04,
                                             ),
