@@ -1,14 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/category.dart';
 import 'package:flutter_ecommerce_project/services/category_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_Item.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-
-
-
- 
 /* this widget represent a titled and a scrollable list of categories . it's formed by 
  column widget that contains a text widget and a CategoryList widget 
   the constructor parameters are the title of the list and a list of categories   _souheil  */
@@ -16,7 +11,8 @@ import 'package:flutter_ecommerce_project/views/widgets/category_Item.dart';
 class CategoryList extends StatelessWidget {
 final CategoryService categoryService = new CategoryService();
 
-CategoryList();
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,7 +48,10 @@ CategoryList();
                           );
                         } else {
                           return Center(
-                            child: Text('no data'),
+                            child: SpinKitFadingCircle(
+                              color: Colors.grey[800],
+                              size: 40.0,
+                            ),
                           );
                         }
                       })))

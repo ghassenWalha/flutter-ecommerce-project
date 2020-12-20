@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_view.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 /* this widget represents a grid view of products . it uses the StaggeredGridView 
@@ -38,8 +39,10 @@ class ProductGridView extends StatelessWidget {
                     );
                   } else {
                     return Center(
-                      child: Text('no data'),
-                    );
+                        child: SpinKitFadingCircle(
+                      color: Colors.grey[800],
+                      size: 60.0,
+                    ));
                   }
                 })));
   }

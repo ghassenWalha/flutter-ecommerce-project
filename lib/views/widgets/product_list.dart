@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/Product_View.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 /* this widget present a scrolable horizontal list of products .
    it takes a list of productsof and you can add a new 
@@ -34,8 +35,10 @@ class ProductList extends StatelessWidget {
                     ));
               } else {
                 return Center(
-                  child: Text('no data'),
-                );
+                    child: SpinKitFadingCircle(
+                  color: Colors.grey[800],
+                  size: 50.0,
+                ));
               }
             }));
   }

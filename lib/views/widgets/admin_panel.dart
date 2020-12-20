@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/product_item_admin.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../models/product.dart';
 
 /*
@@ -14,7 +15,6 @@ class AdminPanel extends StatefulWidget {
 }
 
 class AdminPanelState extends State<AdminPanel> {
-
   ProductService productService = ProductService();
 
   /*This function removes a widget when we click on the  delete button*/
@@ -51,8 +51,10 @@ class AdminPanelState extends State<AdminPanel> {
                         });
                   } else {
                     return Center(
-                      child: Text('no data'),
-                    );
+                        child: SpinKitFadingCircle(
+                      color: Colors.grey[800],
+                      size: 60.0,
+                    ));
                   }
                 }))
       ]),
