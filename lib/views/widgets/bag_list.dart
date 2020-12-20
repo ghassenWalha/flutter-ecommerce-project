@@ -50,59 +50,58 @@ class BagListState extends State<BagList> {
 /* Here we build the list */
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[50],
-      child: Column(children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.725,
-          child: FutureBuilder(
-              future: futurebagList,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<Product>> snapshot) {
-                if (snapshot.hasData) {
-                  List<Product> products = snapshot.data;
+    return FutureBuilder(
+        future: futurebagList,
+        builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+          if (snapshot.hasData) {
+            List<Product> products = snapshot.data;
+            print(products);
 
-                  print(products);
+            if (isFirstTime) {
+              bagList = products
+                  .map((produit) => {'product': produit, 'quantity': 1})
+                  .toList();
 
-                  if (isFirstTime) {
-                    bagList = products
-                        .map((produit) => {'product': produit, 'quantity': 1})
-                        .toList();
+              isFirstTime = false;
+            }
+            return Container(
+                color: Colors.grey[50],
+                child: Column(children: [
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.725,
+                      child: ListView.builder(
+                          itemCount: bagList.length,
+                          itemBuilder: (context, i) {
+                            return BagItem(
+                              product: bagList[i]['product'],
+                              quantity: bagList[i]['quantity'],
+                              key: ValueKey(bagList[i]['product'].name),
+                              remove: remove,
+                              addQuantity: () {
+                                addQuantity(i);
+                              },
+                              substractQuantity: () {
+                                substractQuantity(i);
+                              },
+                            );
+                          })),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: Total(bagList ?? []))
+                ]));
+          } else {
+            return Container(
+                width: 500,
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Center(
+                        child: SpinKitFadingCircle(
+                      color: Colors.grey[800],
+                      size: 60.0,
+                    ))));
+          }
+        });
 
-                    isFirstTime = false;
-                  }
-
-                  return ListView.builder(
-                      itemCount: bagList.length,
-                      itemBuilder: (context, i) {
-                        return BagItem(
-                          product: bagList[i]['product'],
-                          quantity: bagList[i]['quantity'],
-                          key: ValueKey(bagList[i]['product'].name),
-                          remove: remove,
-                          addQuantity: () {
-                            addQuantity(i);
-                          },
-                          substractQuantity: () {
-                            substractQuantity(i);
-                          },
-                        );
-                      });
-                } else {
-                  return Center(
-                      child: SpinKitFadingCircle(
-                    color: Colors.grey[800],
-                    size: 60.0,
-                  ));
-                }
-              }),
-        ),
-
-        SizedBox(
-            height: MediaQuery.of(context).size.height * 0.06,
-            child: Total(bagList ??
-                [])) //This is the widget responsible for displaying the total
-      ]),
-    );
+    //This is the widget responsible for displaying the total
   }
 }

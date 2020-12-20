@@ -15,7 +15,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   ProductService productService = new ProductService();
-BagService bagService = new BagService();
+  BagService bagService = new BagService();
 
   bool _visible = false;
   String _moreInfoText = "MORE INFO ▼";
@@ -35,23 +35,25 @@ BagService bagService = new BagService();
     }
   }
 
+  int quantity = 1;
+
+  void addQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void substractQuantity() {
+    setState(() {
+      quantity--;
+    });
+  }
+
   Widget build(BuildContext context) {
-    int quantity = 1;
     final Product product = ModalRoute.of(context).settings.arguments;
 
     /*This function adds 1 to the quantity when we click on the plus button*/
-    void addQuantity() {
-      setState(() {
-        quantity++;
-      });
-    }
-
-/*This function substract 1 from the quantity when we click on the minus button*/
-    void substractQuantity() {
-      setState(() {
-        quantity--;
-      });
-    }
+    /*This function substract 1 from the quantity when we click on the minus button*/
 
     return SafeArea(
       child: Scaffold(
@@ -144,7 +146,7 @@ BagService bagService = new BagService();
                 child: Visibility(
                   visible: _visible,
                   child: Text(
-product.moreInfo,
+                    product.moreInfo,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -154,9 +156,9 @@ product.moreInfo,
               ),
               Container(
                 height: (MediaQuery.of(context).size.height / 4) * 1.8,
-                child:       TitledProductList(
-                        title: "YOU MIGHT ALSO LIKE :",
-                        productList: productService.getProducts()),
+                child: TitledProductList(
+                    title: "YOU MIGHT ALSO LIKE :",
+                    productList: productService.getProducts()),
               )
             ]),
             CustomActionBar(
@@ -174,7 +176,9 @@ product.moreInfo,
               horizontal: 24.0,
             ),
             child: FloatingActionButton(
-              onPressed: ()=>bagService.addToBag(product.id).then((value) => Navigator.pop(context)),
+              onPressed: () => bagService
+                  .addToBag(product.id)
+                  .then((value) => Navigator.pop(context)),
               child: Container(
                 height: 65.0,
                 decoration: BoxDecoration(

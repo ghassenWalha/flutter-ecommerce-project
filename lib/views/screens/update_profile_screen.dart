@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProfile extends StatefulWidget {
   final decodedToken;
+
   UpdateProfile(this.decodedToken);
 
   @override
@@ -26,6 +27,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool changed = false;
+    String message = "";
+
+    void nochanges() {
+      setState(() {
+        changed = true;
+        message = "no changes are made";
+      });
+    }
+
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
@@ -95,9 +106,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                         controller: emailController,
                                         onChanged: (value) {},
                                       ),
-                                      SizedBox(
-                                        height: size.height * 0.04,
-                                      ),
+                                      (changed)
+                                          ? Text(message)
+                                          : SizedBox(
+                                              height: size.height * 0.04,
+                                            ),
                                     ],
                                   ),
                                 ),
@@ -107,10 +120,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       text: "UPDATE",
                                       color: Colors.grey,
                                       press: () {
-                                        UserService().updateUser(
-                                            nameController.text,
-                                            emailController.text);
-                                        Navigator.pushNamed(context, "/");
+                                        if ((nameController.text !=
+                                                widget.decodedToken["name"]) |
+                                            (emailController.text !=
+                                                widget.decodedToken["email"])) {
+                                          UserService().updateUser(
+                                              nameController.text,
+                                              emailController.text);
+                                          Navigator.pushNamed(context, "/");
+                                        } else {
+                                          nochanges();
+                                        }
                                       },
                                     )),
                                 Container(
