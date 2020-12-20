@@ -19,15 +19,18 @@ class EditProduct extends StatefulWidget {
 
 class _State extends State<EditProduct> {
   Map product;
-  //fct (value) bech tsati state l champ
+ 
+
   @override
   void initState() {
     print(widget.oldProduct);
     product = widget.oldProduct.toJson();
     product['price'] = product['price'].toString();
 
+
     super.initState();
   }
+  //fct (value) bech tsati state l champ
 
   void attributeChangedHundler(String attributeName, dynamic value) {
     print('here');
@@ -63,6 +66,7 @@ class _State extends State<EditProduct> {
                   ),
                 ),
               ],
+
             ),
           ),
         ),

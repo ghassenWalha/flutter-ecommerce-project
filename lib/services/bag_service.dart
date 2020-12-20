@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class BagService {
   final String bagUrl = "http://192.168.1.2:3001/api/bag";
+
   List<Product> bag = [];
 
   Future<List<Product>> getBag() async {

@@ -7,7 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
 
 class ProductService {
-  final String productUrl = "http://192.168.1.2:3001/api/products/";
+
+  final String productUrl =
+      "https://ecommerce-node-junior.herokuapp.com/api/products/";
 
 
   Future<List<Product>> getProducts() async {
@@ -16,10 +18,10 @@ class ProductService {
     dynamic res = await http
         .get("$productUrl/adminpannel", headers: {"x-auth-token": token});
 
-
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      List<Product> products = body.map((dynamic item) => Product.fromJson(item)).toList();
+      List<Product> products =
+          body.map((dynamic item) => Product.fromJson(item)).toList();
       return products;
     } else {
       print("can't get products");
@@ -27,17 +29,18 @@ class ProductService {
     }
   }
 
-
   Future<void> addProduct(Map product) async {
-     product['price'] = product['price'].toString();
-     product["imgUrls"] = product["imgsUrl"].toString();
-     print('////////////////');
-     print(product);
 
-    dynamic res = await http.post(productUrl, headers: {"content-type": "application/json"}, body:  json
-              .encode(product));
+    product['price'] = product['price'].toString();
+    product["imgsUrl"] = product["imgsUrl"].toString();
+
+    dynamic res = await http.post(productUrl,
+        headers: {"content-type": "application/json"},
+        body: json.encode(product));
     if (res.statusCode == 200) {
     print(res.body);
+
+      print("product added");
     } else {
       print("can't add product");
     }
@@ -51,20 +54,37 @@ class ProductService {
   print(product);
     dynamic res = await http.put(productUrl, headers: {"content-type": "application/json"}, body:  json
               .encode(product));
+
+
     if (res.statusCode == 200) {
-    dynamic body = jsonDecode(res.body);
+      dynamic body = jsonDecode(res.body);
       print(body);
     } else {
       print("can't update product");
-
     }
-      }
+  }
+
+  // Search Product
+  Future<List<Product>> searchProduct(String search) async {
+    dynamic res = await get("$productUrl/search?search=$search");
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Product> products =
+          body.map((dynamic item) => Product.fromJson(item)).toList();
+      return products;
+    } else {
+      print("Can't get products");
+      return [];
+    }
+  }
+
 //Get Products By Category :
   Future<List<Product>> getProductsByCategory(String category) async {
     dynamic res = await get("$productUrl/bycategory/$category");
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      List<Product> products = body.map((dynamic item) => Product.fromJson(item)).toList();
+      List<Product> products =
+          body.map((dynamic item) => Product.fromJson(item)).toList();
       return products;
     } else {
       print("can't get products");
