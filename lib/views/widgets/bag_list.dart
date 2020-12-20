@@ -5,6 +5,8 @@ import 'package:flutter_ecommerce_project/views/widgets/bag_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/total.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'total.dart';
+
 /*
 This class displays the list of Bag items
 
@@ -18,6 +20,7 @@ class BagList extends StatefulWidget {
 class BagListState extends State<BagList> {
   final bagService = BagService();
   bool isFirstTime = true;
+
   List<Map<String, dynamic>> bagList;
   Future<List<Product>> futurebagList;
   @override
@@ -40,7 +43,11 @@ class BagListState extends State<BagList> {
   }
 
 /*This function substract 1 from the quantity when we click on the minus button*/
-//  void substractQuantity(int id) {}
+  void substractQuantity(int i) {
+    setState(() {
+      bagList[i]['quantity'] = bagList[i]['quantity'] - 1;
+    });
+  }
 
 /* Here we build the list */
   @override
@@ -49,56 +56,50 @@ class BagListState extends State<BagList> {
       color: Colors.grey[50],
       child: Column(children: [
         SizedBox(
-            height: MediaQuery.of(context).size.height * 0.725,
-            child: FutureBuilder(
-                future: futurebagList,
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Product>> snapshot) {
-                  if (snapshot.hasData) {
-                    List<Product> products = snapshot.data;
+          height: MediaQuery.of(context).size.height * 0.725,
+          child: FutureBuilder(
+              future: futurebagList,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Product>> snapshot) {
+                if (snapshot.hasData) {
+                  List<Product> products = snapshot.data;
 
-                    print(products);
-                    int q = 1;
-                    if (isFirstTime) {
-                      bagList = products
-                          .map((produit) => {'product': produit, 'quantity': q})
-                          .toList();
+                  print(products);
 
-                      isFirstTime = false;
-                    }
+                  if (isFirstTime) {
+                    bagList = products
+                        .map((produit) => {'product': produit, 'quantity': 1})
+                        .toList();
 
-                    return ListView.builder(
-                        itemCount: bagList.length,
-                        itemBuilder: (context, i) {
-                          // print(bagList[i]);
-                          return BagItem(
-                            product: bagList[i]['product'],
-                            quantity: bagList[i]['quantity'],
-                            key: ValueKey(bagList[i]['product'].name),
-                            remove: remove,
-                            addQuantity: () {
-                              setState(() {
-                                bagList[i]["quantity"] =
-                                    bagList[i]["quantity"] + 1;
-                              });
-                              // addQuantity(i);
-                            },
-                            substractQuantity: () {
-                              setState(() {
-                                bagList[i]['quantity'] =
-                                    bagList[i]['quantity'] - 1;
-                              });
-                            },
-                          );
-                        });
-                  } else {
-                    return Center(
-                        child: SpinKitFadingCircle(
-                      color: Colors.grey[800],
-                      size: 60.0,
-                    ));
+                    isFirstTime = false;
                   }
-                })),
+
+                  return ListView.builder(
+                      itemCount: bagList.length,
+                      itemBuilder: (context, i) {
+                        return BagItem(
+                          product: bagList[i]['product'],
+                          quantity: bagList[i]['quantity'],
+                          key: ValueKey(bagList[i]['product'].name),
+                          remove: remove,
+                          addQuantity: () {
+                            addQuantity(i);
+                          },
+                          substractQuantity: () {
+                            substractQuantity(i);
+                          },
+                        );
+                      });
+                } else {
+                  return Center(
+                      child: SpinKitFadingCircle(
+                    color: Colors.grey[800],
+                    size: 60.0,
+                  ));
+                }
+              }),
+        ),
+
         SizedBox(
             height: MediaQuery.of(context).size.height * 0.06,
             child: Total(bagList ??
