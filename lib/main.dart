@@ -1,5 +1,5 @@
-  
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/update_profile_screen.dart';
 
 import 'package:flutter_ecommerce_project/views/widgets/category_filter.dart';
 
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/product_details_screen': (context) => ProductPage(),
         '/category_filter': (context) => CategoryFilter(),
+        '/update_profile_screen': (context) => UpdateProfile()
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -40,7 +41,4 @@ class MyApp extends StatelessWidget {
       // ),
     );
   }
-
-
 }
-

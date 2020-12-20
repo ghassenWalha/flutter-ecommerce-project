@@ -136,9 +136,7 @@ class _RegistartionScreenState extends State<RegistartionScreen> {
                               child: Text(
                                 "Account",
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold),
+                                    color: Colors.black, fontSize: 30),
                               ),
                             ),
                             (errorMessage != null)
