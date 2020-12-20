@@ -17,7 +17,7 @@ class TitledCategoryList extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.only(top: 30.0, left: 30),
+            padding: EdgeInsets.only(top: 30.0, left: 20),
             child: Text(
               title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

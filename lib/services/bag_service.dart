@@ -35,4 +35,17 @@ class BagService {
       print("Deleted");
     }
   }
+Future<void> addToBag(String id) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+
+  final response = await http.post(bagUrl,
+          headers: {"content-type": "application/json",'x-auth-token': token},
+          body: json
+              .encode({"id": id}));
+
+        if (response.statusCode == 200) {
+          print('added to bag');
+        }
+}
 }
