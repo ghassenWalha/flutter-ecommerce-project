@@ -1,10 +1,10 @@
-import 'dart:developer';
 import 'package:flutter_ecommerce_project/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
+
   final String userUrl =
       "https://ecommerce-node-junior.herokuapp.com/api/users";
   final String authUrl = "https://ecommerce-node-junior.herokuapp.com/api/auth";
@@ -39,6 +39,7 @@ class UserService {
     }
   }
 
+
   dynamic loginUser(email, password) async {
     try {
       final response = await http.post(authUrl,
@@ -69,6 +70,7 @@ class UserService {
         } else {
           throw response.body;
         }
+
       }
     } catch (e) {
       print(e);

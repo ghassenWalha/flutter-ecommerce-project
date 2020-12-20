@@ -1,14 +1,15 @@
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
-import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/loginIn_registration_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/profile_screen.dart';
+<<<<<<< HEAD
 import 'package:flutter_ecommerce_project/views/screens/update_profile_screen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+=======
+>>>>>>> e5676249169740a446e39354566c3cee2d0d3ded
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -60,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     //<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return FutureBuilder(

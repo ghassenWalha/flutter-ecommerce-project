@@ -37,7 +37,8 @@ class BagItemState extends State<BagItem> {
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(top: 2, bottom: 2),
-      child: Row(children: [
+      child: 
+       Row(children: [
         //The picture of the product
         Container(
           width: MediaQuery.of(context).size.width * 0.4,
@@ -45,14 +46,16 @@ class BagItemState extends State<BagItem> {
           height: MediaQuery.of(context).size.height * 0.16,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(18),
-              child: Image(
+              child: 
+              Image(
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
                 image: new AssetImage(
                   widget.product.imgsUrl[0],
                 ),
-              )),
+              )
+              ),
         ),
         //Name,Price and the Color of the Product
         Container(

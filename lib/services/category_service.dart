@@ -16,6 +16,7 @@ class CategoryService {
       return categories;
     } else {
       print("can't get categories");
+      return [];
     }
   }
 }

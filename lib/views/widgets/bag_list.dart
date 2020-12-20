@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/services/bag_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/bag_item.dart';
+import 'package:flutter_ecommerce_project/views/widgets/total.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 
 /*
@@ -16,7 +19,7 @@ class BagList extends StatefulWidget {
 
 class BagListState extends State<BagList> {
   final bagService = BagService();
-
+  List bagList ;
   /*This function removes a widget when we click on the  delete button*/
   void remove(id) {
     setState(() {
@@ -51,8 +54,8 @@ class BagListState extends State<BagList> {
 
                     print(products);
 
-                    List bagList = products
-                        .map((produit) => {"product": produit, "quantity": 1})
+                      bagList = products
+                        .map((Product product) => {"product": product, "quantity": 1})
                         .toList();
                     return ListView.builder(
                         itemCount: products.length,
@@ -60,7 +63,7 @@ class BagListState extends State<BagList> {
                           return BagItem(
                             product: bagList[i]["product"],
                             quantity: bagList[i]["quantity"],
-                            key: ValueKey(bagList[i]["product"]["name"]),
+                         key: ValueKey(bagList[i]["product"].name),
                             remove: remove,
                             addQuantity: () {
                               setState(() {
@@ -78,14 +81,17 @@ class BagListState extends State<BagList> {
                         });
                   } else {
                     return Center(
-                      child: Text('no data'),
-                    );
+                        child: SpinKitFadingCircle(
+                      color: Colors.grey[800],
+                      size: 60.0,
+                    ));
                   }
                 })),
-        // SizedBox(
-        //     height: MediaQuery.of(context).size.height * 0.06,
-        //     child: Total(
-        //         bagList)) //This is the widget responsible for displaying the total
+
+         SizedBox(
+            height: MediaQuery.of(context).size.height * 0.06,
+          child: Total(
+              bagList)) //This is the widget responsible for displaying the total
       ]),
     );
   }

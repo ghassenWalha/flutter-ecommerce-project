@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 import 'package:flutter_ecommerce_project/views/widgets/admin_panel.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 
@@ -34,8 +35,10 @@ class AdminScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey[400],
         onPressed: () {
-          Navigator.
-          pushNamed(context, "/edt",arguments:{"update":false,"product":Product()});
+        Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          EditProduct(oldProduct: Product(), update: false),
+                    ));
         },
         child: Icon(
           Icons.add,

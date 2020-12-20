@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_ecommerce_project/views/screens/update_profile_screen.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+=======
+import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
+>>>>>>> e5676249169740a446e39354566c3cee2d0d3ded
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatelessWidget {
