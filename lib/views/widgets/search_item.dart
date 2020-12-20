@@ -6,7 +6,6 @@ import '../../services/product_service.dart';
 // this widget is responsible for building the search item
 class SearchItem extends SearchDelegate<Widget> {
   // building the list that contains the product names
-  String query;
   List<String> namelist = List<String>();
   int i = 0;
   List<String> list() {
@@ -46,21 +45,41 @@ class SearchItem extends SearchDelegate<Widget> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
     final productService = new ProductService();
-    List<Product> products;
-    productService.searchProduct(query).then((value) => products = value);
-    namelist = products == [] ? [] : products.map((e) => e.name).toList();
 
-    // building the suggestion list
-    return ListView.builder(
-      itemCount: namelist.length,
-      itemBuilder: (context, index) => ListTile(
-          onTap: () {
-            query = namelist[index];
-            showResults(context);
-          },
-          title: Text(namelist[index])),
-    );
+    return Container(
+        child: FutureBuilder(
+            future: productService.searchProduct(query),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+              if (snapshot.hasData) {
+                List<Product> products = snapshot.data;
+                return Container(
+                    height: (MediaQuery.of(context).size.height / 4) * 1.3,
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(top: 6, left: 6),
+                      itemCount: products.length,
+                      scrollDirection: Axis.vertical,
+                      itemExtent: MediaQuery.of(context).size.width / 10,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, "/product_details_screen",
+                                  arguments:
+                                      new Product(name: products[index].name));
+                            },
+                            child: Text(products[index].name));
+                      },
+                    ));
+              } else {
+                return Center(child: Text('')
+                    //     SpinKitFadingCircle(
+                    //   color: Colors.grey[800],
+                    //   size: 50.0,
+                    // )
+                    );
+              }
+            }));
   }
 }
