@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/services/category_service.dart';
 import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/search_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/category_list.dart';
@@ -12,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ProductService productService = new ProductService();
-  CategoryService categoryService = new CategoryService();
+  
   
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: SingleChildScrollView(
-              child: Column(children: [CategoryList(categoryService.getcategories()),
+              child: Column(children: [CategoryList(),
               Container(
                     height: (MediaQuery.of(context).size.height / 4) * 1.8,
                     child: TitledProductList(

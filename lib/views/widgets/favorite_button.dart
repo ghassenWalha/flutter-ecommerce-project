@@ -4,20 +4,27 @@ import 'package:flutter/material.dart';
   it's formed by favorite icon  _souheil */
 
 class FavoriteButton extends StatefulWidget {
-  bool isFav;
-  FavoriteButton(this.isFav);
+   final bool isFav;
+   FavoriteButton(this.isFav);
 
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
 class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFav ;
+  @override
+  void initState() {
+    isFav = this.widget.isFav;
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Material(
         color: Colors.transparent,
         child: IconButton(
-          icon: this.widget.isFav
+          icon: isFav
               ? Icon(
                   Icons.favorite,
                   color: Colors.red,
@@ -28,7 +35,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
                 ),
           onPressed: () {
             setState(() {
-              this.widget.isFav = !this.widget.isFav;
+              isFav = !isFav;
             });
           },
         ));

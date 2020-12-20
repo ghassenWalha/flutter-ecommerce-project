@@ -1,20 +1,19 @@
-import 'dart:developer';
 import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BagService {
-  final String BagUrl = "http://192.168.1.118:3001/api/bag";
+  final String bagUrl = "http://192.168.1.2:3001/api/bag";
+
   List<Product> bag = [];
 
   Future<List<Product>> getBag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
 
-    dynamic res = await http.get("$BagUrl", headers: {"x-auth-token": token});
+    dynamic res = await http.get("$bagUrl", headers: {"x-auth-token": token});
 
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
@@ -24,6 +23,7 @@ class BagService {
       return bag;
     } else {
       print("can't get bag");
+      return [];
     }
   }
 
@@ -31,7 +31,7 @@ class BagService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
     Response res =
-        await delete("$BagUrl/$id", headers: {'x-auth-token': token});
+        await delete("$bagUrl/$id", headers: {'x-auth-token': token});
     if (res.statusCode == 200) {
       print("Deleted");
     }

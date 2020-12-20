@@ -1,13 +1,10 @@
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/views/screens/admin_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/bag_screen.dart';
-import 'package:flutter_ecommerce_project/views/screens/edit_product.dart';
 
 import 'package:flutter_ecommerce_project/views/screens/home_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/loginIn_registration_screen.dart';
 import 'package:flutter_ecommerce_project/views/screens/profile_screen.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -56,54 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    String token;
-    return Container(
-        child: FutureBuilder(
-            future: SharedPreferences.getInstance(),
-            builder: (BuildContext context,
-                AsyncSnapshot<SharedPreferences> snapshot) {
-              if (snapshot.hasData) {
-                token = snapshot.data.getString("token");
-                if (token != null) {
-                  decodedToken = JwtDecoder.decode(token);
-                  if (decodedToken["isAdmin"]) {
-                    // change the navbar if the usr is admin
-                    _screens[1] = Center(child: AdminScreen());
-                  }
-                }
-              } else {}
-              return Scaffold(
-                  body: PageView(
-                    controller: pageController,
-                    onPageChanged: (index) async {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
-                    children: _screens,
-                  ),
-                  backgroundColor: Colors.white,
-                  bottomNavigationBar: BottomNavigationBar(
-                    type: BottomNavigationBarType.fixed,
-                    items: [
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.home_outlined), label: "Home"),
-                      ((token != null) && decodedToken["isAdmin"])
-                          ? BottomNavigationBarItem(
-                              icon: Icon(Icons.lock), label: "admin Dashbord")
-                          : BottomNavigationBarItem(
-                              icon: Icon(Icons.favorite), label: "favorite"),
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.shopping_bag), label: "Bag"),
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.person), label: "login/sign in"),
-                    ],
-                    currentIndex: currentIndex >= 3 ? 3 : currentIndex,
-                    onTap: onSelect,
-                  ));
-            }));
-=======
+
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     return FutureBuilder(
         future: prefs,
@@ -151,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: onSelect,
               ));
         });
->>>>>>> e77cd571dd2c1650a755f8441983077c0e318258
   }
 }
 
