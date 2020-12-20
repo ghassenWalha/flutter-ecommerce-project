@@ -5,8 +5,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BagService {
-  final String bagUrl = "http://192.168.1.2:3001/api/bag";
-
+  final String bagUrl = "https://ecommerce-node-junior.herokuapp.com/api/bag";
   List<Product> bag = [];
 
   Future<List<Product>> getBag() async {

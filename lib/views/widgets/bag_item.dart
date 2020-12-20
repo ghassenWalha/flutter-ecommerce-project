@@ -51,7 +51,7 @@ class BagItemState extends State<BagItem> {
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 0.36,
                 //height: MediaQuery.of(context).size.height * 0.4,
-                image: new AssetImage(
+                image: new NetworkImage(
                   widget.product.imgsUrl[0],
                 ),
               )
