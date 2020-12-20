@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/services/filter_service.dart';
 
 class Filters extends StatefulWidget {
+  String category;
+  Filters(this.category);
   @override
   _FiltersState createState() => _FiltersState();
 }
 
 class _FiltersState extends State<Filters> {
+  FilterService filterService=new FilterService();
+  
   void choiceAction(String s) {
     print("working");
   }
 
-  List<String> ch = ["price", "date", "likes"];
+  List<String> ch = ["priceLowToHigh","priceHighToLow", "dateHighToLow","dateLowToHigh","likes"];
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
@@ -23,8 +28,11 @@ class _FiltersState extends State<Filters> {
       itemBuilder: (BuildContext context) {
         return ch.map((String choice) {
           return PopupMenuItem<String>(
-              child: new ListTile(
-                  leading: Icon(Icons.money), title: Text(choice)));
+              child: new GestureDetector( 
+                child:new ListTile(
+                  leading: Icon(Icons.money), title: Text(choice)),onTap:() async{
+                    filterService.getProducts(choice, widget.category);
+                    } ));
         }).toList();
       },
     );

@@ -88,8 +88,8 @@ class BagListState extends State<BagList> {
                 })),
          SizedBox(
             height: MediaQuery.of(context).size.height * 0.06,
-          child: Total(
-              bagList)) //This is the widget responsible for displaying the total
+          /*child: Total(
+              bagList)*/) //This is the widget responsible for displaying the total
       ]),
     );
   }

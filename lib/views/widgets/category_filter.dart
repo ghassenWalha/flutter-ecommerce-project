@@ -5,7 +5,7 @@ import '../../services/product_service.dart';
 import 'filters.dart';
 
 class CategoryFilter extends StatelessWidget {
-  final List<String> filters = ["price", "date", "likes"];
+  final List<String> filters = ["priceLowToHigh","priceHighToLow" ,"dateHighToLow","dateHighToLow" ,"likes"];
   ProductService productService = new ProductService();
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class CategoryFilter extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       )),
-                  Filters()
+                  Filters(category)
                 ]),
                 Flexible(
                     child: ProductGridView(
