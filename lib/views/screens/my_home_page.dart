@@ -53,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     return FutureBuilder(
         future: prefs,
