@@ -32,7 +32,7 @@ class ProductService {
   Future<void> addProduct(Map product) async {
 
     product['price'] = product['price'].toString();
-    product["imgsUrl"] = product["imgsUrl"].toString();
+   
 
     dynamic res = await http.post(productUrl,
         headers: {"content-type": "application/json"},
@@ -48,9 +48,9 @@ class ProductService {
 
   Future<void> updateProduct(Map product) async {
          product['price'] = product['price'].toString();
-     product["imgUrls"] = product["imgsUrl"].toString();
+   
  
-  print('/////////////');
+ 
   print(product);
     dynamic res = await http.put(productUrl, headers: {"content-type": "application/json"}, body:  json
               .encode(product));

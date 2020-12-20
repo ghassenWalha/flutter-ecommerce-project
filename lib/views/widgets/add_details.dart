@@ -51,6 +51,13 @@ class _AddDetailsState extends State<AddDetails> {
             ),
             onChanged: (value) => widget.changedAtrribut("moreInfo", value),
           ),
+          TextFormField(
+            initialValue: widget.product["color"],
+            decoration: InputDecoration(
+              labelText: 'color',
+            ),
+            onChanged: (value) => widget.changedAtrribut("color", value),
+          ),
           Visibility(
             visible: !widget.update,
             child: TextFormField(

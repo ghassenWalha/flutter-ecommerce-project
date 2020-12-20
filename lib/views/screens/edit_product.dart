@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
-
+import "dart:convert";
+import 'dart:io';
+import 'package:flutter_ecommerce_project/services/image_uploader_service.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../widgets/add_image.dart';
 import '../widgets/add_details.dart';
@@ -19,25 +22,58 @@ class EditProduct extends StatefulWidget {
 
 class _State extends State<EditProduct> {
   Map product;
+    final imagepicker = ImagePicker();
+  final ImageUploader imageUploader = new ImageUploader();
  
 
   @override
   void initState() {
     print(widget.oldProduct);
     product = widget.oldProduct.toJson();
-    product['price'] = product['price'].toString();
-
-
+    product['price'] =( product['price']!=null ) ?product['price'].toString() : "";
+     // =product['imgsUrl'] ?? [];
+    print("///////////////////");
+    print(product);
+product['imgsUrl'] = product['imgUrls']==null ?new List<String>():product['imgUrls'] ;
     super.initState();
   }
   //fct (value) bech tsati state l champ
 
   void attributeChangedHundler(String attributeName, dynamic value) {
-    print('here');
+    
     setState(() {
       product[attributeName] = value.toString();
     });
+    print(product);
   }
+
+   void supprimer(int i) {
+
+      setState(() {
+      product['imgsUrl'].removeAt(i);
+      });
+  
+  }
+
+  Future getImage() async {
+    var pickerFile = await imagepicker.getImage(source: ImageSource.gallery);
+      
+      
+    if (pickerFile != null)
+    {
+      final bytes =File(pickerFile.path).readAsBytesSync();
+        String img64 = base64Encode(bytes);
+       String url = await imageUploader.uploadImage(img64);
+           setState(() {
+        print("////////////////");
+        product['imgsUrl'].add(url);
+        print("////////////////");
+       
+      });
+        }
+   
+     
+    }
 
   ProductService productService = new ProductService();
   @override
@@ -51,7 +87,7 @@ class _State extends State<EditProduct> {
             width: size.width,
             child: Column(
               children: [
-                AddImage(product["imgsUrl"] ?? []),
+                AddImage(urls:product["imgsUrl"] ,handleDelete: supprimer,handleAddClicked: getImage),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 24.0,
