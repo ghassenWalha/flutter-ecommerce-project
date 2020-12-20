@@ -66,7 +66,8 @@ class SearchItem extends SearchDelegate<Widget> {
                             onTap: () {
                               Navigator.pushNamed(
                                   context, "/product_details_screen",
-                                  arguments: products[index]);
+                                  arguments:
+                                      new Product(name: products[index].name));
                             },
                             child: Text(products[index].name));
                       },
