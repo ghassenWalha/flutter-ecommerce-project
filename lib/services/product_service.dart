@@ -69,6 +69,7 @@ class ProductService {
       List<dynamic> body = jsonDecode(res.body);
       List<Product> products =
           body.map((dynamic item) => Product.fromJson(item)).toList();
+          print(products);
       return products;
     } else {
       print("Can't get products");

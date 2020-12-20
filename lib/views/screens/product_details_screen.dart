@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/services/bag_service.dart';
 import 'package:flutter_ecommerce_project/services/product_service.dart';
+import 'package:flutter_ecommerce_project/views/widgets/favorite_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/item_counter.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
 
@@ -53,7 +54,9 @@ class _ProductPageState extends State<ProductPage> {
     final Product product = ModalRoute.of(context).settings.arguments;
 
     /*This function adds 1 to the quantity when we click on the plus button*/
+
     /*This function substract 1 from the quantity when we click on the minus button*/
+
 
     return SafeArea(
       child: Scaffold(
@@ -80,11 +83,11 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child:
-                          ItemCounter(addQuantity, quantity, substractQuantity),
-                    )
+                    // Align(
+                    //   alignment: Alignment.centerRight,
+                    //   child:
+                    //       ItemCounter(addQuantity, quantity, substractQuantity),
+                    // )
                   ],
                 ),
               ),
