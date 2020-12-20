@@ -23,14 +23,11 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) {
     return InkWell(
       enableFeedback: true,
-      onTap: () async {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        if (prefs.getString("token") == null) {
-          Navigator.pushNamed(context, "/");
-        } else {
+      onTap: ()  {
+     
           Navigator.pushNamed(context, "/product_details_screen",
               arguments: this.widget.product);
-        }
+        
       },
       onDoubleTap: () {
         //this methode  change  the isFave variable when
