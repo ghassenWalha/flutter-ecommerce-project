@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
 import 'package:flutter_ecommerce_project/services/bag_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/bag_item.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'total.dart';
 
 /*
 This class displays the list of Bag items
@@ -78,14 +80,16 @@ class BagListState extends State<BagList> {
                         });
                   } else {
                     return Center(
-                      child: Text('no data'),
-                    );
+                        child: SpinKitFadingCircle(
+                      color: Colors.grey[800],
+                      size: 60.0,
+                    ));
                   }
                 })),
-        // SizedBox(
-        //     height: MediaQuery.of(context).size.height * 0.06,
-        //     child: Total(
-        //         bagList)) //This is the widget responsible for displaying the total
+         SizedBox(
+            height: MediaQuery.of(context).size.height * 0.06,
+          child: Total(
+              bagList)) //This is the widget responsible for displaying the total
       ]),
     );
   }
