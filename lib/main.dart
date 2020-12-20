@@ -1,5 +1,5 @@
-  
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_project/views/screens/update_profile_screen.dart';
 
 import 'package:flutter_ecommerce_project/views/widgets/category_filter.dart';
 
@@ -39,7 +39,4 @@ class MyApp extends StatelessWidget {
       // ),
     );
   }
-
-
 }
-
