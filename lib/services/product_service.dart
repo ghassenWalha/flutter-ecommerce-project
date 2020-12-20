@@ -7,8 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
 
 class ProductService {
+
   final String productUrl =
       "https://ecommerce-node-junior.herokuapp.com/api/products/";
+
 
   Future<List<Product>> getProducts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -28,13 +30,16 @@ class ProductService {
   }
 
   Future<void> addProduct(Map product) async {
+
     product['price'] = product['price'].toString();
-    product["imgsUrl"] = product["imgsUrl"].toString();
+   
 
     dynamic res = await http.post(productUrl,
         headers: {"content-type": "application/json"},
         body: json.encode(product));
     if (res.statusCode == 200) {
+    print(res.body);
+
       print("product added");
     } else {
       print("can't add product");
@@ -42,18 +47,34 @@ class ProductService {
   }
 
   Future<void> updateProduct(Map product) async {
-    product['price'] = product['price'].toString();
-    product["imgsUrl"] = product["imgsUrl"].toString();
-    product["_id"] = product["id"];
-    print(product);
-    dynamic res = await http.put(productUrl,
-        headers: {"content-type": "application/json"},
-        body: json.encode(product));
+         product['price'] = product['price'].toString();
+   
+ 
+ 
+  print(product);
+    dynamic res = await http.put(productUrl, headers: {"content-type": "application/json"}, body:  json
+              .encode(product));
+
+
     if (res.statusCode == 200) {
       dynamic body = jsonDecode(res.body);
       print(body);
     } else {
       print("can't update product");
+    }
+  }
+
+  // Search Product
+  Future<List<Product>> searchProduct(String search) async {
+    dynamic res = await get("$productUrl/search?search=$search");
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Product> products =
+          body.map((dynamic item) => Product.fromJson(item)).toList();
+      return products;
+    } else {
+      print("Can't get products");
+      return [];
     }
   }
 

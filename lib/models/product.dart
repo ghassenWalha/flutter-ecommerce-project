@@ -33,7 +33,9 @@ class Product {
         "id": id,
         "name": name,
         "description": description,
+        "moreInfo": moreInfo,
         "price": price,
-        "imgsUrl": imgsUrl,
+        "imgUrls": imgsUrl,
+        "color":color
       };
 }

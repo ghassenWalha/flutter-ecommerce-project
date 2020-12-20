@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_project/models/product.dart';
-import 'package:flutter_ecommerce_project/models/user.dart';
 import 'package:flutter_ecommerce_project/services/user_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_button.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_input_field.dart';
 import 'package:flutter_ecommerce_project/views/widgets/rounded_password_field.dart';
 import 'package:flutter_ecommerce_project/views/screens/login.dart';
+import 'package:flutter_ecommerce_project/models/user.dart';
 
 class RegistartionScreen extends StatefulWidget {
   @override

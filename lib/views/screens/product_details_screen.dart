@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/item_counter.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
 
@@ -12,28 +13,8 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<Product> productGenerator() {
-    List<Product> list = [];
+  ProductService productService = new ProductService();
 
-    for (var i = 6; i > 0; i--)
-      list.add(Product(
-          id: i.toString(),
-          name: "table",
-          price: 1200,
-          description: "mlmlmlmlm",
-          category: "sofa",
-          imgsUrl: [
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-            "assets/images/$i.jpg",
-          ]));
-    return list;
-  }
 
   bool _visible = false;
   String _moreInfoText = "MORE INFO ▼";
@@ -162,7 +143,7 @@ class _ProductPageState extends State<ProductPage> {
                 child: Visibility(
                   visible: _visible,
                   child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta turpis quis purus consequat, id placerat enim iaculis.",
+product.moreInfo,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -172,10 +153,9 @@ class _ProductPageState extends State<ProductPage> {
               ),
               Container(
                 height: (MediaQuery.of(context).size.height / 4) * 1.8,
-                child: TitledProductList(
-                  title: "YOU MIGHT ALSO LIKE :",
-                  //productList: productGenerator(),
-                ),
+                child:       TitledProductList(
+                        title: "YOU MIGHT ALSO LIKE :",
+                        productList: productService.getProducts()),
               )
             ]),
             CustomActionBar(

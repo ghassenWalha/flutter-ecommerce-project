@@ -1,50 +1,31 @@
-import 'dart:io';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AddImage extends StatefulWidget {
   final List<String> urls;
-  AddImage(this.urls);
+  final Function handleDelete;
+  final Function handleAddClicked;
+  AddImage({this.urls,this.handleDelete,this.handleAddClicked});
   @override
   _State createState() => _State();
 }
 
 class _State extends State<AddImage> {
-  final imagepicker = ImagePicker();
+
   int limit;
   int _selectedPage = 0;
-  List<File> _imagesFilesList = [];
   List<String> _imagesUrlList = [];
 
   void initState() {
     super.initState();
     _imagesUrlList = this.widget.urls;
     limit = _imagesUrlList.length;
+  
 
   }
 
-  void supprimer(int i) {
-    if (i < _imagesUrlList.length)
-      setState(() {
-        limit--;
-        _imagesUrlList.removeAt(i);
-      });
-    else
-      setState(() {
-        limit--;
-        _imagesFilesList.removeAt(i - _imagesUrlList.length);
-      });
-  }
-
-  Future _getImage() async {
-    var pickerFile = await imagepicker.getImage(source: ImageSource.gallery);
-    if (pickerFile != null)
-      setState(() {
-        _imagesFilesList.add(File(pickerFile.path));
-        limit++;
-      });
-  }
+ 
 
   List<Widget> _pageViewChildrenBuilder() {
     return [
@@ -60,23 +41,9 @@ class _State extends State<AddImage> {
             ),
           )
           .toList(),
-      ..._imagesFilesList.map((image) {
-        return Container(
-          color: Colors.black12,
-          child: Stack(
-            children: [
-              Image.file(
-                image,
-                fit: BoxFit.fill,
-              ),
-            ],
-          ),
-          width: 200,
-          height: 250,
-        );
-      }).toList(),
+    
       GestureDetector(
-        onTap: _getImage,
+        onTap: this.widget.handleAddClicked,
         child: Container(
           color: Colors.black12,
           child: Icon(
@@ -136,7 +103,7 @@ class _State extends State<AddImage> {
                   right: 1,
                   child: IconButton(
                       icon: Icon(Icons.cancel),
-                      onPressed: () => supprimer(_selectedPage)),
+                      onPressed: () => this.widget.handleDelete(_selectedPage)),
                 )
               : Container(),
         ],

@@ -5,8 +5,6 @@ import 'package:flutter_ecommerce_project/views/widgets/bag_item.dart';
 import 'package:flutter_ecommerce_project/views/widgets/total.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import 'total.dart';
-
 /*
 This class displays the list of Bag items
 
