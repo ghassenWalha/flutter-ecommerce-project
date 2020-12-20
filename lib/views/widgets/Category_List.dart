@@ -20,9 +20,9 @@ final CategoryService categoryService = new CategoryService();
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Padding(
-              padding: EdgeInsets.only(top: 30.0, left: 30),
+              padding: EdgeInsets.only(top: 30.0, left:15 ),
               child: Text(
-                "Category",
+                "Categories",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )),
           Container(

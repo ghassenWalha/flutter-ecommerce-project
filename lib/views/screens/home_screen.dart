@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Image.asset(
-        "assets/images/5.jpg",
+        "assets/images/homePage.jpg",
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height / 2.3,
         fit: BoxFit.fill,
@@ -31,15 +31,23 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           icon: Icon(Icons.search),
         ),
-        right: 15,
-        top: 30,
+        right: 20,
+        top: 45,
       ),
       Positioned(
         child: Text(
           "New Collection",
           style: TextStyle(fontSize: 40, color: Colors.white),
         ),
-        top: MediaQuery.of(context).size.height / 4.6,
+        top: MediaQuery.of(context).size.height / 5,
+        left: 10,
+      ),
+          Positioned(
+        child: Text(
+          "The top design trends in 2020",
+          style: TextStyle(fontSize: 15, color: Colors.white),
+        ),
+        top: MediaQuery.of(context).size.height / 3.85,
         left: 10,
       ),
       Positioned(

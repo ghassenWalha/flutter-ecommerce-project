@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_project/models/product.dart';
+import 'package:flutter_ecommerce_project/services/bag_service.dart';
 import 'package:flutter_ecommerce_project/services/product_service.dart';
 import 'package:flutter_ecommerce_project/views/widgets/item_counter.dart';
 import 'package:flutter_ecommerce_project/views/widgets/titled_product_list.dart';
@@ -14,6 +15,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   ProductService productService = new ProductService();
+  BagService bagService = new BagService();
 
   bool _visible = false;
   String _moreInfoText = "MORE INFO ▼";
@@ -174,7 +176,9 @@ class _ProductPageState extends State<ProductPage> {
               horizontal: 24.0,
             ),
             child: FloatingActionButton(
-              onPressed: null,
+              onPressed: () => bagService
+                  .addToBag(product.id)
+                  .then((value) => Navigator.pop(context)),
               child: Container(
                 height: 65.0,
                 decoration: BoxDecoration(
